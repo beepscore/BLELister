@@ -298,4 +298,8 @@
     previousState = [centralManager state];
 }
 
+#pragma mark - CBPeripheralDelegate
+// CBPeripheralDelegate has no required methods
+// https://developer.apple.com/library/ios/documentation/CoreBluetooth/Reference/CBPeripheralDelegate_Protocol/translated_content/CBPeripheralDelegate.html
+
 @end
