@@ -13,46 +13,31 @@
 
 #import "LeTemperatureAlarmService.h"
 
-
-
-/****************************************************************************/
-/*							UI protocols									*/
-/****************************************************************************/
+// UI protocols
 @protocol BSLeDiscoveryDelegate <NSObject>
 - (void) discoveryDidRefresh;
 - (void) discoveryStatePoweredOff;
 @end
 
 
-
-/****************************************************************************/
-/*							Discovery class									*/
-/****************************************************************************/
+// Discovery class
 @interface BSLeDiscovery : NSObject
 
 + (id) sharedInstance;
 
-
-/****************************************************************************/
-/*								UI controls									*/
-/****************************************************************************/
+// UI controls
 @property (nonatomic, assign) id<BSLeDiscoveryDelegate>           discoveryDelegate;
 @property (nonatomic, assign) id<LeTemperatureAlarmProtocol>	peripheralDelegate;
 
-
-/****************************************************************************/
-/*								Actions										*/
-/****************************************************************************/
+// Actions
 - (void) startScanningForUUIDString:(NSString *)uuidString;
 - (void) stopScanning;
 
 - (void) connectPeripheral:(CBPeripheral*)peripheral;
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral;
 
-
-/****************************************************************************/
-/*							Access to the devices							*/
-/****************************************************************************/
+// Access to the devices
 @property (retain, nonatomic) NSMutableArray    *foundPeripherals;
-@property (retain, nonatomic) NSMutableArray	*connectedServices;	// Array of LeTemperatureAlarmService
+// Array of LeTemperatureAlarmService
+@property (retain, nonatomic) NSMutableArray	*connectedServices;
 @end
