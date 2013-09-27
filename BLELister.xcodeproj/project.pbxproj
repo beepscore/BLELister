@@ -1,0 +1,496 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
+		DEE990C717F543F70041CAB6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C617F543F70041CAB6 /* CoreGraphics.framework */; };
+		DEE990C917F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
+		DEE990CF17F543F70041CAB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE990CD17F543F70041CAB6 /* InfoPlist.strings */; };
+		DEE990D117F543F70041CAB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990D017F543F70041CAB6 /* main.m */; };
+		DEE990D517F543F70041CAB6 /* BSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990D417F543F70041CAB6 /* BSAppDelegate.m */; };
+		DEE990D817F543F70041CAB6 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */; };
+		DEE990DB17F543F70041CAB6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */; };
+		DEE990DE17F543F70041CAB6 /* BSMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */; };
+		DEE990E117F543F70041CAB6 /* BSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990E017F543F70041CAB6 /* BSDetailViewController.m */; };
+		DEE990E317F543F70041CAB6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEE990E217F543F70041CAB6 /* Images.xcassets */; };
+		DEE990EA17F543F70041CAB6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990E917F543F70041CAB6 /* XCTest.framework */; };
+		DEE990EB17F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
+		DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
+		DEE990F417F543F70041CAB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE990F217F543F70041CAB6 /* InfoPlist.strings */; };
+		DEE990F617F543F70041CAB6 /* BLEListerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990F517F543F70041CAB6 /* BLEListerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DEE990ED17F543F70041CAB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DEE990B917F543F60041CAB6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DEE990C017F543F70041CAB6;
+			remoteInfo = BLELister;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DEE990C117F543F70041CAB6 /* BLELister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLELister.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEE990C417F543F70041CAB6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DEE990C617F543F70041CAB6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DEE990C817F543F70041CAB6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DEE990CC17F543F70041CAB6 /* BLELister-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BLELister-Info.plist"; sourceTree = "<group>"; };
+		DEE990CE17F543F70041CAB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DEE990D017F543F70041CAB6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DEE990D217F543F70041CAB6 /* BLELister-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BLELister-Prefix.pch"; sourceTree = "<group>"; };
+		DEE990D317F543F70041CAB6 /* BSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSAppDelegate.h; sourceTree = "<group>"; };
+		DEE990D417F543F70041CAB6 /* BSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAppDelegate.m; sourceTree = "<group>"; };
+		DEE990D717F543F70041CAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		DEE990DA17F543F70041CAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSMasterViewController.h; sourceTree = "<group>"; };
+		DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMasterViewController.m; sourceTree = "<group>"; };
+		DEE990DF17F543F70041CAB6 /* BSDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSDetailViewController.h; sourceTree = "<group>"; };
+		DEE990E017F543F70041CAB6 /* BSDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDetailViewController.m; sourceTree = "<group>"; };
+		DEE990E217F543F70041CAB6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DEE990E817F543F70041CAB6 /* BLEListerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLEListerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEE990E917F543F70041CAB6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DEE990F117F543F70041CAB6 /* BLEListerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BLEListerTests-Info.plist"; sourceTree = "<group>"; };
+		DEE990F317F543F70041CAB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DEE990F517F543F70041CAB6 /* BLEListerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLEListerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DEE990BE17F543F70041CAB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEE990C717F543F70041CAB6 /* CoreGraphics.framework in Frameworks */,
+				DEE990C917F543F70041CAB6 /* UIKit.framework in Frameworks */,
+				DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEE990E517F543F70041CAB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEE990EA17F543F70041CAB6 /* XCTest.framework in Frameworks */,
+				DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */,
+				DEE990EB17F543F70041CAB6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DEE990B817F543F60041CAB6 = {
+			isa = PBXGroup;
+			children = (
+				DEE990CA17F543F70041CAB6 /* BLELister */,
+				DEE990EF17F543F70041CAB6 /* BLEListerTests */,
+				DEE990C317F543F70041CAB6 /* Frameworks */,
+				DEE990C217F543F70041CAB6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DEE990C217F543F70041CAB6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DEE990C117F543F70041CAB6 /* BLELister.app */,
+				DEE990E817F543F70041CAB6 /* BLEListerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DEE990C317F543F70041CAB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DEE990C417F543F70041CAB6 /* Foundation.framework */,
+				DEE990C617F543F70041CAB6 /* CoreGraphics.framework */,
+				DEE990C817F543F70041CAB6 /* UIKit.framework */,
+				DEE990E917F543F70041CAB6 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DEE990CA17F543F70041CAB6 /* BLELister */ = {
+			isa = PBXGroup;
+			children = (
+				DEE990D317F543F70041CAB6 /* BSAppDelegate.h */,
+				DEE990D417F543F70041CAB6 /* BSAppDelegate.m */,
+				DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */,
+				DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */,
+				DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */,
+				DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */,
+				DEE990DF17F543F70041CAB6 /* BSDetailViewController.h */,
+				DEE990E017F543F70041CAB6 /* BSDetailViewController.m */,
+				DEE990E217F543F70041CAB6 /* Images.xcassets */,
+				DEE990CB17F543F70041CAB6 /* Supporting Files */,
+			);
+			path = BLELister;
+			sourceTree = "<group>";
+		};
+		DEE990CB17F543F70041CAB6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DEE990CC17F543F70041CAB6 /* BLELister-Info.plist */,
+				DEE990CD17F543F70041CAB6 /* InfoPlist.strings */,
+				DEE990D017F543F70041CAB6 /* main.m */,
+				DEE990D217F543F70041CAB6 /* BLELister-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DEE990EF17F543F70041CAB6 /* BLEListerTests */ = {
+			isa = PBXGroup;
+			children = (
+				DEE990F517F543F70041CAB6 /* BLEListerTests.m */,
+				DEE990F017F543F70041CAB6 /* Supporting Files */,
+			);
+			path = BLEListerTests;
+			sourceTree = "<group>";
+		};
+		DEE990F017F543F70041CAB6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DEE990F117F543F70041CAB6 /* BLEListerTests-Info.plist */,
+				DEE990F217F543F70041CAB6 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DEE990C017F543F70041CAB6 /* BLELister */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEE990F917F543F70041CAB6 /* Build configuration list for PBXNativeTarget "BLELister" */;
+			buildPhases = (
+				DEE990BD17F543F70041CAB6 /* Sources */,
+				DEE990BE17F543F70041CAB6 /* Frameworks */,
+				DEE990BF17F543F70041CAB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BLELister;
+			productName = BLELister;
+			productReference = DEE990C117F543F70041CAB6 /* BLELister.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DEE990E717F543F70041CAB6 /* BLEListerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEE990FC17F543F70041CAB6 /* Build configuration list for PBXNativeTarget "BLEListerTests" */;
+			buildPhases = (
+				DEE990E417F543F70041CAB6 /* Sources */,
+				DEE990E517F543F70041CAB6 /* Frameworks */,
+				DEE990E617F543F70041CAB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DEE990EE17F543F70041CAB6 /* PBXTargetDependency */,
+			);
+			name = BLEListerTests;
+			productName = BLEListerTests;
+			productReference = DEE990E817F543F70041CAB6 /* BLEListerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DEE990B917F543F60041CAB6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = BS;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Beepscore LLC";
+				TargetAttributes = {
+					DEE990E717F543F70041CAB6 = {
+						TestTargetID = DEE990C017F543F70041CAB6;
+					};
+				};
+			};
+			buildConfigurationList = DEE990BC17F543F60041CAB6 /* Build configuration list for PBXProject "BLELister" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DEE990B817F543F60041CAB6;
+			productRefGroup = DEE990C217F543F70041CAB6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DEE990C017F543F70041CAB6 /* BLELister */,
+				DEE990E717F543F70041CAB6 /* BLEListerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DEE990BF17F543F70041CAB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEE990DB17F543F70041CAB6 /* Main_iPad.storyboard in Resources */,
+				DEE990E317F543F70041CAB6 /* Images.xcassets in Resources */,
+				DEE990D817F543F70041CAB6 /* Main_iPhone.storyboard in Resources */,
+				DEE990CF17F543F70041CAB6 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEE990E617F543F70041CAB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEE990F417F543F70041CAB6 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DEE990BD17F543F70041CAB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEE990DE17F543F70041CAB6 /* BSMasterViewController.m in Sources */,
+				DEE990D117F543F70041CAB6 /* main.m in Sources */,
+				DEE990E117F543F70041CAB6 /* BSDetailViewController.m in Sources */,
+				DEE990D517F543F70041CAB6 /* BSAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEE990E417F543F70041CAB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEE990F617F543F70041CAB6 /* BLEListerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DEE990EE17F543F70041CAB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DEE990C017F543F70041CAB6 /* BLELister */;
+			targetProxy = DEE990ED17F543F70041CAB6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DEE990CD17F543F70041CAB6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEE990CE17F543F70041CAB6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEE990D717F543F70041CAB6 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEE990DA17F543F70041CAB6 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		DEE990F217F543F70041CAB6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEE990F317F543F70041CAB6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DEE990F717F543F70041CAB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DEE990F817F543F70041CAB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DEE990FA17F543F70041CAB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
+				INFOPLIST_FILE = "BLELister/BLELister-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DEE990FB17F543F70041CAB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
+				INFOPLIST_FILE = "BLELister/BLELister-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		DEE990FD17F543F70041CAB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BLELister.app/BLELister";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		DEE990FE17F543F70041CAB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BLELister.app/BLELister";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
+				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DEE990BC17F543F60041CAB6 /* Build configuration list for PBXProject "BLELister" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEE990F717F543F70041CAB6 /* Debug */,
+				DEE990F817F543F70041CAB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEE990F917F543F70041CAB6 /* Build configuration list for PBXNativeTarget "BLELister" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEE990FA17F543F70041CAB6 /* Debug */,
+				DEE990FB17F543F70041CAB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DEE990FC17F543F70041CAB6 /* Build configuration list for PBXNativeTarget "BLEListerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEE990FD17F543F70041CAB6 /* Debug */,
+				DEE990FE17F543F70041CAB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DEE990B917F543F60041CAB6 /* Project object */;
+}
