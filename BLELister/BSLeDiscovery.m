@@ -21,16 +21,15 @@
 @implementation BSLeDiscovery
 
 #pragma mark - Init
-+ (id) sharedInstance
-{
-    static BSLeDiscovery	*this = nil;
-
-    if (!this)
-        this = [[BSLeDiscovery alloc] init];
-
-    return this;
+// http://stackoverflow.com/questions/5720029/create-singleton-using-gcds-dispatch-once-in-objective-c
++ (id)sharedInstance {
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
 }
-
 
 - (id) init
 {
