@@ -78,7 +78,7 @@
         if (!uuid)
             continue;
 
-        [centralManager retrievePeripherals:[NSArray arrayWithObject:(id)uuid]];
+        [centralManager retrievePeripherals:[NSArray arrayWithObject:(__bridge id)uuid]];
         CFRelease(uuid);
     }
 
@@ -100,7 +100,7 @@
 
     uuidString = CFUUIDCreateString(NULL, uuid);
     if (uuidString) {
-        [newDevices addObject:(NSString*)uuidString];
+        [newDevices addObject:(__bridge NSString*)uuidString];
         CFRelease(uuidString);
     }
     /* Store */
@@ -120,7 +120,7 @@
 
         uuidString = CFUUIDCreateString(NULL, uuid);
         if (uuidString) {
-            [newDevices removeObject:(NSString*)uuidString];
+            [newDevices removeObject:(__bridge NSString*)uuidString];
             CFRelease(uuidString);
         }
         /* Store */
