@@ -20,10 +20,6 @@
 
 @implementation BSLeDiscovery
 
-@synthesize foundPeripherals;
-@synthesize connectedServices;
-@synthesize discoveryDelegate;
-
 #pragma mark - Init
 + (id) sharedInstance
 {
@@ -43,8 +39,8 @@
         pendingInit = YES;
         centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
 
-        foundPeripherals = [[NSMutableArray alloc] init];
-        connectedServices = [[NSMutableArray alloc] init];
+        self.foundPeripherals = [[NSMutableArray alloc] init];
+        self.connectedServices = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -131,9 +127,9 @@
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    if (![foundPeripherals containsObject:peripheral]) {
-              [foundPeripherals addObject:peripheral];
-              [discoveryDelegate discoveryDidRefresh];
+    if (![self.foundPeripherals containsObject:peripheral]) {
+              [self.foundPeripherals addObject:peripheral];
+              [self.discoveryDelegate discoveryDidRefresh];
     }
 }
 
@@ -203,7 +199,7 @@
 
 - (void) clearDevices
 {
-    [foundPeripherals removeAllObjects];
+    [self.foundPeripherals removeAllObjects];
 
     /*
     LeTemperatureAlarmService *service;
@@ -211,7 +207,7 @@
         [service reset];
     }
     */
-    [connectedServices removeAllObjects];
+    [self.connectedServices removeAllObjects];
 }
 
 // CBCentralManagerDelegate required method
@@ -223,12 +219,12 @@
         case CBCentralManagerStatePoweredOff:
             {
                 [self clearDevices];
-                [discoveryDelegate discoveryDidRefresh];
+                [self.discoveryDelegate discoveryDidRefresh];
 
                 /* Tell user to power ON BT for functionality, but not on first run - the Framework will alert in that instance. */
                 // cast -1 to CBCentralManagerState to eliminate warning
                 if (previousState != (CBCentralManagerState)-1) {
-                    [discoveryDelegate discoveryStatePoweredOff];
+                    [self.discoveryDelegate discoveryStatePoweredOff];
                 }
                 break;
             }
@@ -257,14 +253,14 @@
                 for (CBPeripheral *peripheral in peripherals) {
                     [central connectPeripheral:peripheral options:nil];
                 }
-                [discoveryDelegate discoveryDidRefresh];
+                [self.discoveryDelegate discoveryDidRefresh];
                 break;
             }
 
         case CBCentralManagerStateResetting:
             {
                 [self clearDevices];
-                [discoveryDelegate discoveryDidRefresh];
+                [self.discoveryDelegate discoveryDidRefresh];
                 //[peripheralDelegate alarmServiceDidReset];
 
                 pendingInit = YES;
