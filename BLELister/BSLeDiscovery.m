@@ -58,11 +58,13 @@
 
     for (id uuid in storedDevices) {
 
-        if (!uuid)
+        if (!uuid) {
             continue;
+        }
 
-        if (![uuid isKindOfClass:[CBUUID class]])
+        if (![uuid isKindOfClass:[CBUUID class]]) {
             continue;
+        }
 
         NSArray *services = @[uuid];
         [centralManager retrieveConnectedPeripheralsWithServices:services];
