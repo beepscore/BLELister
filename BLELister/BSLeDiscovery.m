@@ -113,41 +113,15 @@
     }
 }
 
-
-- (void) centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
-{
-    CBPeripheral	*peripheral;
-
-    /* Add to list. */
-    for (peripheral in peripherals) {
-        [central connectPeripheral:peripheral options:nil];
-    }
-    [discoveryDelegate discoveryDidRefresh];
-}
-
-
-- (void) centralManager:(CBCentralManager *)central didRetrievePeripheral:(CBPeripheral *)peripheral
-{
-    [central connectPeripheral:peripheral options:nil];
-    [discoveryDelegate discoveryDidRefresh];
-}
-
-
-- (void) centralManager:(CBCentralManager *)central didFailToRetrievePeripheralForUUID:(CFUUIDRef)UUID error:(NSError *)error
-{
-    /* Nuke from plist. */
-    [self removeSavedDevice:UUID];
-}
-
 #pragma mark - Discovery
 - (void) startScanningForUUIDString:(NSString *)uuidString
 {
-    //NSArray *uuidArray = [NSArray arrayWithObjects:[CBUUID UUIDWithString:uuidString], nil];
-    NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
+    CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
+    NSArray *uuidArray = @[uuid];
+    NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
+                                                        forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
 
-    //[centralManager scanForPeripheralsWithServices:uuidArray options:options];
-    // scan for all peripherals
-    [centralManager scanForPeripheralsWithServices:nil options:options];
+    [centralManager scanForPeripheralsWithServices:uuidArray options:options];
 }
 
 - (void) stopScanning
@@ -174,6 +148,38 @@
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral
 {
     [centralManager cancelPeripheralConnection:peripheral];
+}
+
+#pragma mark - CBCentralManagerDelegate
+// https://developer.apple.com/library/ios/documentation/CoreBluetooth/Reference/CBCentralManagerDelegate_Protocol/translated_content/CBCentralManagerDelegate.html
+
+/* In iOS 7, can replace retrieveConnectedPeripherals: and didRetrieveConnectedPeripherals:
+   with retrieveConnectedPeripheralsWithServices:
+- (void) centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
+{
+    CBPeripheral	*peripheral;
+
+    // Add to list.
+    for (peripheral in peripherals) {
+        [central connectPeripheral:peripheral options:nil];
+    }
+    [discoveryDelegate discoveryDidRefresh];
+}
+*/
+
+/*
+ In iOS 7, can replace retrievePeripheral: and didRetrievePeriperal: with retrievePeripheralsWithIdentifiers
+- (void) centralManager:(CBCentralManager *)central didRetrievePeripheral:(CBPeripheral *)peripheral
+{
+    [central connectPeripheral:peripheral options:nil];
+    [discoveryDelegate discoveryDidRefresh];
+}
+*/
+
+- (void) centralManager:(CBCentralManager *)central didFailToRetrievePeripheralForUUID:(CBUUID *)uuid error:(NSError *)error
+{
+    /* Delete from plist. */
+    [self removeSavedDevice:uuid];
 }
 
 - (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
@@ -220,17 +226,18 @@
 
 - (void) clearDevices
 {
-    /*
-    LeTemperatureAlarmService	*service;
     [foundPeripherals removeAllObjects];
 
+    /*
+    LeTemperatureAlarmService *service;
     for (service in connectedServices) {
         [service reset];
     }
+    */
     [connectedServices removeAllObjects];
-     */
 }
 
+// CBCentralManagerDelegate required method
 - (void) centralManagerDidUpdateState:(CBCentralManager *)central
 {
     static CBCentralManagerState previousState = -1;
@@ -265,7 +272,16 @@
             {
                 pendingInit = NO;
                 [self loadSavedDevices];
-                [centralManager retrieveConnectedPeripherals];
+
+                //FIXME:
+                // retrieveConnectedPeripherals deprecated in iOS 7.
+                //[centralManager retrieveConnectedPeripherals];
+                NSArray *peripherals = [centralManager retrieveConnectedPeripheralsWithServices:nil];
+
+                // Add to list.
+                for (CBPeripheral *peripheral in peripherals) {
+                    [central connectPeripheral:peripheral options:nil];
+                }
                 [discoveryDelegate discoveryDidRefresh];
                 break;
             }
