@@ -180,7 +180,7 @@
 #pragma mark - Connection/Disconnection
 - (void) connectPeripheral:(CBPeripheral*)peripheral
 {
-    if (![peripheral isConnected]) {
+    if (peripheral.state == CBPeripheralStateDisconnected) {
         [centralManager connectPeripheral:peripheral options:nil];
     }
 }
