@@ -8,17 +8,17 @@
 //
 // Abstract: Scan for and discover nearby LE peripherals with the matching service UUID.
 
-#import "LeDiscovery.h"
+#import "BSLeDiscovery.h"
 
 
-@interface LeDiscovery () <CBCentralManagerDelegate, CBPeripheralDelegate> {
+@interface BSLeDiscovery () <CBCentralManagerDelegate, CBPeripheralDelegate> {
 	CBCentralManager    *centralManager;
 	BOOL				pendingInit;
 }
 @end
 
 
-@implementation LeDiscovery
+@implementation BSLeDiscovery
 
 @synthesize foundPeripherals;
 @synthesize connectedServices;
@@ -34,10 +34,10 @@
 /****************************************************************************/
 + (id) sharedInstance
 {
-	static LeDiscovery	*this	= nil;
+	static BSLeDiscovery	*this	= nil;
 
 	if (!this)
-		this = [[LeDiscovery alloc] init];
+		this = [[BSLeDiscovery alloc] init];
 
 	return this;
 }

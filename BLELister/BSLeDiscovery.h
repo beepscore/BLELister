@@ -18,7 +18,7 @@
 /****************************************************************************/
 /*							UI protocols									*/
 /****************************************************************************/
-@protocol LeDiscoveryDelegate <NSObject>
+@protocol BSLeDiscoveryDelegate <NSObject>
 - (void) discoveryDidRefresh;
 - (void) discoveryStatePoweredOff;
 @end
@@ -28,7 +28,7 @@
 /****************************************************************************/
 /*							Discovery class									*/
 /****************************************************************************/
-@interface LeDiscovery : NSObject
+@interface BSLeDiscovery : NSObject
 
 + (id) sharedInstance;
 
@@ -36,7 +36,7 @@
 /****************************************************************************/
 /*								UI controls									*/
 /****************************************************************************/
-@property (nonatomic, assign) id<LeDiscoveryDelegate>           discoveryDelegate;
+@property (nonatomic, assign) id<BSLeDiscoveryDelegate>           discoveryDelegate;
 @property (nonatomic, assign) id<LeTemperatureAlarmProtocol>	peripheralDelegate;
 
 
