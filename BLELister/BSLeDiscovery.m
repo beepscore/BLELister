@@ -53,7 +53,6 @@
 {
     // We are a singleton and as such, dealloc shouldn't be called.
     assert(NO);
-    [super dealloc];
 }
 
 #pragma mark - Restoring

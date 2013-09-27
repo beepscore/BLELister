@@ -24,7 +24,7 @@
 + (id) sharedInstance;
 
 // UI controls
-@property (nonatomic, assign) id<BSLeDiscoveryDelegate>           discoveryDelegate;
+@property (nonatomic, weak) id<BSLeDiscoveryDelegate>           discoveryDelegate;
 
 // Actions
 - (void) startScanningForUUIDString:(NSString *)uuidString;
@@ -34,7 +34,7 @@
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral;
 
 // Access to the devices
-@property (retain, nonatomic) NSMutableArray    *foundPeripherals;
+@property (strong, nonatomic) NSMutableArray    *foundPeripherals;
 // Array of LeTemperatureAlarmService
-@property (retain, nonatomic) NSMutableArray	*connectedServices;
+@property (strong, nonatomic) NSMutableArray	*connectedServices;
 @end
