@@ -61,27 +61,24 @@
         return;
     }
 
-    for (id deviceUUIDString in storedDevices) {
+    for (id uuid in storedDevices) {
 
-        if (![deviceUUIDString isKindOfClass:[NSString class]])
-            continue;
-
-        CFUUIDRef uuid = CFUUIDCreateFromString(NULL, (CFStringRef)deviceUUIDString);
         if (!uuid)
             continue;
 
-        [centralManager retrievePeripherals:[NSArray arrayWithObject:(__bridge id)uuid]];
-        CFRelease(uuid);
-    }
+        if (![uuid isKindOfClass:[CBUUID class]])
+            continue;
 
+        NSArray *services = @[uuid];
+        [centralManager retrieveConnectedPeripheralsWithServices:services];
+    }
 }
 
 
-- (void) addSavedDevice:(CFUUIDRef) uuid
+- (void) addSavedDevice:(CBUUID *)uuid
 {
     NSArray			*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:@"StoredDevices"];
     NSMutableArray	*newDevices		= nil;
-    CFStringRef		uuidString		= NULL;
 
     if (![storedDevices isKindOfClass:[NSArray class]]) {
         NSLog(@"Can't find/create an array to store the uuid");
@@ -90,10 +87,8 @@
 
     newDevices = [NSMutableArray arrayWithArray:storedDevices];
 
-    uuidString = CFUUIDCreateString(NULL, uuid);
-    if (uuidString) {
-        [newDevices addObject:(__bridge NSString*)uuidString];
-        CFRelease(uuidString);
+    if (uuid) {
+        [newDevices addObject:uuid];
     }
     /* Store */
     [[NSUserDefaults standardUserDefaults] setObject:newDevices forKey:@"StoredDevices"];
@@ -101,19 +96,16 @@
 }
 
 
-- (void) removeSavedDevice:(CFUUIDRef) uuid
+- (void) removeSavedDevice:(CBUUID *)uuid
 {
     NSArray			*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:@"StoredDevices"];
     NSMutableArray	*newDevices		= nil;
-    CFStringRef		uuidString		= NULL;
 
     if ([storedDevices isKindOfClass:[NSArray class]]) {
         newDevices = [NSMutableArray arrayWithArray:storedDevices];
 
-        uuidString = CFUUIDCreateString(NULL, uuid);
-        if (uuidString) {
-            [newDevices removeObject:(__bridge NSString*)uuidString];
-            CFRelease(uuidString);
+        if (uuid) {
+            [newDevices removeObject:uuid];
         }
         /* Store */
         [[NSUserDefaults standardUserDefaults] setObject:newDevices forKey:@"StoredDevices"];
