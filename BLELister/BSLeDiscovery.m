@@ -49,12 +49,6 @@
     return self;
 }
 
-- (void) dealloc
-{
-    // We are a singleton and as such, dealloc shouldn't be called.
-    assert(NO);
-}
-
 #pragma mark - Restoring
 // Settings
 // Reload from file
