@@ -154,67 +154,6 @@
 #pragma mark - CBCentralManagerDelegate
 // https://developer.apple.com/library/ios/documentation/CoreBluetooth/Reference/CBCentralManagerDelegate_Protocol/translated_content/CBCentralManagerDelegate.html
 
-- (void) centralManager:(CBCentralManager *)central didFailToRetrievePeripheralForUUID:(CBUUID *)uuid error:(NSError *)error
-{
-    /* Delete from plist. */
-    [self removeSavedDevice:uuid];
-}
-
-- (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
-{
-    /*
-    LeTemperatureAlarmService	*service	= nil;
-
-    // Create a service instance
-    service = [[[LeTemperatureAlarmService alloc] initWithPeripheral:peripheral controller:peripheralDelegate] autorelease];
-    [service start];
-
-    if (![connectedServices containsObject:service])
-              [connectedServices addObject:service];
-
-    if ([foundPeripherals containsObject:peripheral])
-          [foundPeripherals removeObject:peripheral];
-
-    [peripheralDelegate alarmServiceDidChangeStatus:service];
-    [discoveryDelegate discoveryDidRefresh];
-    */
-}
-
-- (void) centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
-{
-    NSLog(@"Attempted connection to peripheral %@ failed: %@", [peripheral name], [error localizedDescription]);
-}
-
-- (void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
-{
-    /*
-    LeTemperatureAlarmService	*service	= nil;
-
-    for (service in connectedServices) {
-        if ([service peripheral] == peripheral) {
-            [connectedServices removeObject:service];
-            [peripheralDelegate alarmServiceDidChangeStatus:service];
-            break;
-        }
-    }
-
-    [discoveryDelegate discoveryDidRefresh];
-     */
-}
-
-- (void) clearDevices
-{
-    [self.foundPeripherals removeAllObjects];
-
-    /*
-    LeTemperatureAlarmService *service;
-    for (service in connectedServices) {
-        [service reset];
-    }
-    */
-    [self.connectedServices removeAllObjects];
-}
-
 // CBCentralManagerDelegate required method
 - (void) centralManagerDidUpdateState:(CBCentralManager *)central
 {
@@ -280,6 +219,67 @@
     }
 
     previousState = [centralManager state];
+}
+
+- (void) centralManager:(CBCentralManager *)central didFailToRetrievePeripheralForUUID:(CBUUID *)uuid error:(NSError *)error
+{
+    /* Delete from plist. */
+    [self removeSavedDevice:uuid];
+}
+
+- (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+{
+    /*
+    LeTemperatureAlarmService	*service	= nil;
+
+    // Create a service instance
+    service = [[[LeTemperatureAlarmService alloc] initWithPeripheral:peripheral controller:peripheralDelegate] autorelease];
+    [service start];
+
+    if (![connectedServices containsObject:service])
+              [connectedServices addObject:service];
+
+    if ([foundPeripherals containsObject:peripheral])
+          [foundPeripherals removeObject:peripheral];
+
+    [peripheralDelegate alarmServiceDidChangeStatus:service];
+    [discoveryDelegate discoveryDidRefresh];
+    */
+}
+
+- (void) centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    NSLog(@"Attempted connection to peripheral %@ failed: %@", [peripheral name], [error localizedDescription]);
+}
+
+- (void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
+{
+    /*
+    LeTemperatureAlarmService	*service	= nil;
+
+    for (service in connectedServices) {
+        if ([service peripheral] == peripheral) {
+            [connectedServices removeObject:service];
+            [peripheralDelegate alarmServiceDidChangeStatus:service];
+            break;
+        }
+    }
+
+    [discoveryDelegate discoveryDidRefresh];
+     */
+}
+
+- (void) clearDevices
+{
+    [self.foundPeripherals removeAllObjects];
+
+    /*
+    LeTemperatureAlarmService *service;
+    for (service in connectedServices) {
+        [service reset];
+    }
+    */
+    [self.connectedServices removeAllObjects];
 }
 
 #pragma mark - CBPeripheralDelegate
