@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DEBC532317F547A800F2ACFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532217F547A800F2ACFF /* README.md */; };
+		DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532417F547BB00F2ACFF /* LICENSE.txt */; };
 		DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
 		DEE990C717F543F70041CAB6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C617F543F70041CAB6 /* CoreGraphics.framework */; };
 		DEE990C917F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		DEBC532417F547BB00F2ACFF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DEE990C117F543F70041CAB6 /* BLELister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLELister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE990C417F543F70041CAB6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DEE990C617F543F70041CAB6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -87,6 +91,8 @@
 		DEE990B817F543F60041CAB6 = {
 			isa = PBXGroup;
 			children = (
+				DEBC532217F547A800F2ACFF /* README.md */,
+				DEBC532417F547BB00F2ACFF /* LICENSE.txt */,
 				DEE990CA17F543F70041CAB6 /* BLELister */,
 				DEE990EF17F543F70041CAB6 /* BLEListerTests */,
 				DEE990C317F543F70041CAB6 /* Frameworks */,
@@ -237,8 +243,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */,
 				DEE990DB17F543F70041CAB6 /* Main_iPad.storyboard in Resources */,
 				DEE990E317F543F70041CAB6 /* Images.xcassets in Resources */,
+				DEBC532317F547A800F2ACFF /* README.md in Resources */,
 				DEE990D817F543F70041CAB6 /* Main_iPhone.storyboard in Resources */,
 				DEE990CF17F543F70041CAB6 /* InfoPlist.strings in Resources */,
 			);
@@ -481,6 +489,7 @@
 				DEE990FB17F543F70041CAB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DEE990FC17F543F70041CAB6 /* Build configuration list for PBXNativeTarget "BLEListerTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +498,7 @@
 				DEE990FE17F543F70041CAB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
