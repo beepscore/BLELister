@@ -11,8 +11,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-#import "LeTemperatureAlarmService.h"
-
 // UI protocols
 @protocol BSLeDiscoveryDelegate <NSObject>
 - (void) discoveryDidRefresh;
@@ -27,7 +25,6 @@
 
 // UI controls
 @property (nonatomic, assign) id<BSLeDiscoveryDelegate>           discoveryDelegate;
-@property (nonatomic, assign) id<LeTemperatureAlarmProtocol>	peripheralDelegate;
 
 // Actions
 - (void) startScanningForUUIDString:(NSString *)uuidString;

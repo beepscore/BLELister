@@ -23,7 +23,6 @@
 @synthesize foundPeripherals;
 @synthesize connectedServices;
 @synthesize discoveryDelegate;
-@synthesize peripheralDelegate;
 
 #pragma mark - Init
 + (id) sharedInstance
@@ -194,9 +193,10 @@
 
 - (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
+    /*
     LeTemperatureAlarmService	*service	= nil;
 
-    /* Create a service instance. */
+    // Create a service instance
     service = [[[LeTemperatureAlarmService alloc] initWithPeripheral:peripheral controller:peripheralDelegate] autorelease];
     [service start];
 
@@ -208,6 +208,7 @@
 
     [peripheralDelegate alarmServiceDidChangeStatus:service];
     [discoveryDelegate discoveryDidRefresh];
+    */
 }
 
 - (void) centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
@@ -217,6 +218,7 @@
 
 - (void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
+    /*
     LeTemperatureAlarmService	*service	= nil;
 
     for (service in connectedServices) {
@@ -228,10 +230,12 @@
     }
 
     [discoveryDelegate discoveryDidRefresh];
+     */
 }
 
 - (void) clearDevices
 {
+    /*
     LeTemperatureAlarmService	*service;
     [foundPeripherals removeAllObjects];
 
@@ -239,6 +243,7 @@
         [service reset];
     }
     [connectedServices removeAllObjects];
+     */
 }
 
 - (void) centralManagerDidUpdateState:(CBCentralManager *)central
@@ -284,7 +289,7 @@
             {
                 [self clearDevices];
                 [discoveryDelegate discoveryDidRefresh];
-                [peripheralDelegate alarmServiceDidReset];
+                //[peripheralDelegate alarmServiceDidReset];
 
                 pendingInit = YES;
                 break;
