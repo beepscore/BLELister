@@ -36,7 +36,8 @@
     self = [super init];
     if (self) {
         pendingInit = YES;
-        centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
+        centralManager = [[CBCentralManager alloc] initWithDelegate:self
+                                                              queue:dispatch_get_main_queue()];
 
         self.foundPeripherals = [[NSMutableArray alloc] init];
         self.connectedServices = [[NSMutableArray alloc] init];
@@ -126,11 +127,14 @@
     [centralManager stopScan];
 }
 
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
-{
+- (void)centralManager:(CBCentralManager *)central
+ didDiscoverPeripheral:(CBPeripheral *)peripheral
+     advertisementData:(NSDictionary *)advertisementData
+                  RSSI:(NSNumber *)RSSI {
+
     if (![self.foundPeripherals containsObject:peripheral]) {
-              [self.foundPeripherals addObject:peripheral];
-              [self.discoveryDelegate discoveryDidRefresh];
+        [self.foundPeripherals addObject:peripheral];
+        [self.discoveryDelegate discoveryDidRefresh];
     }
 }
 
