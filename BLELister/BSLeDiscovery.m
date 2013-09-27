@@ -153,29 +153,6 @@
 #pragma mark - CBCentralManagerDelegate
 // https://developer.apple.com/library/ios/documentation/CoreBluetooth/Reference/CBCentralManagerDelegate_Protocol/translated_content/CBCentralManagerDelegate.html
 
-/* In iOS 7, can replace retrieveConnectedPeripherals: and didRetrieveConnectedPeripherals:
-   with retrieveConnectedPeripheralsWithServices:
-- (void) centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
-{
-    CBPeripheral	*peripheral;
-
-    // Add to list.
-    for (peripheral in peripherals) {
-        [central connectPeripheral:peripheral options:nil];
-    }
-    [discoveryDelegate discoveryDidRefresh];
-}
-*/
-
-/*
- In iOS 7, can replace retrievePeripheral: and didRetrievePeriperal: with retrievePeripheralsWithIdentifiers
-- (void) centralManager:(CBCentralManager *)central didRetrievePeripheral:(CBPeripheral *)peripheral
-{
-    [central connectPeripheral:peripheral options:nil];
-    [discoveryDelegate discoveryDidRefresh];
-}
-*/
-
 - (void) centralManager:(CBCentralManager *)central didFailToRetrievePeripheralForUUID:(CBUUID *)uuid error:(NSError *)error
 {
     /* Delete from plist. */
