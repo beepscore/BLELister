@@ -250,9 +250,7 @@
                 pendingInit = NO;
                 [self loadSavedDevices];
 
-                //FIXME:
-                // retrieveConnectedPeripherals deprecated in iOS 7.
-                //[centralManager retrieveConnectedPeripherals];
+                //FIXME: specify services argument
                 NSArray *peripherals = [centralManager retrieveConnectedPeripheralsWithServices:nil];
 
                 // Add to list.
