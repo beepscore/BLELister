@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE580DEE17F5995000292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
+		DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DEBC532317F547A800F2ACFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532217F547A800F2ACFF /* README.md */; };
 		DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532417F547BB00F2ACFF /* LICENSE.txt */; };
 		DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
@@ -40,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DE580DED17F5995000292810 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DEBC532417F547BB00F2ACFF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DEE990C117F543F70041CAB6 /* BLELister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLELister.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE580DEE17F5995000292810 /* CoreBluetooth.framework in Frameworks */,
 				DEE990C717F543F70041CAB6 /* CoreGraphics.framework in Frameworks */,
 				DEE990C917F543F70041CAB6 /* UIKit.framework in Frameworks */,
 				DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */,
@@ -85,6 +89,7 @@
 			files = (
 				DEE990EA17F543F70041CAB6 /* XCTest.framework in Frameworks */,
 				DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */,
+				DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */,
 				DEE990EB17F543F70041CAB6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +121,7 @@
 		DEE990C317F543F70041CAB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE580DED17F5995000292810 /* CoreBluetooth.framework */,
 				DEE990C417F543F70041CAB6 /* Foundation.framework */,
 				DEE990C617F543F70041CAB6 /* CoreGraphics.framework */,
 				DEE990C817F543F70041CAB6 /* UIKit.framework */,
