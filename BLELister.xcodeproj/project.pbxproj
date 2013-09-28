@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		DE580DEE17F5995000292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
+		DEA2FA5F17F6AD0100F90D8F /* OCUnit+SHTestCaseAdditions.h in Resources */ = {isa = PBXBuildFile; fileRef = DEA2FA5B17F6AD0100F90D8F /* OCUnit+SHTestCaseAdditions.h */; };
+		DEA2FA6017F6AD0100F90D8F /* OCUnit+SHTestCaseAdditions.m in Resources */ = {isa = PBXBuildFile; fileRef = DEA2FA5C17F6AD0100F90D8F /* OCUnit+SHTestCaseAdditions.m */; };
+		DEA2FA6117F6AD0100F90D8F /* SHTestCaseAdditions.h in Resources */ = {isa = PBXBuildFile; fileRef = DEA2FA5D17F6AD0100F90D8F /* SHTestCaseAdditions.h */; };
 		DEBC532317F547A800F2ACFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532217F547A800F2ACFF /* README.md */; };
 		DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532417F547BB00F2ACFF /* LICENSE.txt */; };
 		DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
@@ -44,6 +47,9 @@
 /* Begin PBXFileReference section */
 		DE580DED17F5995000292810 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLeDiscovery_Private.h; sourceTree = "<group>"; };
+		DEA2FA5B17F6AD0100F90D8F /* OCUnit+SHTestCaseAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OCUnit+SHTestCaseAdditions.h"; sourceTree = "<group>"; };
+		DEA2FA5C17F6AD0100F90D8F /* OCUnit+SHTestCaseAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OCUnit+SHTestCaseAdditions.m"; sourceTree = "<group>"; };
+		DEA2FA5D17F6AD0100F90D8F /* SHTestCaseAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = file; path = SHTestCaseAdditions.h; sourceTree = "<group>"; };
 		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DEBC532417F547BB00F2ACFF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DEE990C117F543F70041CAB6 /* BLELister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLELister.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,9 +104,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DEA2FA5E17F6AD0100F90D8F /* SHTestCaseAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				DEA2FA5B17F6AD0100F90D8F /* OCUnit+SHTestCaseAdditions.h */,
+				DEA2FA5C17F6AD0100F90D8F /* OCUnit+SHTestCaseAdditions.m */,
+				DEA2FA5D17F6AD0100F90D8F /* SHTestCaseAdditions.h */,
+			);
+			name = SHTestCaseAdditions;
+			path = SHTestCaseAdditions/SHTestCaseAdditions;
+			sourceTree = "<group>";
+		};
 		DEE990B817F543F60041CAB6 = {
 			isa = PBXGroup;
 			children = (
+				DEA2FA5E17F6AD0100F90D8F /* SHTestCaseAdditions */,
 				DEBC532217F547A800F2ACFF /* README.md */,
 				DEBC532417F547BB00F2ACFF /* LICENSE.txt */,
 				DEE990CA17F543F70041CAB6 /* BLELister */,
@@ -271,6 +289,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEE990F417F543F70041CAB6 /* InfoPlist.strings in Resources */,
+				DEA2FA6117F6AD0100F90D8F /* SHTestCaseAdditions.h in Resources */,
+				DEA2FA5F17F6AD0100F90D8F /* OCUnit+SHTestCaseAdditions.h in Resources */,
+				DEA2FA6017F6AD0100F90D8F /* OCUnit+SHTestCaseAdditions.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
