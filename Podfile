@@ -1,7 +1,7 @@
 pod 'SHKeyValueObserverBlocks'
 pod 'SHFastEnumerationProtocols'
 
-target :ExampleTests do
+target :BLEListerTests do
   pod 'SHTestCaseAdditions', :path => "../"
 end
 
