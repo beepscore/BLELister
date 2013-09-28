@@ -1,3 +1,5 @@
+platform :ios
+
 pod 'SHKeyValueObserverBlocks'
 pod 'SHFastEnumerationProtocols'
 
