@@ -9,7 +9,7 @@
 // Abstract: Scan for and discover nearby LE peripherals with the matching service UUID.
 
 #import "BSLeDiscovery.h"
-
+#import "BSLeDiscovery_Private.h"
 
 @interface BSLeDiscovery () <CBCentralManagerDelegate, CBPeripheralDelegate> {
     CBCentralManager *centralManager;
@@ -20,29 +20,45 @@
 
 @implementation BSLeDiscovery
 
-#pragma mark - Init
 // http://stackoverflow.com/questions/5720029/create-singleton-using-gcds-dispatch-once-in-objective-c
 + (id)sharedInstance {
     static dispatch_once_t once;
     static id sharedInstance;
     dispatch_once(&once, ^{
-        sharedInstance = [[self alloc] init];
+        
+        CBCentralManager *aCentralManager = [[CBCentralManager alloc] initWithDelegate:(id<CBCentralManagerDelegate>)self
+                                                                                 queue:dispatch_get_main_queue()];
+        sharedInstance = [[self alloc]
+                          initWithCentralManager:aCentralManager
+                          foundPeripherals:[[NSMutableArray alloc] init]
+                          connectedServices:[[NSMutableArray alloc] init]];
     });
     return sharedInstance;
 }
 
-- (id) init
-{
+#pragma mark - Initializers
+// designated initializer
+- (id)initWithCentralManager:(CBCentralManager *)aCentralManager
+            foundPeripherals:(NSMutableArray *)aFoundPeripherals
+           connectedServices:(NSMutableArray *)aConnectedServices {
+
+    // call super's designated intializer
     self = [super init];
     if (self) {
         pendingInit = YES;
-        centralManager = [[CBCentralManager alloc] initWithDelegate:self
-                                                              queue:dispatch_get_main_queue()];
-
-        self.foundPeripherals = [[NSMutableArray alloc] init];
-        self.connectedServices = [[NSMutableArray alloc] init];
+        centralManager = aCentralManager;
+        self.foundPeripherals = aFoundPeripherals;
+        self.connectedServices = aConnectedServices;
     }
     return self;
+}
+
+// override superclass' designated initializer. Ref Hillegass pg 57
+- (id) init {
+    // call designated initializer
+    return [self initWithCentralManager:nil
+                       foundPeripherals:nil
+                      connectedServices:nil];
 }
 
 #pragma mark - Restoring

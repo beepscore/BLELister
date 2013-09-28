@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BSLeDiscovery.h"
+#import "BSLeDiscovery_Private.h"
 
 @interface BSLeDiscoveryTests : XCTestCase
 @property (strong, nonatomic) BSLeDiscovery *bsLeDiscovery;
@@ -52,6 +53,18 @@
     // designated initializer.
     XCTAssertNotNil(self.bsLeDiscovery.connectedServices,
                    @"expected sharedInstance sets connectedServices");
+}
+
+# pragma mark - test designated initializer
+- (void)testDesignatedInitializerWithParamsNil {
+    self.bsLeDiscovery = [[BSLeDiscovery alloc]
+                          initWithCentralManager:nil
+                          foundPeripherals:nil
+                          connectedServices:nil];
+    XCTAssertNil(self.bsLeDiscovery.foundPeripherals,
+                @"expected foundPeripherals nil");
+    XCTAssertNil(self.bsLeDiscovery.connectedServices,
+                @"expected connectedServices nil");
 }
 
 @end
