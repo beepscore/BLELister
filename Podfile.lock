@@ -1,0 +1,10 @@
+PODS:
+  - SHTestCaseAdditions (1.2.0)
+
+DEPENDENCIES:
+  - SHTestCaseAdditions (~> 1.2.0)
+
+SPEC CHECKSUMS:
+  SHTestCaseAdditions: bbd3d1fd35b4165a1a5ed67f29c1699d70120c27
+
+COCOAPODS: 0.25.0
