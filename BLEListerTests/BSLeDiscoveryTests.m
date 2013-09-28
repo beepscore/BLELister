@@ -46,4 +46,12 @@
                    @"expected sharedInstance sets foundPeripherals");
 }
 
+- (void)testSharedInstanceConnectedServices {
+    self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    // Could reduce scope of this test by testing sharedInstance calls
+    // designated initializer.
+    XCTAssertNotNil(self.bsLeDiscovery.connectedServices,
+                   @"expected sharedInstance sets connectedServices");
+}
+
 @end
