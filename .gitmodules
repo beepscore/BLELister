@@ -1,0 +1,3 @@
+[submodule "SHTestCaseAdditions"]
+	path = SHTestCaseAdditions
+	url = https://github.com/beepscore/SHTestCaseAdditions.git
