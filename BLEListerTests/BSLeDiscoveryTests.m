@@ -1,5 +1,5 @@
 //
-//  BLEListerTests.m
+//  BSLeDiscoveryTests.m
 //  BLEListerTests
 //
 //  Created by Steve Baker on 9/26/13.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface BLEListerTests : XCTestCase
+@interface BSLeDiscoveryTests : XCTestCase
 
 @end
 
-@implementation BLEListerTests
+@implementation BSLeDiscoveryTests
 
 - (void)setUp
 {
