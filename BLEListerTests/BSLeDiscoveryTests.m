@@ -7,9 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "BSLeDiscovery.h"
 
 @interface BSLeDiscoveryTests : XCTestCase
-
+@property (strong, nonatomic) BSLeDiscovery *bsLeDiscovery;
 @end
 
 @implementation BSLeDiscoveryTests
@@ -26,9 +27,23 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+#pragma mark - test sharedInstance
+- (void)testSharedInstance {
+    self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    // call sharedInstance again to check it returns the same instance
+    // XCTAssertEqual is the identical object
+    // XCTAssertEqualObjects tests objectA isEqual:objectB
+    XCTAssertEqual([BSLeDiscovery  sharedInstance],
+                   self.bsLeDiscovery,
+                   @"expected sharedInstance returns same instance");
+}
+
+- (void)testSharedInstanceFoundPeriperals {
+    self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    // Could reduce scope of this test by testing sharedInstance calls
+    // designated initializer.
+    XCTAssertNotNil(self.bsLeDiscovery.foundPeripherals,
+                   @"expected sharedInstance sets foundPeripherals");
 }
 
 @end
