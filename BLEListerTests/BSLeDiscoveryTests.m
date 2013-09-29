@@ -68,7 +68,8 @@
                 @"expected connectedServices nil");
 }
 
--(void)testSH_waitForTimeInterval; {
+# pragma mark - test asynchronous
+- (void)testSH_waitForTimeInterval {
     __block BOOL assertion = NO;
 
     double delayInSeconds = 5.0;
