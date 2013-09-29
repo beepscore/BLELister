@@ -202,7 +202,7 @@
                 [self loadSavedDevices];
 
                 //FIXME: specify services argument
-                NSArray *peripherals = [centralManager retrieveConnectedPeripheralsWithServices:nil];
+                NSArray *peripherals = [self.centralManager retrieveConnectedPeripheralsWithServices:@[]];
 
                 // Add to list.
                 for (CBPeripheral *peripheral in peripherals) {
