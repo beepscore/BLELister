@@ -75,15 +75,32 @@
                    @"expected sharedInstance sets centralManager delegate to self");
 }
 
+// currently this test passes
+// FIXME: testSharedInstanceFoundPeriperals may be dependent on testFoundPeripherals running first,
+// calling [bsLeDiscovery startScanningForUUIDString:nil];
 - (void)testSharedInstanceFoundPeriperals {
     self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
-    // Could reduce scope of this test by testing sharedInstance calls
-    // designated initializer.
+
+    [self SH_waitForTimeInterval:20];
+
     XCTAssertNotNil(self.bsLeDiscovery.foundPeripherals,
                     @"expected sharedInstance sets foundPeripherals");
-    XCTAssertEqualObjects(@[],
-                          self.bsLeDiscovery.foundPeripherals,
-                          @"expected sharedInstance foundPeripherals is empty array");
+    XCTAssertTrue((0 <= [self.bsLeDiscovery.foundPeripherals count]),
+                  @"expected foundPeripherals has 0 or more objects");
+
+    NSLog(@"********************************");
+    NSLog(@"foundPeripherals: %@", self.bsLeDiscovery.foundPeripherals);
+
+    CBPeripheral *peripheral = [self.bsLeDiscovery.foundPeripherals firstObject];
+
+    // RedBearLab BLE shield for Arduino service UUID
+    NSString *redBearLabBLEShieldServiceUUIDString = @"DDAB0207-5E10-2902-5B03-CA3F0F466B40";
+    XCTAssertEqualObjects(redBearLabBLEShieldServiceUUIDString,
+                          [peripheral.identifier UUIDString],
+                          @"expected first found peripheral UUIDString");
+    XCTAssertEqualObjects(@"BLE Shield",
+                          peripheral.name,
+                             @"expected first found peripheral name");
 }
 
 - (void)testSharedInstanceConnectedServices {
@@ -125,28 +142,48 @@
     XCTAssertTrue(assertion, @"expected assertion true");
 }
 
+// FIXME: currently this test fails by timing out
 - (void)testFoundPeripherals {
 
     // using __block allows block to change bsLeDiscovery, set property foundPeripherals??
     __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
+
     XCTAssertEqualObjects(@[],
                           bsLeDiscovery.foundPeripherals,
                           @"expected foundPeripherals is empty array");
 
+    // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
+    // https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx
+    // NSString *uuidString = @"180D";
+    // RedBearLab BLE shield for Arduino service UUID
+    // NSString *redBearLabBLEShieldServiceUUIDString = @"DDAB0207-5E10-2902-5B03-CA3F0F466B40";
+    //[bsLeDiscovery startScanningForUUIDString:redBearLabBLEShieldServiceUUIDString];
+
+    [bsLeDiscovery startScanningForUUIDString:nil];
+
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
-        // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
-        // https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx
-        NSString *uuidString = @"180D";
-        [bsLeDiscovery startScanningForUUIDString:uuidString];
+
+        NSLog(@"********************************");
         NSLog(@"foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
-        XCTAssertEqualObjects(@[],
-                              bsLeDiscovery.foundPeripherals,
-                              @"expected foundPeripherals is empty array");
-        *didFinish = YES;
+        if ( 1 <= [bsLeDiscovery.foundPeripherals count]) {
+
+            NSLog(@"********************************");
+            NSLog(@"foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
+            CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
+
+            // RedBearLab BLE shield for Arduino service UUID
+            NSString *redBearLabBLEShieldServiceUUIDString = @"DDAB0207-5E10-2902-5B03-CA3F0F466B40";
+            XCTAssertEqualObjects(redBearLabBLEShieldServiceUUIDString,
+                                  [peripheral.identifier UUIDString],
+                                  @"expected first found peripheral UUIDString");
+            XCTAssertEqualObjects(@"BLE Shield",
+                                  peripheral.name,
+                                  @"expected first found peripheral name");
+            *didFinish = YES;
+        }
     };
 
-    [self SH_performAsyncTestsWithinBlock:testBlock
-                              withTimeout:10.0];
+    [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:20.0];
 }
 
 @end
