@@ -134,7 +134,10 @@
                           @"expected foundPeripherals is empty array");
 
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
-        [bsLeDiscovery startScanningForUUIDString:@"1234"];
+        // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
+        // https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx
+        NSString *uuidString = @"180D";
+        [bsLeDiscovery startScanningForUUIDString:uuidString];
         NSLog(@"foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
         XCTAssertEqualObjects(@[],
                               bsLeDiscovery.foundPeripherals,
