@@ -62,7 +62,10 @@
     // Could reduce scope of this test by testing sharedInstance calls
     // designated initializer.
     XCTAssertNotNil(self.bsLeDiscovery.foundPeripherals,
-                   @"expected sharedInstance sets foundPeripherals");
+                    @"expected sharedInstance sets foundPeripherals");
+    XCTAssertEqualObjects(@[],
+                          self.bsLeDiscovery.foundPeripherals,
+                          @"expected sharedInstance foundPeripherals is empty array");
 }
 
 - (void)testSharedInstanceConnectedServices {
@@ -70,7 +73,10 @@
     // Could reduce scope of this test by testing sharedInstance calls
     // designated initializer.
     XCTAssertNotNil(self.bsLeDiscovery.connectedServices,
-                   @"expected sharedInstance sets connectedServices");
+                    @"expected sharedInstance sets connectedServices");
+    XCTAssertEqualObjects(@[],
+                          self.bsLeDiscovery.connectedServices,
+                          @"expected sharedInstance connectedServices is empty array");
 }
 
 # pragma mark - test designated initializer
