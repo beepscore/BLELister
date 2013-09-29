@@ -85,6 +85,8 @@
                           initWithCentralManager:nil
                           foundPeripherals:nil
                           connectedServices:nil];
+    XCTAssertNil(self.bsLeDiscovery.centralManager,
+                 @"expected centralManager nil");
     XCTAssertNil(self.bsLeDiscovery.foundPeripherals,
                 @"expected foundPeripherals nil");
     XCTAssertNil(self.bsLeDiscovery.connectedServices,
