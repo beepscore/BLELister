@@ -107,4 +107,25 @@
     XCTAssertTrue(assertion, @"expected assertion true");
 }
 
+- (void)testFoundPeripherals {
+
+    // using __block allows block to change bsLeDiscovery, set property foundPeripherals??
+    __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    XCTAssertEqualObjects(@[],
+                          bsLeDiscovery.foundPeripherals,
+                          @"expected foundPeripherals is empty array");
+
+    SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
+        [bsLeDiscovery startScanningForUUIDString:@"1234"];
+        NSLog(@"foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
+        XCTAssertEqualObjects(@[],
+                              bsLeDiscovery.foundPeripherals,
+                              @"expected foundPeripherals is empty array");
+        *didFinish = YES;
+    };
+
+    [self SH_performAsyncTestsWithinBlock:testBlock
+                              withTimeout:10.0];
+}
+
 @end
