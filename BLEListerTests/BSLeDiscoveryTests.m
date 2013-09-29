@@ -40,6 +40,23 @@
                    @"expected sharedInstance returns same instance");
 }
 
+- (void)testSharedInstanceCentralManager {
+    self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    // Could reduce scope of this test by testing sharedInstance calls
+    // designated initializer.
+    XCTAssertNotNil(self.bsLeDiscovery.centralManager,
+                   @"expected sharedInstance sets centralManager");
+}
+
+- (void)testSharedInstanceCentralManagerDelegate {
+    self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    // Could reduce scope of this test by testing sharedInstance calls
+    // designated initializer.
+    XCTAssertEqualObjects(self.bsLeDiscovery,
+                          self.bsLeDiscovery.centralManager.delegate,
+                   @"expected sharedInstance sets centralManager delegate to self");
+}
+
 - (void)testSharedInstanceFoundPeriperals {
     self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
     // Could reduce scope of this test by testing sharedInstance calls
