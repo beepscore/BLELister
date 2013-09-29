@@ -33,8 +33,10 @@
 - (void) connectPeripheral:(CBPeripheral*)peripheral;
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral;
 
+
 // Access to the devices
-@property (strong, nonatomic) NSMutableArray    *foundPeripherals;
+@property (strong, nonatomic) NSMutableArray *foundPeripherals;
 // Array of LeTemperatureAlarmService
-@property (strong, nonatomic) NSMutableArray	*connectedServices;
+@property (strong, nonatomic) NSMutableArray *connectedServices;
+
 @end
