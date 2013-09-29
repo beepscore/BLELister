@@ -1,10 +1,10 @@
 PODS:
-  - SHTestCaseAdditions (1.2.0)
+  - SHTestCaseAdditions (1.2.1)
 
 DEPENDENCIES:
-  - SHTestCaseAdditions (~> 1.2.0)
+  - SHTestCaseAdditions (~> 1.2.1)
 
 SPEC CHECKSUMS:
-  SHTestCaseAdditions: bbd3d1fd35b4165a1a5ed67f29c1699d70120c27
+  SHTestCaseAdditions: 0db8321846d0240ca90ab497c10b6800e5954f7e
 
 COCOAPODS: 0.25.0
