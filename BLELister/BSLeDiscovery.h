@@ -19,12 +19,13 @@
 
 
 // Discovery class
-@interface BSLeDiscovery : NSObject
+@interface BSLeDiscovery : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 + (id) sharedInstance;
 
-// UI controls
-@property (nonatomic, weak) id<BSLeDiscoveryDelegate>           discoveryDelegate;
+@property (nonatomic, strong) CBCentralManager *centralManager;
+
+@property (nonatomic, weak) id<BSLeDiscoveryDelegate> discoveryDelegate;
 
 // Actions
 - (void) startScanningForUUIDString:(NSString *)uuidString;

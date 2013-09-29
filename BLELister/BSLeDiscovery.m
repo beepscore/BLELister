@@ -11,13 +11,6 @@
 #import "BSLeDiscovery.h"
 #import "BSLeDiscovery_Private.h"
 
-@interface BSLeDiscovery () <CBCentralManagerDelegate, CBPeripheralDelegate> {
-    CBCentralManager *centralManager;
-    BOOL pendingInit;
-}
-@end
-
-
 @implementation BSLeDiscovery
 
 // http://stackoverflow.com/questions/5720029/create-singleton-using-gcds-dispatch-once-in-objective-c
@@ -26,8 +19,9 @@
     static id sharedInstance;
     dispatch_once(&once, ^{
         
-        CBCentralManager *aCentralManager = [[CBCentralManager alloc] initWithDelegate:(id<CBCentralManagerDelegate>)self
-                                                                                 queue:dispatch_get_main_queue()];
+        CBCentralManager *aCentralManager = [[CBCentralManager alloc]
+                                             initWithDelegate:nil
+                                             queue:dispatch_get_main_queue()];
         sharedInstance = [[self alloc]
                           initWithCentralManager:aCentralManager
                           foundPeripherals:[[NSMutableArray alloc] init]
@@ -46,7 +40,8 @@
     self = [super init];
     if (self) {
         pendingInit = YES;
-        centralManager = aCentralManager;
+        self.centralManager = aCentralManager;
+        self.centralManager.delegate = self;
         self.foundPeripherals = aFoundPeripherals;
         self.connectedServices = aConnectedServices;
     }
@@ -84,7 +79,7 @@
         }
 
         NSArray *services = @[uuid];
-        [centralManager retrieveConnectedPeripheralsWithServices:services];
+        [self.centralManager retrieveConnectedPeripheralsWithServices:services];
     }
 }
 
@@ -135,12 +130,12 @@
     NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
                                                         forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
 
-    [centralManager scanForPeripheralsWithServices:uuidArray options:options];
+    [self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
 }
 
 - (void) stopScanning
 {
-    [centralManager stopScan];
+    [self.centralManager stopScan];
 }
 
 - (void)centralManager:(CBCentralManager *)central
@@ -158,13 +153,13 @@
 - (void) connectPeripheral:(CBPeripheral*)peripheral
 {
     if (peripheral.state == CBPeripheralStateDisconnected) {
-        [centralManager connectPeripheral:peripheral options:nil];
+        [self.centralManager connectPeripheral:peripheral options:nil];
     }
 }
 
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral
 {
-    [centralManager cancelPeripheralConnection:peripheral];
+    [self.centralManager cancelPeripheralConnection:peripheral];
 }
 
 #pragma mark - CBCentralManagerDelegate
@@ -175,7 +170,7 @@
 {
     static CBCentralManagerState previousState = -1;
 
-    switch ([centralManager state]) {
+    switch ([self.centralManager state]) {
         case CBCentralManagerStatePoweredOff:
             {
                 [self clearDevices];
@@ -234,7 +229,7 @@
             }
     }
 
-    previousState = [centralManager state];
+    previousState = [self.centralManager state];
 }
 
 - (void) centralManager:(CBCentralManager *)central didFailToRetrievePeripheralForUUID:(CBUUID *)uuid error:(NSError *)error

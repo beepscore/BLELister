@@ -16,7 +16,10 @@
 /// http://stackoverflow.com/questions/1098550/unit-testing-of-private-methods-in-xcode
 /// http://lisles.net/accessing-private-methods-and-properties-in-objc-unit-tests/
 
-@interface BSLeDiscovery ()
+@interface BSLeDiscovery () {
+    BOOL pendingInit;
+}
+
 
 /**
  designated initializer
