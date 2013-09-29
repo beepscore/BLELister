@@ -125,12 +125,15 @@
 #pragma mark - Discovery
 - (void) startScanningForUUIDString:(NSString *)uuidString
 {
-    CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
-    NSArray *uuidArray = @[uuid];
     NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
                                                         forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
-
-    [self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
+    if ((!uuidString) || [@"" isEqualToString:uuidString]) {
+        [self.centralManager scanForPeripheralsWithServices:nil options:options];
+    } else {
+        CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
+        NSArray *uuidArray = @[uuid];
+        [self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
+    }
 }
 
 - (void) stopScanning
