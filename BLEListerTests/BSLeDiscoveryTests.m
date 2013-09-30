@@ -88,7 +88,6 @@
     XCTAssertTrue((0 <= [self.bsLeDiscovery.foundPeripherals count]),
                   @"expected foundPeripherals has 0 or more objects");
 
-    NSLog(@"********************************");
     NSLog(@"foundPeripherals: %@", self.bsLeDiscovery.foundPeripherals);
 
     CBPeripheral *peripheral = [self.bsLeDiscovery.foundPeripherals firstObject];
