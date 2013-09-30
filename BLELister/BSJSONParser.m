@@ -27,6 +27,10 @@
     return array;
 }
 
++ (NSArray *)arrayFromJSONFile:(NSString *)aJSONFileName {
+    return @[];
+}
+
 + (NSDictionary *)dictFromJSON:(NSString *)aJSON {
 
     // don't attempt to parse nil argument, that will crash
@@ -42,6 +46,14 @@
                       options: NSJSONReadingMutableContainers
                       error: nil];
     return dictionary;
+}
+
++ (NSDictionary *)dictFromJSONFile:(NSString *)aJSONFileName {
+    return @{};
+}
+
++ (NSString *)JSONStringFromFile:(NSString *)aJSONFileName {
+    return @"";
 }
 
 @end

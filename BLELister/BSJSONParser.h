@@ -11,7 +11,11 @@
 @interface BSJSONParser : NSObject
 
 + (NSArray *)arrayFromJSON:(NSString *)aJSON;
++ (NSArray *)arrayFromJSONFile:(NSString *)aJSONFileName;
 
 + (NSDictionary *)dictFromJSON:(NSString *)aJSON;
++ (NSDictionary *)dictFromJSONFile:(NSString *)aJSONFileName;
+
++ (NSString *)JSONStringFromFile:(NSString *)aJSONFileName;
 
 @end
