@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B38C8AC0E4F24332917D9BA5 /* libPods-BLEListerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F397F7B7489349B99960CC9F /* libPods-BLEListerTests.a */; };
+		DE10681B17F90DAB00E1EC08 /* BSBleConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DE10681A17F90DAB00E1EC08 /* BSBleConstants.m */; };
+		DE10681C17F90DAB00E1EC08 /* BSBleConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DE10681A17F90DAB00E1EC08 /* BSBleConstants.m */; };
 		DE580DEE17F5995000292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DEBC532317F547A800F2ACFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532217F547A800F2ACFF /* README.md */; };
@@ -44,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		1D3E5DFEA32A44B6A234F4A0 /* Pods-BLEListerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEListerTests.xcconfig"; path = "Pods/Pods-BLEListerTests.xcconfig"; sourceTree = "<group>"; };
+		DE10681917F90DAB00E1EC08 /* BSBleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBleConstants.h; sourceTree = "<group>"; };
+		DE10681A17F90DAB00E1EC08 /* BSBleConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBleConstants.m; sourceTree = "<group>"; };
 		DE580DED17F5995000292810 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLeDiscovery_Private.h; sourceTree = "<group>"; };
 		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 				DEE990D417F543F70041CAB6 /* BSAppDelegate.m */,
 				DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */,
 				DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */,
+				DE10681917F90DAB00E1EC08 /* BSBleConstants.h */,
+				DE10681A17F90DAB00E1EC08 /* BSBleConstants.m */,
 				DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */,
 				DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */,
 				DEFDC94E17F553700073F990 /* BSLeDiscovery.m */,
@@ -326,6 +332,7 @@
 				DEFDC94F17F553700073F990 /* BSLeDiscovery.m in Sources */,
 				DEE990D117F543F70041CAB6 /* main.m in Sources */,
 				DEE990E117F543F70041CAB6 /* BSDetailViewController.m in Sources */,
+				DE10681B17F90DAB00E1EC08 /* BSBleConstants.m in Sources */,
 				DEE990D517F543F70041CAB6 /* BSAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */,
+				DE10681C17F90DAB00E1EC08 /* BSBleConstants.m in Sources */,
 				DEE990F617F543F70041CAB6 /* BSLeDiscoveryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
