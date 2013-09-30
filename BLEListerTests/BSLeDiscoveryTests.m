@@ -75,13 +75,15 @@
                    @"expected sharedInstance sets centralManager delegate to self");
 }
 
-// currently this test passes
-// FIXME: testSharedInstanceFoundPeriperals may be dependent on testFoundPeripherals running first,
-// calling [bsLeDiscovery startScanningForUUIDString:nil];
+// testSharedInstanceFoundPeriperals requires an Arduino with RedBearLab BLE shield
+// within range of the iOS device.
+// Currently this test passes
 - (void)testSharedInstanceFoundPeriperals {
     self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
 
-    [self SH_waitForTimeInterval:20];
+    [self.bsLeDiscovery.centralManager scanForPeripheralsWithServices:nil options:nil];
+    // Need to add some delay to enable test to pass.
+    [self SH_waitForTimeInterval:10];
 
     XCTAssertNotNil(self.bsLeDiscovery.foundPeripherals,
                     @"expected sharedInstance sets foundPeripherals");
