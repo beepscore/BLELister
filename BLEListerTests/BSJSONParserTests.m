@@ -35,6 +35,16 @@
     XCTAssertEqualObjects(expectedArray, actualArray, @"");
 }
 
+- (void)testArrayFromJSONEmpty {
+
+    NSArray *expectedArray = @[];
+
+    NSString *testString = @"";
+    NSArray *actualArray = [BSJSONParser arrayFromJSON:testString];
+    
+    XCTAssertEqualObjects(expectedArray, actualArray, @"");
+}
+
 - (void)testArrayFromJSONFile {
     NSArray *expectedArray = @[@"Larry", @"Moe", @57, @"Curly"];
 

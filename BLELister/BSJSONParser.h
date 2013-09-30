@@ -18,7 +18,7 @@
 
 /**
  @param aJSONFileName is first part of file name, omitting .json extension
- @return an empty array if argument is nil
+ @return an empty array if argument is nil or empty string @""
  */
 + (NSArray *)arrayFromJSONFile:(NSString *)aJSONFileName;
 
