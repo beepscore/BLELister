@@ -25,6 +25,16 @@
     [super tearDown];
 }
 
+- (void)testDictFromJSON {
+
+    NSDictionary *expectedDict = @{@"redbearshield":@{@"identifier":@"DDAB0207-5E10-2902-5B03-CA3F0F466B40", @"name":@"BLE Shield"},@"sensortag":@{@"identifier":@"B42E4E5D-B2D3-F03F-3139-7B735C8E8964",@"name":@"TI BLE Sensor Tag"}};
+
+    NSString *testString = @"{\"redbearshield\":{\"identifier\":\"DDAB0207-5E10-2902-5B03-CA3F0F466B40\",\"name\":\"BLE Shield\"},\"sensortag\":{\"identifier\":\"B42E4E5D-B2D3-F03F-3139-7B735C8E8964\",\"name\":\"TI BLE Sensor Tag\"}}";
+    NSDictionary *actualDict = [BSJSONParser dictFromJSON:testString];
+    
+    XCTAssertEqualObjects(expectedDict, actualDict, @"");
+}
+
 - (void)testJSONStringFromFile {
     NSString *expectedString = @"{\"redbearshield\":{\"identifier\":\"DDAB0207-5E10-2902-5B03-CA3F0F466B40\",\"name\":\"BLE Shield\"},\"sensortag\":{\"identifier\":\"B42E4E5D-B2D3-F03F-3139-7B735C8E8964\",\"name\":\"TI BLE Sensor Tag\"}}";
     NSString *actualString = [BSJSONParser JSONStringFromFile:@"bleDevices"];
