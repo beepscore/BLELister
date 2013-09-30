@@ -128,6 +128,9 @@
     NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
                                                         forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
     if ((!uuidString) || [@"" isEqualToString:uuidString]) {
+        // BLE requires device, not simulator
+        // If running simulator, app crashes here with "bad access".
+        // Also Apple says services argument nil works, but is not recommended.
         [self.centralManager scanForPeripheralsWithServices:nil options:options];
     } else {
         CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
