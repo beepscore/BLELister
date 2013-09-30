@@ -28,6 +28,7 @@
 		DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
 		DEE990F417F543F70041CAB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE990F217F543F70041CAB6 /* InfoPlist.strings */; };
 		DEE990F617F543F70041CAB6 /* BSLeDiscoveryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */; };
+		DEF7469617F92D3F00502764 /* bleDevices.json in Resources */ = {isa = PBXBuildFile; fileRef = DEF7469517F92D3F00502764 /* bleDevices.json */; };
 		DEFDC94F17F553700073F990 /* BSLeDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFDC94E17F553700073F990 /* BSLeDiscovery.m */; };
 		DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFDC94E17F553700073F990 /* BSLeDiscovery.m */; };
 /* End PBXBuildFile section */
@@ -70,6 +71,7 @@
 		DEE990F117F543F70041CAB6 /* BLEListerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BLEListerTests-Info.plist"; sourceTree = "<group>"; };
 		DEE990F317F543F70041CAB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSLeDiscoveryTests.m; sourceTree = "<group>"; };
+		DEF7469517F92D3F00502764 /* bleDevices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bleDevices.json; sourceTree = "<group>"; };
 		DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSLeDiscovery.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DEFDC94E17F553700073F990 /* BSLeDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSLeDiscovery.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F397F7B7489349B99960CC9F /* libPods-BLEListerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BLEListerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,8 +173,9 @@
 		DEE990EF17F543F70041CAB6 /* BLEListerTests */ = {
 			isa = PBXGroup;
 			children = (
-				DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */,
 				DEE990F017F543F70041CAB6 /* Supporting Files */,
+				DEF7469417F92D3F00502764 /* TestResources */,
+				DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */,
 			);
 			path = BLEListerTests;
 			sourceTree = "<group>";
@@ -184,6 +187,14 @@
 				DEE990F217F543F70041CAB6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DEF7469417F92D3F00502764 /* TestResources */ = {
+			isa = PBXGroup;
+			children = (
+				DEF7469517F92D3F00502764 /* bleDevices.json */,
+			);
+			path = TestResources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEE990F417F543F70041CAB6 /* InfoPlist.strings in Resources */,
+				DEF7469617F92D3F00502764 /* bleDevices.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
