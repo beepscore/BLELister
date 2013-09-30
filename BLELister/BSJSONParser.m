@@ -49,7 +49,9 @@
 }
 
 + (NSDictionary *)dictFromJSONFile:(NSString *)aJSONFileName {
-    return @{};
+    NSString *JSONString = [BSJSONParser JSONStringFromFile:aJSONFileName];
+    NSDictionary *dictionary = [BSJSONParser dictFromJSON:JSONString];
+    return dictionary;
 }
 
 + (NSString *)JSONStringFromFile:(NSString *)aJSONFileName {
