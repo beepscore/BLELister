@@ -54,7 +54,7 @@
     // Delay did not cause centralManager state to stabilize
     //[self SH_waitForTimeInterval:15];
 
-    NSLog(@"centralManager state: %d", self.bsLeDiscovery.centralManager.state);
+    NSLog(@"centralManager state: %d", (int)self.bsLeDiscovery.centralManager.state);
 
     BOOL isValidManagerState = ( (CBCentralManagerStateUnknown == self.bsLeDiscovery.centralManager.state)
                                 || (CBCentralManagerStateResetting == self.bsLeDiscovery.centralManager.state)
