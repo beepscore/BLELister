@@ -31,6 +31,7 @@
 		DEF56FDA17F9386600A99FF2 /* BSJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF56FD917F9386600A99FF2 /* BSJSONParser.m */; };
 		DEF56FDB17F9386600A99FF2 /* BSJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF56FD917F9386600A99FF2 /* BSJSONParser.m */; };
 		DEF56FDD17F93CC500A99FF2 /* BSJSONParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */; };
+		DEF56FDF17F952A800A99FF2 /* stubArray.json in Resources */ = {isa = PBXBuildFile; fileRef = DEF56FDE17F952A800A99FF2 /* stubArray.json */; };
 		DEF7469617F92D3F00502764 /* bleDevices.json in Resources */ = {isa = PBXBuildFile; fileRef = DEF7469517F92D3F00502764 /* bleDevices.json */; };
 		DEFDC94F17F553700073F990 /* BSLeDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFDC94E17F553700073F990 /* BSLeDiscovery.m */; };
 		DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFDC94E17F553700073F990 /* BSLeDiscovery.m */; };
@@ -77,6 +78,7 @@
 		DEF56FD817F9386600A99FF2 /* BSJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSJSONParser.h; sourceTree = "<group>"; };
 		DEF56FD917F9386600A99FF2 /* BSJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSJSONParser.m; sourceTree = "<group>"; };
 		DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSJSONParserTests.m; sourceTree = "<group>"; };
+		DEF56FDE17F952A800A99FF2 /* stubArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stubArray.json; sourceTree = "<group>"; };
 		DEF7469517F92D3F00502764 /* bleDevices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bleDevices.json; sourceTree = "<group>"; };
 		DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSLeDiscovery.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DEFDC94E17F553700073F990 /* BSLeDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSLeDiscovery.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				DEF7469517F92D3F00502764 /* bleDevices.json */,
+				DEF56FDE17F952A800A99FF2 /* stubArray.json */,
 			);
 			path = TestResources;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			files = (
 				DEE990F417F543F70041CAB6 /* InfoPlist.strings in Resources */,
 				DEF7469617F92D3F00502764 /* bleDevices.json in Resources */,
+				DEF56FDF17F952A800A99FF2 /* stubArray.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
