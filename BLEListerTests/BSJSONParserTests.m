@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "BSJSONParser.h"
 
 @interface BSJSONParserTests : XCTestCase
 
@@ -14,21 +15,20 @@
 
 @implementation BSJSONParserTests
 
-- (void)setUp
-{
+- (void)setUp {
     [super setUp];
     // Put setup code here; it will be run once, before the first test case.
 }
 
-- (void)tearDown
-{
+- (void)tearDown {
     // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+- (void)testJSONStringFromFile {
+    NSString *expectedString = @"{\"redbearshield\":{\"identifier\":\"DDAB0207-5E10-2902-5B03-CA3F0F466B40\",\"name\":\"BLE Shield\"},\"sensortag\":{\"identifier\":\"B42E4E5D-B2D3-F03F-3139-7B735C8E8964\",\"name\":\"TI BLE Sensor Tag\"}}";
+    NSString *actualString = [BSJSONParser JSONStringFromFile:@"bleDevices"];
+    XCTAssertEqualObjects(expectedString, actualString, @"");
 }
 
 @end

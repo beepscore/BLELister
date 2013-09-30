@@ -53,7 +53,14 @@
 }
 
 + (NSString *)JSONStringFromFile:(NSString *)aJSONFileName {
-    return @"";
+    
+    NSString *filePath = [[NSBundle bundleForClass:[self class]]
+                          pathForResource:aJSONFileName ofType:@"json"];
+
+    NSString *JSONFromFile = [NSString stringWithContentsOfFile:filePath
+                                                   encoding:NSUTF8StringEncoding
+                                                      error:nil];
+    return JSONFromFile;
 }
 
 @end
