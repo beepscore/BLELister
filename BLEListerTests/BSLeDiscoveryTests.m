@@ -10,6 +10,7 @@
 #import "SHTestCaseAdditions.h"
 #import "BSLeDiscovery.h"
 #import "BSLeDiscovery_Private.h"
+#import "BSJSONParser.h"
 
 @interface BSLeDiscoveryTests : XCTestCase
 @property (strong, nonatomic) BSLeDiscovery *bsLeDiscovery;
@@ -75,11 +76,7 @@
                    @"expected sharedInstance sets centralManager delegate to self");
 }
 
-// testFoundPeriperalBLEShield requires an Arduino with RedBearLab BLE shield
-// within range of the iOS device.
-// It assumes BLE shield with be the first device found.
-// Currently this test passes
-- (void)testFoundPeriperalBLEShield {
+- (void)findAndTestPeripheral:(NSString *)peripheralKey {
     self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
 
     [self.bsLeDiscovery.centralManager scanForPeripheralsWithServices:nil options:nil];
@@ -95,44 +92,31 @@
 
     CBPeripheral *peripheral = [self.bsLeDiscovery.foundPeripherals firstObject];
 
-    // RedBearLab BLE shield for Arduino service UUID
-    NSString *expectedUUIDString = @"DDAB0207-5E10-2902-5B03-CA3F0F466B40";
-    XCTAssertEqualObjects(expectedUUIDString,
+    NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
+
+    NSString *expectedIdentifier = bleDevices[peripheralKey][@"identifier"];
+    NSString *expectedName = bleDevices[peripheralKey][@"name"];
+
+    XCTAssertEqualObjects(expectedIdentifier,
                           [peripheral.identifier UUIDString],
                           @"expected first found peripheral UUIDString");
-    XCTAssertEqualObjects(@"BLE Shield",
-                          peripheral.name,
-                             @"expected first found peripheral name");
-}
-
-// testFoundPeriperalTISensorTag requires a TI SensorTag within range of the iOS device.
-// It assumes SensorTag with be the first device found.
-// Before running test, press SensorTag side button to activate it.
-// Currently this test passes
-- (void)testFoundPeriperalTISensorTag {
-    self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
-
-    [self.bsLeDiscovery.centralManager scanForPeripheralsWithServices:nil options:nil];
-    // Need to add some delay to enable test to pass.
-    [self SH_waitForTimeInterval:10];
-
-    XCTAssertNotNil(self.bsLeDiscovery.foundPeripherals,
-                    @"expected sharedInstance sets foundPeripherals");
-    XCTAssertTrue((0 <= [self.bsLeDiscovery.foundPeripherals count]),
-                  @"expected foundPeripherals has 0 or more objects");
-
-    NSLog(@"foundPeripherals: %@", self.bsLeDiscovery.foundPeripherals);
-
-    CBPeripheral *peripheral = [self.bsLeDiscovery.foundPeripherals firstObject];
-
-    // TI BLE SensorTag service UUID
-    NSString *expectedUUIDString = @"B42E4E5D-B2D3-F03F-3139-7B735C8E8964";
-    XCTAssertEqualObjects(expectedUUIDString,
-                          [peripheral.identifier UUIDString],
-                          @"expected first found peripheral UUIDString");
-    XCTAssertEqualObjects(@"TI BLE Sensor Tag",
+    XCTAssertEqualObjects(expectedName,
                           peripheral.name,
                           @"expected first found peripheral name");
+}
+
+// testFoundPeripheralBLEShield requires an Arduino with RedBearLab BLE shield
+// within range of the iOS device.
+// It assumes BLE shield with be the first device found.
+- (void)testFoundPeripheralBLEShield {
+    [self findAndTestPeripheral:@"redbearshield"];
+}
+
+// testFoundPeripheralTISensorTag requires a TI SensorTag within range of the iOS device.
+// It assumes SensorTag with be the first device found.
+// Before running test, press SensorTag side button to activate it.
+- (void)testFoundPeripheralTISensorTag {
+    [self findAndTestPeripheral:@"sensortag"];
 }
 
 - (void)testSharedInstanceConnectedServices {
