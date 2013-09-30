@@ -28,6 +28,8 @@
 		DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
 		DEE990F417F543F70041CAB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE990F217F543F70041CAB6 /* InfoPlist.strings */; };
 		DEE990F617F543F70041CAB6 /* BSLeDiscoveryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */; };
+		DEF56FDA17F9386600A99FF2 /* BSJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF56FD917F9386600A99FF2 /* BSJSONParser.m */; };
+		DEF56FDB17F9386600A99FF2 /* BSJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF56FD917F9386600A99FF2 /* BSJSONParser.m */; };
 		DEF7469617F92D3F00502764 /* bleDevices.json in Resources */ = {isa = PBXBuildFile; fileRef = DEF7469517F92D3F00502764 /* bleDevices.json */; };
 		DEFDC94F17F553700073F990 /* BSLeDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFDC94E17F553700073F990 /* BSLeDiscovery.m */; };
 		DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFDC94E17F553700073F990 /* BSLeDiscovery.m */; };
@@ -71,6 +73,8 @@
 		DEE990F117F543F70041CAB6 /* BLEListerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BLEListerTests-Info.plist"; sourceTree = "<group>"; };
 		DEE990F317F543F70041CAB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSLeDiscoveryTests.m; sourceTree = "<group>"; };
+		DEF56FD817F9386600A99FF2 /* BSJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSJSONParser.h; sourceTree = "<group>"; };
+		DEF56FD917F9386600A99FF2 /* BSJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSJSONParser.m; sourceTree = "<group>"; };
 		DEF7469517F92D3F00502764 /* bleDevices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bleDevices.json; sourceTree = "<group>"; };
 		DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSLeDiscovery.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DEFDC94E17F553700073F990 /* BSLeDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSLeDiscovery.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -146,6 +150,8 @@
 				DEE990D417F543F70041CAB6 /* BSAppDelegate.m */,
 				DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */,
 				DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */,
+				DEF56FD817F9386600A99FF2 /* BSJSONParser.h */,
+				DEF56FD917F9386600A99FF2 /* BSJSONParser.m */,
 				DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */,
 				DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */,
 				DEFDC94E17F553700073F990 /* BSLeDiscovery.m */,
@@ -337,6 +343,7 @@
 				DEE990DE17F543F70041CAB6 /* BSMasterViewController.m in Sources */,
 				DEFDC94F17F553700073F990 /* BSLeDiscovery.m in Sources */,
 				DEE990D117F543F70041CAB6 /* main.m in Sources */,
+				DEF56FDA17F9386600A99FF2 /* BSJSONParser.m in Sources */,
 				DEE990E117F543F70041CAB6 /* BSDetailViewController.m in Sources */,
 				DEE990D517F543F70041CAB6 /* BSAppDelegate.m in Sources */,
 			);
@@ -346,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEF56FDB17F9386600A99FF2 /* BSJSONParser.m in Sources */,
 				DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */,
 				DEE990F617F543F70041CAB6 /* BSLeDiscoveryTests.m in Sources */,
 			);
