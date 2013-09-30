@@ -36,7 +36,7 @@
 + (NSDictionary *)dictFromJSON:(NSString *)aJSON {
 
     // don't attempt to parse nil argument, that will crash
-    if (!aJSON) {
+    if ((!aJSON) || [@"" isEqualToString:aJSON]) {
         return @{};
     }
 
