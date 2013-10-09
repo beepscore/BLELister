@@ -19,6 +19,8 @@
     static id sharedInstance;
     dispatch_once(&once, ^{
 
+        NSLog(@"This block should run only one time. &once: %p, once: %ld", &once, once);
+        
         // self isn't complete yet, so at first set CBCentralManagerDelegate to nil
         // later code should set delegate to self
         CBCentralManager *aCentralManager = [[CBCentralManager alloc]
