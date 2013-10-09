@@ -18,10 +18,13 @@
     static dispatch_once_t once;
     static id sharedInstance;
     dispatch_once(&once, ^{
-        
+
+        // self isn't complete yet, so at first set CBCentralManagerDelegate to nil
+        // later code should set delegate to self
         CBCentralManager *aCentralManager = [[CBCentralManager alloc]
                                              initWithDelegate:nil
                                              queue:dispatch_get_main_queue()];
+        // call designated initializer
         sharedInstance = [[self alloc]
                           initWithCentralManager:aCentralManager
                           foundPeripherals:[[NSMutableArray alloc] init]
