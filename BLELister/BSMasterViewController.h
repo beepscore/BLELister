@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BSLeDiscovery.h"
 
 @class BSDetailViewController;
 
-@interface BSMasterViewController : UITableViewController
+@interface BSMasterViewController : UITableViewController <BSLeDiscoveryDelegate>
 
 @property (strong, nonatomic) BSDetailViewController *detailViewController;
+@property (strong, nonatomic) BSLeDiscovery *leDiscovery;
 
 @end

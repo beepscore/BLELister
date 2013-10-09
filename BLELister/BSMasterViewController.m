@@ -35,6 +35,8 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (BSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+
+    self.leDiscovery = [BSLeDiscovery sharedInstance];
 }
 
 - (void)didReceiveMemoryWarning
@@ -121,6 +123,15 @@
         NSDate *object = _objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
+}
+
+#pragma mark - BSLeDiscoveryDelegate
+- (void) discoveryDidRefresh {
+
+}
+
+- (void) discoveryStatePoweredOff {
+
 }
 
 @end

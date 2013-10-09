@@ -12,6 +12,7 @@
 		DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DEBC532317F547A800F2ACFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532217F547A800F2ACFF /* README.md */; };
 		DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532417F547BB00F2ACFF /* LICENSE.txt */; };
+		DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */; };
 		DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
 		DEE990C717F543F70041CAB6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C617F543F70041CAB6 /* CoreGraphics.framework */; };
 		DEE990C917F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
@@ -53,6 +54,7 @@
 		DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLeDiscovery_Private.h; sourceTree = "<group>"; };
 		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DEBC532417F547BB00F2ACFF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSMasterViewControllerTests.m; path = BLEListerTests/BSMasterViewControllerTests.m; sourceTree = SOURCE_ROOT; };
 		DEE990C117F543F70041CAB6 /* BLELister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLELister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE990C417F543F70041CAB6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DEE990C617F543F70041CAB6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,8 +187,9 @@
 			children = (
 				DEE990F017F543F70041CAB6 /* Supporting Files */,
 				DEF7469417F92D3F00502764 /* TestResources */,
-				DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */,
 				DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */,
+				DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */,
+				DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */,
 			);
 			path = BLEListerTests;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				DEF56FDB17F9386600A99FF2 /* BSJSONParser.m in Sources */,
 				DEF56FDD17F93CC500A99FF2 /* BSJSONParserTests.m in Sources */,
 				DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */,
+				DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */,
 				DEE990F617F543F70041CAB6 /* BSLeDiscoveryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
