@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface BSDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface BSDetailViewController : UITableViewController <UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) CBPeripheral *detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *uuidText;
 @end

@@ -37,7 +37,6 @@
 
     if (self.detailItem) {
         self.title = [self.detailItem name];
-        self.uuidText.text = [self.detailItem.identifier UUIDString];
     }
 }
 
@@ -69,5 +68,38 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
+
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text = @"UUID";
+            break;
+        case 1:
+            cell.textLabel.text = [self.detailItem.identifier UUIDString];
+            break;
+
+        default:
+            break;
+    }
+
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
 
 @end
