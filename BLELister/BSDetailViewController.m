@@ -87,9 +87,16 @@
 
     switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = @"UUID";
+            // TODO: need to connect to device to get RSSI?
+            cell.textLabel.text = @"RSSI";
+            cell.detailTextLabel.text = [self.detailItem.RSSI description];
             break;
         case 1:
+            cell.textLabel.text = @"UUID";
+            break;
+        case 2:
+            // font that fits on iPhone portrait. Can use custom cell and autolayout instead?
+            cell.textLabel.font = [UIFont systemFontOfSize:13];
             cell.textLabel.text = [self.detailItem.identifier UUIDString];
             break;
 
