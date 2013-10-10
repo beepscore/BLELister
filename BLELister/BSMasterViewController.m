@@ -37,6 +37,7 @@
     self.detailViewController = (BSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
     self.leDiscovery = [BSLeDiscovery sharedInstance];
+    self.leDiscovery.discoveryDelegate = self;
 }
 
 - (void)didReceiveMemoryWarning

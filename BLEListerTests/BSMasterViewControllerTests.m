@@ -44,4 +44,13 @@
     //XCTAssertEqualObjects([BSLeDiscovery sharedInstance], vc.leDiscovery, @"expected leDiscovery");
 }
 
+- (void)testViewDidLoadSetsLeDiscoveryDelegateToSelf
+{
+    BSMasterViewController *vc = [[BSMasterViewController alloc] init];
+    XCTAssertNil(vc.leDiscovery, @"expected leDiscovery nil");
+    [vc viewDidLoad];
+    XCTAssertNotNil(vc.leDiscovery, @"expected leDiscovery");
+    XCTAssertEqualObjects(vc, vc.leDiscovery.discoveryDelegate, @"expected leDiscovery delegate");
+}
+
 @end
