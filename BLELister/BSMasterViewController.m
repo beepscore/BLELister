@@ -32,8 +32,12 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    UIBarButtonItem *scanButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                   target:self
+                                   action:@selector(scanForPeripherals)];
+    self.navigationItem.rightBarButtonItem = scanButton;
+
     self.detailViewController = (BSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
     self.leDiscovery = [BSLeDiscovery sharedInstance];
@@ -46,6 +50,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
 - (void)insertNewObject:(id)sender
 {
     if (!_objects) {
@@ -54,6 +59,16 @@
     [_objects insertObject:[NSDate date] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+ */
+
+- (void)scanForPeripherals
+{
+    if (!_objects) {
+        _objects = [[NSMutableArray alloc] init];
+    }
+
+    [self.leDiscovery.centralManager scanForPeripheralsWithServices:nil options:nil];
 }
 
 #pragma mark - Table View
@@ -72,7 +87,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
+    NSObject *object = _objects[indexPath.row];
     cell.textLabel.text = [object description];
     return cell;
 }
@@ -128,7 +143,9 @@
 
 #pragma mark - BSLeDiscoveryDelegate
 - (void) discoveryDidRefresh {
-
+    NSLog(@"discoveryDidRefresh");
+    _objects = self.leDiscovery.foundPeripherals;
+    [self.tableView reloadData];
 }
 
 - (void) discoveryStatePoweredOff {
