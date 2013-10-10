@@ -149,7 +149,7 @@
 }
 
 - (void) discoveryStatePoweredOff {
-
+    NSLog(@"discoveryStatePoweredOff");
 }
 
 @end
