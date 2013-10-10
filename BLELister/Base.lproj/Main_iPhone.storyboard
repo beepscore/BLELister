@@ -74,31 +74,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="UUID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBf-na-6Tg" userLabel="uuidLabel">
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Lei-5M-9Gs" userLabel="uuidText">
+                                <rect key="frame" x="20" y="101" width="261" height="28"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="Ybx-hR-SVG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UUID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6s-fc-fRw" userLabel="uuidLabel">
                                 <rect key="frame" x="20" y="72" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Lei-5M-9Gs" userLabel="uuidText">
-                                <rect key="frame" x="70" y="65" width="230" height="28"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="Ybx-hR-SVG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CBf-na-6Tg" firstAttribute="bottom" secondItem="Lei-5M-9Gs" secondAttribute="bottom" id="2a2-2K-KZ3"/>
-                            <constraint firstAttribute="trailing" secondItem="Lei-5M-9Gs" secondAttribute="trailing" constant="20" symbolic="YES" id="JMz-uY-ErG"/>
-                            <constraint firstItem="CBf-na-6Tg" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" constant="20" symbolic="YES" id="OzR-Ef-4Ni"/>
-                            <constraint firstItem="CBf-na-6Tg" firstAttribute="top" secondItem="uHa-vD-itB" secondAttribute="bottom" constant="20" symbolic="YES" id="Pfx-W3-HHt"/>
-                            <constraint firstItem="Lei-5M-9Gs" firstAttribute="leading" secondItem="CBf-na-6Tg" secondAttribute="trailing" constant="8" symbolic="YES" id="uHf-e6-vq4"/>
+                            <constraint firstItem="Lei-5M-9Gs" firstAttribute="top" secondItem="n6s-fc-fRw" secondAttribute="bottom" constant="8" symbolic="YES" id="T3q-Hi-yZh"/>
+                            <constraint firstItem="n6s-fc-fRw" firstAttribute="leading" secondItem="Lei-5M-9Gs" secondAttribute="leading" id="Wr5-rS-ogW"/>
+                            <constraint firstItem="n6s-fc-fRw" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" constant="20" symbolic="YES" id="nf6-3a-Hzy"/>
+                            <constraint firstItem="n6s-fc-fRw" firstAttribute="top" secondItem="uHa-vD-itB" secondAttribute="bottom" constant="20" symbolic="YES" id="vcH-Fa-ItD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
