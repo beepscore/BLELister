@@ -87,8 +87,8 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSObject *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    CBPeripheral *peripheral = _objects[indexPath.row];
+    cell.textLabel.text = [peripheral name];
     return cell;
 }
 
@@ -127,7 +127,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
+        CBPeripheral *object = _objects[indexPath.row];
         self.detailViewController.detailItem = object;
     }
 }
@@ -136,7 +136,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
+        CBPeripheral *object = _objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
