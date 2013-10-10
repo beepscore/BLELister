@@ -13,5 +13,5 @@
 
 @property (strong, nonatomic) CBPeripheral *detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *nameText;
+@property (weak, nonatomic) IBOutlet UILabel *uuidText;
 @end
