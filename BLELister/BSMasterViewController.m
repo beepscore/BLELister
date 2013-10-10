@@ -42,6 +42,8 @@
 
     self.leDiscovery = [BSLeDiscovery sharedInstance];
     self.leDiscovery.discoveryDelegate = self;
+
+    [self scanForPeripherals];
 }
 
 - (void)didReceiveMemoryWarning
