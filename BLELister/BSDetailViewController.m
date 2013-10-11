@@ -98,18 +98,27 @@
             cell.detailTextLabel.text = [self.detailItem.RSSI description];
             break;
         case 1:
-            cell.textLabel.text = @"UUID";
+            cell.textLabel.text = @"State";
+            cell.detailTextLabel.text = [self peripheralStateStringForValue:self.detailItem.state];
             break;
         case 2:
-            // font that fits on iPhone portrait. Can use custom cell and autolayout instead?
-            cell.textLabel.font = [UIFont systemFontOfSize:13];
-            cell.textLabel.text = [self.detailItem.identifier UUIDString];
+            cell.textLabel.text = @"UUID";
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+            cell.detailTextLabel.text = [self.detailItem.identifier UUIDString];
             break;
-
+        case 3:
+            NSLog(@"description %@", [self.detailItem description]);
+            cell.textLabel.text = @"Desc";
+            // Use custom cell and autolayout instead?
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+            cell.detailTextLabel.text = [self.detailItem description];
+            break;
         default:
+            cell.textLabel.text = @"";
+            cell.detailTextLabel.text = @"";
             break;
     }
-
+    
     return cell;
 }
 
