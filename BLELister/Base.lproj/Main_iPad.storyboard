@@ -43,7 +43,7 @@
                             <outlet property="delegate" destination="QHW-rb-sBw" id="2Nx-eo-gDe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ggQ-8m-2O9"/>
+                    <navigationItem key="navigationItem" title="Detail" id="ggQ-8m-2O9"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="plA-34-aRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
