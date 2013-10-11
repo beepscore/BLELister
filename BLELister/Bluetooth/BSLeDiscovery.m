@@ -35,42 +35,6 @@
     return sharedInstance;
 }
 
-/*
-// Apple singleton example showed same behavior as code above, allows multiple instances.
-// https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CocoaFundamentals/CocoaObjects/CocoaObjects.html
-static BSLeDiscovery *sharedInstance = nil;
-
-+ (BSLeDiscovery*)sharedInstance
-{
-    if (sharedInstance == nil) {
-
-        // self isn't complete yet, so at first set CBCentralManagerDelegate to nil
-        // later code should set delegate to self
-        CBCentralManager *aCentralManager = [[CBCentralManager alloc]
-                                             initWithDelegate:nil
-                                             queue:dispatch_get_main_queue()];
-
-        //sharedInstance  = [[super allocWithZone:NULL] init];
-        // call designated initializer
-        sharedInstance  = [[super allocWithZone:NULL]
-                           initWithCentralManager:aCentralManager
-                           foundPeripherals:[[NSMutableArray alloc] init]
-                           connectedServices:[[NSMutableArray alloc] init]];
-    }
-    return sharedInstance;
-}
-
-+ (id)allocWithZone:(NSZone *)zone
-{
-    return [self sharedInstance];
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    return self;
-}
-*/
-
 #pragma mark - Initializers
 // designated initializer
 - (id)initWithCentralManager:(CBCentralManager *)aCentralManager
