@@ -51,7 +51,7 @@
 /* Begin PBXFileReference section */
 		1D3E5DFEA32A44B6A234F4A0 /* Pods-BLEListerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEListerTests.xcconfig"; path = "Pods/Pods-BLEListerTests.xcconfig"; sourceTree = "<group>"; };
 		DE580DED17F5995000292810 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSLeDiscovery_Private.h; sourceTree = "<group>"; };
+		DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSLeDiscovery_Private.h; path = Bluetooth/BSLeDiscovery_Private.h; sourceTree = "<group>"; };
 		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DEBC532417F547BB00F2ACFF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSMasterViewControllerTests.m; path = BLEListerTests/BSMasterViewControllerTests.m; sourceTree = SOURCE_ROOT; };
@@ -82,8 +82,8 @@
 		DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSJSONParserTests.m; sourceTree = "<group>"; };
 		DEF56FDE17F952A800A99FF2 /* stubArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stubArray.json; sourceTree = "<group>"; };
 		DEF7469517F92D3F00502764 /* bleDevices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bleDevices.json; sourceTree = "<group>"; };
-		DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BSLeDiscovery.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		DEFDC94E17F553700073F990 /* BSLeDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSLeDiscovery.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = BSLeDiscovery.h; path = Bluetooth/BSLeDiscovery.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		DEFDC94E17F553700073F990 /* BSLeDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BSLeDiscovery.m; path = Bluetooth/BSLeDiscovery.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F397F7B7489349B99960CC9F /* libPods-BLEListerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BLEListerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -125,6 +125,16 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		DE63F24E180873D900E4ACD8 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */,
+				DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */,
+				DEFDC94E17F553700073F990 /* BSLeDiscovery.m */,
+			);
+			name = Bluetooth;
+			sourceTree = "<group>";
+		};
 		DEE990B817F543F60041CAB6 = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +173,7 @@
 		DEE990CA17F543F70041CAB6 /* BLELister */ = {
 			isa = PBXGroup;
 			children = (
+				DE63F24E180873D900E4ACD8 /* Bluetooth */,
 				DE4E2A74180870A7005DA864 /* Controllers */,
 				DEE990D317F543F70041CAB6 /* BSAppDelegate.h */,
 				DEE990D417F543F70041CAB6 /* BSAppDelegate.m */,
@@ -170,9 +181,6 @@
 				DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */,
 				DEF56FD817F9386600A99FF2 /* BSJSONParser.h */,
 				DEF56FD917F9386600A99FF2 /* BSJSONParser.m */,
-				DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */,
-				DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */,
-				DEFDC94E17F553700073F990 /* BSLeDiscovery.m */,
 				DEE990E217F543F70041CAB6 /* Images.xcassets */,
 				DEE990CB17F543F70041CAB6 /* Supporting Files */,
 			);
