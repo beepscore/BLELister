@@ -67,10 +67,10 @@
 		DEE990D417F543F70041CAB6 /* BSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAppDelegate.m; sourceTree = "<group>"; };
 		DEE990D717F543F70041CAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		DEE990DA17F543F70041CAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSMasterViewController.h; sourceTree = "<group>"; };
-		DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMasterViewController.m; sourceTree = "<group>"; };
-		DEE990DF17F543F70041CAB6 /* BSDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSDetailViewController.h; sourceTree = "<group>"; };
-		DEE990E017F543F70041CAB6 /* BSDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDetailViewController.m; sourceTree = "<group>"; };
+		DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BSMasterViewController.h; path = Controllers/BSMasterViewController.h; sourceTree = "<group>"; };
+		DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BSMasterViewController.m; path = Controllers/BSMasterViewController.m; sourceTree = "<group>"; };
+		DEE990DF17F543F70041CAB6 /* BSDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BSDetailViewController.h; path = Controllers/BSDetailViewController.h; sourceTree = "<group>"; };
+		DEE990E017F543F70041CAB6 /* BSDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BSDetailViewController.m; path = Controllers/BSDetailViewController.m; sourceTree = "<group>"; };
 		DEE990E217F543F70041CAB6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DEE990E817F543F70041CAB6 /* BLEListerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLEListerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE990E917F543F70041CAB6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -114,6 +114,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE4E2A74180870A7005DA864 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DEE990DF17F543F70041CAB6 /* BSDetailViewController.h */,
+				DEE990E017F543F70041CAB6 /* BSDetailViewController.m */,
+				DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */,
+				DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		DEE990B817F543F60041CAB6 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +163,7 @@
 		DEE990CA17F543F70041CAB6 /* BLELister */ = {
 			isa = PBXGroup;
 			children = (
+				DE4E2A74180870A7005DA864 /* Controllers */,
 				DEE990D317F543F70041CAB6 /* BSAppDelegate.h */,
 				DEE990D417F543F70041CAB6 /* BSAppDelegate.m */,
 				DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */,
@@ -161,10 +173,6 @@
 				DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */,
 				DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */,
 				DEFDC94E17F553700073F990 /* BSLeDiscovery.m */,
-				DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */,
-				DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */,
-				DEE990DF17F543F70041CAB6 /* BSDetailViewController.h */,
-				DEE990E017F543F70041CAB6 /* BSDetailViewController.m */,
 				DEE990E217F543F70041CAB6 /* Images.xcassets */,
 				DEE990CB17F543F70041CAB6 /* Supporting Files */,
 			);
