@@ -113,6 +113,27 @@
     return cell;
 }
 
+- (NSString *)peripheralStateStringForValue:(CBPeripheralState)state
+{
+    NSString *stateString = @"";
+    switch (state) {
+
+        case CBPeripheralStateDisconnected:
+            stateString = @"disconnected";
+            break;
+        case CBPeripheralStateConnecting:
+            stateString = @"connecting";
+            break;
+        case CBPeripheralStateConnected:
+            stateString = @"connected";
+            break;
+
+        default:
+            break;
+    }
+    return stateString;
+}
+
 #pragma mark - UITableViewDelegate
 
 @end
