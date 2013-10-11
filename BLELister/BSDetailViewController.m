@@ -37,6 +37,7 @@
 
     if (self.detailItem) {
         self.title = [self.detailItem name];
+        [self.tableView reloadData];
     }
 }
 
