@@ -161,7 +161,6 @@
 
     if (![self.foundPeripherals containsObject:peripheral]) {
         [self.foundPeripherals addObject:peripheral];
-        [self.discoveryDelegate discoveryDidRefresh];
         [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
                                                object:self
                                              userInfo:nil];
@@ -193,7 +192,6 @@
         case CBCentralManagerStatePoweredOff:
             {
                 [self clearDevices];
-                [self.discoveryDelegate discoveryDidRefresh];
                 [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
                                                        object:self
                                                      userInfo:nil];
@@ -201,7 +199,6 @@
                 /* Tell user to power ON BT for functionality, but not on first run - the Framework will alert in that instance. */
                 // cast -1 to CBCentralManagerState to eliminate warning
                 if (previousState != (CBCentralManagerState)-1) {
-                    [self.discoveryDelegate discoveryStatePoweredOff];
                     [self.notificationCenter postNotificationName:kBleDiscoveryStatePoweredOffNotification
                                                            object:self
                                                          userInfo:nil];
@@ -233,7 +230,6 @@
                 for (CBPeripheral *peripheral in peripherals) {
                     [central connectPeripheral:peripheral options:nil];
                 }
-                [self.discoveryDelegate discoveryDidRefresh];
                 [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
                                                        object:self
                                                      userInfo:nil];
@@ -243,7 +239,6 @@
         case CBCentralManagerStateResetting:
             {
                 [self clearDevices];
-                [self.discoveryDelegate discoveryDidRefresh];
                 [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
                                                        object:self
                                                      userInfo:nil];

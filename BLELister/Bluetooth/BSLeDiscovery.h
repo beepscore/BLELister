@@ -17,12 +17,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-// UI protocols
-@protocol BSLeDiscoveryDelegate <NSObject>
-- (void) discoveryDidRefresh;
-- (void) discoveryStatePoweredOff;
-@end
-
 
 // Discovery class
 @interface BSLeDiscovery : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
@@ -35,8 +29,6 @@
 + (id) sharedInstance;
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
-
-@property (nonatomic, weak) id<BSLeDiscoveryDelegate> discoveryDelegate;
 
 // Actions
 - (void) startScanningForUUIDString:(NSString *)uuidString;
