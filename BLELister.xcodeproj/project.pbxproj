@@ -574,11 +574,11 @@
 				);
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
 				OTHER_LDFLAGS = (
+					"-force_load",
+					"\"$(BUILT_PRODUCTS_DIR)/libOCMock.a\"",
 					"-ObjC",
 					"-framework",
 					SenTestingKit,
-					"\"$(BUILT_PRODUCTS_DIR)/libOCMock.a\"",
-					"-force_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -607,11 +607,11 @@
 				);
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
 				OTHER_LDFLAGS = (
+					"-force_load",
+					"\"$(BUILT_PRODUCTS_DIR)/libOCMock.a\"",
 					"-ObjC",
 					"-framework",
 					SenTestingKit,
-					"\"$(BUILT_PRODUCTS_DIR)/libOCMock.a\"",
-					"-force_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
