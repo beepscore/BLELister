@@ -8,6 +8,12 @@
 //
 // Abstract: Scan for and discover nearby LE peripherals with the matching service UUID.
 
+/**
+ BSLeDiscovery posts notifications.
+ This way, the app can instantiate one BSLeDiscovery
+ to support multilple objects (e.g. view controllers)
+ */
+
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 

@@ -10,6 +10,7 @@
 
 #import "BSLeDiscovery.h"
 #import "BSLeDiscovery_Private.h"
+#import "BSBleConstants.h"
 
 @implementation BSLeDiscovery
 
@@ -161,6 +162,9 @@
     if (![self.foundPeripherals containsObject:peripheral]) {
         [self.foundPeripherals addObject:peripheral];
         [self.discoveryDelegate discoveryDidRefresh];
+        [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                               object:self
+                                             userInfo:nil];
     }
 }
 
@@ -190,11 +194,17 @@
             {
                 [self clearDevices];
                 [self.discoveryDelegate discoveryDidRefresh];
+                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                       object:self
+                                                     userInfo:nil];
 
                 /* Tell user to power ON BT for functionality, but not on first run - the Framework will alert in that instance. */
                 // cast -1 to CBCentralManagerState to eliminate warning
                 if (previousState != (CBCentralManagerState)-1) {
                     [self.discoveryDelegate discoveryStatePoweredOff];
+                    [self.notificationCenter postNotificationName:kBleDiscoveryStatePoweredOffNotification
+                                                           object:self
+                                                         userInfo:nil];
                 }
                 break;
             }
@@ -224,6 +234,9 @@
                     [central connectPeripheral:peripheral options:nil];
                 }
                 [self.discoveryDelegate discoveryDidRefresh];
+                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                       object:self
+                                                     userInfo:nil];
                 break;
             }
 
@@ -231,6 +244,9 @@
             {
                 [self clearDevices];
                 [self.discoveryDelegate discoveryDidRefresh];
+                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                       object:self
+                                                     userInfo:nil];
                 //[peripheralDelegate alarmServiceDidReset];
 
                 pendingInit = YES;
