@@ -11,6 +11,9 @@
 #import "BSLeDiscovery.h"
 #import "BSLeDiscovery_Private.h"
 #import "BSJSONParser.h"
+#import "OCMock/OCMock.h"
+#import "BSBleConstants.h"
+#import "BSStubCBCentralManager.h"
 
 @interface BSLeDiscoveryTests : XCTestCase
 @property (strong, nonatomic) BSLeDiscovery *bsLeDiscovery;
@@ -232,5 +235,76 @@
     [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:20.0];
 }
  */
+
+# pragma mark - test post notifications
+- (void)testCentralManagerOffDidUpdateStatePostsBleDiscoveryDidRefreshNotification
+{
+    id mockNotificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
+
+    BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
+    stubCentralManager.state = CBCentralManagerStatePoweredOff;
+
+    self.bsLeDiscovery = [[BSLeDiscovery alloc]
+                          initWithCentralManager:(CBCentralManager *)stubCentralManager
+                          foundPeripherals:nil
+                          connectedServices:nil
+                          notificationCenter:mockNotificationCenter];
+
+    [[mockNotificationCenter expect] postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                   object:self.bsLeDiscovery
+                                                 userInfo:nil];
+
+    [self.bsLeDiscovery centralManagerDidUpdateState:(CBCentralManager *)stubCentralManager];
+    
+    // Verify all stubbed or expected methods were called.
+    [mockNotificationCenter verify];
+}
+
+- (void)testCentralManagerOffDidUpdateStatePostsBleDiscoveryStatePoweredOffNotification
+{
+    // use nice mock to ignore un-expected method calls
+    id mockNotificationCenter = [OCMockObject niceMockForClass:[NSNotificationCenter class]];
+
+    BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
+    stubCentralManager.state = CBCentralManagerStatePoweredOff;
+
+    self.bsLeDiscovery = [[BSLeDiscovery alloc]
+                          initWithCentralManager:(CBCentralManager *)stubCentralManager
+                          foundPeripherals:nil
+                          connectedServices:nil
+                          notificationCenter:mockNotificationCenter];
+
+    [[mockNotificationCenter expect] postNotificationName:kBleDiscoveryStatePoweredOffNotification
+                                                   object:self.bsLeDiscovery
+                                                 userInfo:nil];
+
+    [self.bsLeDiscovery centralManagerDidUpdateState:(CBCentralManager *)stubCentralManager];
+    
+    // Verify all stubbed or expected methods were called.
+    [mockNotificationCenter verify];
+}
+
+- (void)testCentralManagerOnDidUpdateStatePostsBleDiscoveryDidRefreshNotification
+{
+    id mockNotificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
+
+    BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
+    stubCentralManager.state = CBCentralManagerStatePoweredOn;
+
+    self.bsLeDiscovery = [[BSLeDiscovery alloc]
+                          initWithCentralManager:(CBCentralManager *)stubCentralManager
+                          foundPeripherals:nil
+                          connectedServices:nil
+                          notificationCenter:mockNotificationCenter];
+
+    [[mockNotificationCenter expect] postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                   object:self.bsLeDiscovery
+                                                 userInfo:nil];
+
+    [self.bsLeDiscovery centralManagerDidUpdateState:(CBCentralManager *)stubCentralManager];
+    
+    // Verify all stubbed or expected methods were called.
+    [mockNotificationCenter verify];
+}
 
 @end
