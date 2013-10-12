@@ -21,7 +21,6 @@
 // Discovery class
 @interface BSLeDiscovery : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
-
 /**
  sets property self.notificationCenter to [NSNotificationCenter defaultCenter]
  @return a shared instance, not strictly enforced as a singleton
@@ -36,7 +35,6 @@
 
 - (void) connectPeripheral:(CBPeripheral*)peripheral;
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral;
-
 
 // Access to the devices
 @property (strong, nonatomic) NSMutableArray *foundPeripherals;
