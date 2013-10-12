@@ -20,6 +20,10 @@
     BOOL pendingInit;
 }
 
+/// Usually set to singleton [NSNotificationCenter defaultCenter]
+/// Unit test can set it to a mock notificationCenter
+@property (nonatomic, strong) NSNotificationCenter *notificationCenter;
+
 
 /**
  designated initializer
@@ -29,9 +33,13 @@
  sets property self.foundPeripherals
  @param aConnectedServices
  sets property self.connectedServices
+ @param aNotificationCenter
+ sets property self.notificationCenter
  @return a BSLeDiscovery, generally used as a singleton
  */
 - (id)initWithCentralManager:(CBCentralManager *)aCentralManager
             foundPeripherals:(NSMutableArray *)aFoundPeripherals
-           connectedServices:(NSMutableArray *)aConnectedServices;
+           connectedServices:(NSMutableArray *)aConnectedServices
+          notificationCenter:(NSNotificationCenter *)aNotificationCenter;
+
 @end

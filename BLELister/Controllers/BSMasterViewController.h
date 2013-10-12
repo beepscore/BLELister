@@ -11,7 +11,7 @@
 
 @class BSDetailViewController;
 
-@interface BSMasterViewController : UITableViewController <BSLeDiscoveryDelegate>
+@interface BSMasterViewController : UITableViewController
 
 @property (strong, nonatomic) BSDetailViewController *detailViewController;
 @property (strong, nonatomic) BSLeDiscovery *leDiscovery;

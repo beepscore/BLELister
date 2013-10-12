@@ -6,14 +6,9 @@
 //  Copyright (c) 2013 Beepscore LLC. All rights reserved.
 //
 
-#import "BSMasterViewController.h"
-
+#import "BSMasterViewController_Private.h"
 #import "BSDetailViewController.h"
-
-@interface BSMasterViewController () {
-    NSMutableArray *_objects;
-}
-@end
+#import "BSBleConstants.h"
 
 @implementation BSMasterViewController
 
@@ -41,17 +36,27 @@
     self.detailViewController = (BSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
     self.leDiscovery = [BSLeDiscovery sharedInstance];
-    self.leDiscovery.discoveryDelegate = self;
+
+    self.notificationCenter = [NSNotificationCenter defaultCenter];
+    [self registerForBleDiscoveryDidRefreshNotification];
+    [self registerFoBleDiscoveryStatePoweredOffNotification];
 
     [self scanForPeripherals];
 }
 
+#pragma mark - Memory management
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [self.notificationCenter removeObserver:self];
+}
+
+#pragma mark -
 /*
 - (void)insertNewObject:(id)sender
 {
@@ -143,7 +148,24 @@
     }
 }
 
-#pragma mark - BSLeDiscoveryDelegate
+#pragma mark - Register for notifications
+- (void)registerForBleDiscoveryDidRefreshNotification
+{
+    [self.notificationCenter addObserver:self
+                                selector:@selector(discoveryDidRefresh)
+                                    name:kBleDiscoveryDidRefreshNotification
+                                  object:nil];        
+}
+
+- (void)registerFoBleDiscoveryStatePoweredOffNotification
+{
+    [self.notificationCenter addObserver:self
+                                selector:@selector(discoveryStatePoweredOff)
+                                    name:kBleDiscoveryStatePoweredOffNotification
+                                  object:nil];        
+}
+
+#pragma mark - Notification response methods
 - (void) discoveryDidRefresh {
     NSLog(@"discoveryDidRefresh");
     _objects = self.leDiscovery.foundPeripherals;

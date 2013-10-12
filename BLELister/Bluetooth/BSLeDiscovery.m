@@ -10,6 +10,7 @@
 
 #import "BSLeDiscovery.h"
 #import "BSLeDiscovery_Private.h"
+#import "BSBleConstants.h"
 
 @implementation BSLeDiscovery
 
@@ -30,7 +31,8 @@
         sharedInstance = [[self alloc]
                           initWithCentralManager:aCentralManager
                           foundPeripherals:[[NSMutableArray alloc] init]
-                          connectedServices:[[NSMutableArray alloc] init]];
+                          connectedServices:[[NSMutableArray alloc] init]
+                          notificationCenter:[NSNotificationCenter defaultCenter]];
     });
     return sharedInstance;
 }
@@ -39,7 +41,8 @@
 // designated initializer
 - (id)initWithCentralManager:(CBCentralManager *)aCentralManager
             foundPeripherals:(NSMutableArray *)aFoundPeripherals
-           connectedServices:(NSMutableArray *)aConnectedServices {
+           connectedServices:(NSMutableArray *)aConnectedServices
+          notificationCenter:(NSNotificationCenter *)aNotificationCenter {
 
     // call super's designated intializer
     self = [super init];
@@ -49,6 +52,7 @@
         self.centralManager.delegate = self;
         self.foundPeripherals = aFoundPeripherals;
         self.connectedServices = aConnectedServices;
+        self.notificationCenter = aNotificationCenter;
     }
     return self;
 }
@@ -58,7 +62,8 @@
     // call designated initializer
     return [self initWithCentralManager:nil
                        foundPeripherals:nil
-                      connectedServices:nil];
+                      connectedServices:nil
+                     notificationCenter:nil];
 }
 
 #pragma mark - Restoring
@@ -156,7 +161,9 @@
 
     if (![self.foundPeripherals containsObject:peripheral]) {
         [self.foundPeripherals addObject:peripheral];
-        [self.discoveryDelegate discoveryDidRefresh];
+        [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                               object:self
+                                             userInfo:nil];
     }
 }
 
@@ -185,12 +192,16 @@
         case CBCentralManagerStatePoweredOff:
             {
                 [self clearDevices];
-                [self.discoveryDelegate discoveryDidRefresh];
+                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                       object:self
+                                                     userInfo:nil];
 
                 /* Tell user to power ON BT for functionality, but not on first run - the Framework will alert in that instance. */
                 // cast -1 to CBCentralManagerState to eliminate warning
                 if (previousState != (CBCentralManagerState)-1) {
-                    [self.discoveryDelegate discoveryStatePoweredOff];
+                    [self.notificationCenter postNotificationName:kBleDiscoveryStatePoweredOffNotification
+                                                           object:self
+                                                         userInfo:nil];
                 }
                 break;
             }
@@ -219,14 +230,18 @@
                 for (CBPeripheral *peripheral in peripherals) {
                     [central connectPeripheral:peripheral options:nil];
                 }
-                [self.discoveryDelegate discoveryDidRefresh];
+                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                       object:self
+                                                     userInfo:nil];
                 break;
             }
 
         case CBCentralManagerStateResetting:
             {
                 [self clearDevices];
-                [self.discoveryDelegate discoveryDidRefresh];
+                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                       object:self
+                                                     userInfo:nil];
                 //[peripheralDelegate alarmServiceDidReset];
 
                 pendingInit = YES;

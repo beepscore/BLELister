@@ -8,24 +8,26 @@
 //
 // Abstract: Scan for and discover nearby LE peripherals with the matching service UUID.
 
+/**
+ BSLeDiscovery posts notifications.
+ This way, the app can instantiate one BSLeDiscovery
+ to support multilple objects (e.g. view controllers)
+ */
+
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-
-// UI protocols
-@protocol BSLeDiscoveryDelegate <NSObject>
-- (void) discoveryDidRefresh;
-- (void) discoveryStatePoweredOff;
-@end
 
 
 // Discovery class
 @interface BSLeDiscovery : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
+/**
+ sets property self.notificationCenter to [NSNotificationCenter defaultCenter]
+ @return a shared instance, not strictly enforced as a singleton
+ */
 + (id) sharedInstance;
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
-
-@property (nonatomic, weak) id<BSLeDiscoveryDelegate> discoveryDelegate;
 
 // Actions
 - (void) startScanningForUUIDString:(NSString *)uuidString;
@@ -33,7 +35,6 @@
 
 - (void) connectPeripheral:(CBPeripheral*)peripheral;
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral;
-
 
 // Access to the devices
 @property (strong, nonatomic) NSMutableArray *foundPeripherals;
