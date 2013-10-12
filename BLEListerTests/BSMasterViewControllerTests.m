@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "BSMasterViewController.h"
+#import "BSMasterViewController_Private.h"
 #import "BSLeDiscovery.h"
 
 @interface BSMasterViewControllerTests : XCTestCase
@@ -44,13 +45,15 @@
     //XCTAssertEqualObjects([BSLeDiscovery sharedInstance], vc.leDiscovery, @"expected leDiscovery");
 }
 
-- (void)testViewDidLoadSetsLeDiscoveryDelegateToSelf
+- (void)testViewDidLoadSetsNotificationCenter
 {
     BSMasterViewController *vc = [[BSMasterViewController alloc] init];
-    XCTAssertNil(vc.leDiscovery, @"expected leDiscovery nil");
+    XCTAssertNil(vc.notificationCenter, @"expected notificationCenter nil");
     [vc viewDidLoad];
-    XCTAssertNotNil(vc.leDiscovery, @"expected leDiscovery");
-    XCTAssertEqualObjects(vc, vc.leDiscovery.discoveryDelegate, @"expected leDiscovery delegate");
+    XCTAssertNotNil(vc.notificationCenter, @"expected notificationCenter");
+    XCTAssertEqualObjects([NSNotificationCenter defaultCenter],
+                          vc.notificationCenter,
+                          @"expected viewDidLoad sets notificationCenter to defaultCenter");
 }
 
 @end
