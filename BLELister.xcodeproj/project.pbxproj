@@ -563,6 +563,11 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/SHTestCaseAdditions\"",
+					"$(SRCROOT)/OCMock/Source",
+				);
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -591,6 +596,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/SHTestCaseAdditions\"",
+					"$(SRCROOT)/OCMock/Source",
+				);
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-ObjC",
