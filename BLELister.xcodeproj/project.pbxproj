@@ -15,6 +15,7 @@
 		DEBC532317F547A800F2ACFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532217F547A800F2ACFF /* README.md */; };
 		DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532417F547BB00F2ACFF /* LICENSE.txt */; };
 		DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */; };
+		DEDACD7618093633003CC569 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDACD7518093633003CC569 /* libOCMock.a */; };
 		DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
 		DEE990C717F543F70041CAB6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C617F543F70041CAB6 /* CoreGraphics.framework */; };
 		DEE990C917F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
@@ -59,6 +60,7 @@
 		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DEBC532417F547BB00F2ACFF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSMasterViewControllerTests.m; path = BLEListerTests/BSMasterViewControllerTests.m; sourceTree = SOURCE_ROOT; };
+		DEDACD7518093633003CC569 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE990C117F543F70041CAB6 /* BLELister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLELister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE990C417F543F70041CAB6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DEE990C617F543F70041CAB6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEDACD7618093633003CC569 /* libOCMock.a in Frameworks */,
 				DEE990EA17F543F70041CAB6 /* XCTest.framework in Frameworks */,
 				DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */,
 				DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */,
@@ -168,6 +171,7 @@
 		DEE990C317F543F70041CAB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEDACD7518093633003CC569 /* libOCMock.a */,
 				DE580DED17F5995000292810 /* CoreBluetooth.framework */,
 				DEE990C417F543F70041CAB6 /* Foundation.framework */,
 				DEE990C617F543F70041CAB6 /* CoreGraphics.framework */,
@@ -563,7 +567,19 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/SHTestCaseAdditions\"",
+					"$(SRCROOT)/OCMock/Source",
+				);
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"\"$(BUILT_PRODUCTS_DIR)/libOCMock.a\"",
+					"-ObjC",
+					"-framework",
+					SenTestingKit,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -584,7 +600,19 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/SHTestCaseAdditions\"",
+					"$(SRCROOT)/OCMock/Source",
+				);
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"\"$(BUILT_PRODUCTS_DIR)/libOCMock.a\"",
+					"-ObjC",
+					"-framework",
+					SenTestingKit,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
