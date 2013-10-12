@@ -130,18 +130,47 @@
                           @"expected sharedInstance connectedServices is empty array");
 }
 
+- (void)testSharedInstanceNotificationCenter {
+    self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    // Could reduce scope of this test by testing sharedInstance calls
+    // designated initializer.
+    XCTAssertNotNil(self.bsLeDiscovery.notificationCenter,
+                    @"expected sharedInstance sets notificationCenter");
+    XCTAssertEqualObjects([NSNotificationCenter defaultCenter],
+                          self.bsLeDiscovery.notificationCenter,
+                          @"expected sharedInstance uses default notificationCenter");
+}
+
 # pragma mark - test designated initializer
+- (void)testDesignatedInitializerSetsProperties {
+    CBCentralManager *fakeCentralManager = [[CBCentralManager alloc] init];
+    NSMutableArray *fakeFoundPeripherals = [NSMutableArray arrayWithArray:@[@"wolf", @"dog", @"dingo"]];
+    NSMutableArray *fakeConnectedServices = [NSMutableArray arrayWithArray:@[@"lion", @"cat", @"lynx"]];
+    NSNotificationCenter *fakeNotificationCenter = [[NSNotificationCenter alloc] init];
+
+    self.bsLeDiscovery = [[BSLeDiscovery alloc]
+                          initWithCentralManager:fakeCentralManager
+                          foundPeripherals:fakeFoundPeripherals
+                          connectedServices:fakeConnectedServices
+                          notificationCenter:fakeNotificationCenter];
+
+    XCTAssertEqualObjects(fakeCentralManager, self.bsLeDiscovery.centralManager, @"");
+    XCTAssertEqualObjects(fakeFoundPeripherals, self.bsLeDiscovery.foundPeripherals, @"");
+    XCTAssertEqualObjects(fakeConnectedServices, self.bsLeDiscovery.connectedServices, @"");
+    XCTAssertEqualObjects(fakeNotificationCenter, self.bsLeDiscovery.notificationCenter, @"");
+}
+
 - (void)testDesignatedInitializerWithParamsNil {
     self.bsLeDiscovery = [[BSLeDiscovery alloc]
                           initWithCentralManager:nil
                           foundPeripherals:nil
-                          connectedServices:nil];
-    XCTAssertNil(self.bsLeDiscovery.centralManager,
-                 @"expected centralManager nil");
-    XCTAssertNil(self.bsLeDiscovery.foundPeripherals,
-                @"expected foundPeripherals nil");
-    XCTAssertNil(self.bsLeDiscovery.connectedServices,
-                @"expected connectedServices nil");
+                          connectedServices:nil
+                          notificationCenter:nil];
+
+    XCTAssertNil(self.bsLeDiscovery.centralManager, @"expected centralManager nil");
+    XCTAssertNil(self.bsLeDiscovery.foundPeripherals, @"expected foundPeripherals nil");
+    XCTAssertNil(self.bsLeDiscovery.connectedServices, @"expected connectedServices nil");
+    XCTAssertNil(self.bsLeDiscovery.notificationCenter, @"expected notificationCenter nil");
 }
 
 # pragma mark - test asynchronous

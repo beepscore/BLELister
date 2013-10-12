@@ -30,7 +30,8 @@
         sharedInstance = [[self alloc]
                           initWithCentralManager:aCentralManager
                           foundPeripherals:[[NSMutableArray alloc] init]
-                          connectedServices:[[NSMutableArray alloc] init]];
+                          connectedServices:[[NSMutableArray alloc] init]
+                          notificationCenter:[NSNotificationCenter defaultCenter]];
     });
     return sharedInstance;
 }
@@ -39,7 +40,8 @@
 // designated initializer
 - (id)initWithCentralManager:(CBCentralManager *)aCentralManager
             foundPeripherals:(NSMutableArray *)aFoundPeripherals
-           connectedServices:(NSMutableArray *)aConnectedServices {
+           connectedServices:(NSMutableArray *)aConnectedServices
+          notificationCenter:(NSNotificationCenter *)aNotificationCenter {
 
     // call super's designated intializer
     self = [super init];
@@ -49,6 +51,7 @@
         self.centralManager.delegate = self;
         self.foundPeripherals = aFoundPeripherals;
         self.connectedServices = aConnectedServices;
+        self.notificationCenter = aNotificationCenter;
     }
     return self;
 }
@@ -58,7 +61,8 @@
     // call designated initializer
     return [self initWithCentralManager:nil
                        foundPeripherals:nil
-                      connectedServices:nil];
+                      connectedServices:nil
+                     notificationCenter:nil];
 }
 
 #pragma mark - Restoring

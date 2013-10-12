@@ -21,6 +21,11 @@
 // Discovery class
 @interface BSLeDiscovery : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
+
+/**
+ sets property self.notificationCenter to [NSNotificationCenter defaultCenter]
+ @return a shared instance, not strictly enforced as a singleton
+ */
 + (id) sharedInstance;
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
