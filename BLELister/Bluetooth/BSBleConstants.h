@@ -16,3 +16,9 @@
 
 extern NSString * const kBleDiscoveryDidRefreshNotification;
 extern NSString * const kBleDiscoveryStatePoweredOffNotification;
+
+// https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx
+// RedBearLab BLE shield for Arduino
+extern NSString *const kRedBearLabBLEShieldName;
+extern NSString *const kRedBearLabBLEShieldUuidString;
+extern NSString *const kRedBearLabBLEShieldServiceUUIDString;
