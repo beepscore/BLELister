@@ -96,7 +96,6 @@
     CBPeripheral *peripheral = [self.bsLeDiscovery.foundPeripherals firstObject];
 
     NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
-
     NSString *expectedIdentifier = bleDevices[peripheralKey][@"identifier"];
     NSString *expectedName = bleDevices[peripheralKey][@"name"];
 
@@ -194,6 +193,10 @@
 // and the first is a Red Bear Lab Ble Shield
 - (void)testFoundPeripherals {
 
+    NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
+    NSString *expectedIdentifier = bleDevices[@"redbearshield"][@"identifier"];
+    NSString *expectedName = bleDevices[@"redbearshield"][@"name"];
+
     // using __block allows block to change bsLeDiscovery, set property foundPeripherals??
     __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
 
@@ -208,10 +211,10 @@
         if ( 1 <= [bsLeDiscovery.foundPeripherals count]) {
             CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
 
-            XCTAssertEqualObjects(kRedBearLabBLEShieldServiceUUIDString,
+            XCTAssertEqualObjects(expectedIdentifier,
                                   [peripheral.identifier UUIDString],
                                   @"expected first found peripheral UUIDString");
-            XCTAssertEqualObjects(kRedBearLabBLEShieldName,
+            XCTAssertEqualObjects(expectedName,
                                   peripheral.name,
                                   @"expected first found peripheral name");
 
