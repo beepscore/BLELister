@@ -190,51 +190,42 @@
     XCTAssertTrue(assertion, @"expected assertion true");
 }
 
-/*
-// FIXME: currently this test fails by timing out
+// This test assumes iOS device will find at least one peripheral
+// and the first is a Red Bear Lab Ble Shield
 - (void)testFoundPeripherals {
 
     // using __block allows block to change bsLeDiscovery, set property foundPeripherals??
     __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
 
-    XCTAssertEqualObjects(@[],
-                          bsLeDiscovery.foundPeripherals,
-                          @"expected foundPeripherals is empty array");
-
     // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
-    // https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx
-    // NSString *uuidString = @"180D";
-    // RedBearLab BLE shield for Arduino service UUID
-    // NSString *redBearLabBLEShieldServiceUUIDString = @"DDAB0207-5E10-2902-5B03-CA3F0F466B40";
-    //[bsLeDiscovery startScanningForUUIDString:redBearLabBLEShieldServiceUUIDString];
-
+    //[bsLeDiscovery startScanningForUUIDString:kRedBearLabBLEShieldServiceUUIDString];
     [bsLeDiscovery startScanningForUUIDString:nil];
 
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
 
-        NSLog(@"********************************");
-        NSLog(@"foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
-        if ( 1 <= [bsLeDiscovery.foundPeripherals count]) {
+        NSLog(@"In testBlock. foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
 
-            NSLog(@"********************************");
-            NSLog(@"foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
+        if ( 1 <= [bsLeDiscovery.foundPeripherals count]) {
             CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
 
-            // RedBearLab BLE shield for Arduino service UUID
-            NSString *redBearLabBLEShieldServiceUUIDString = @"DDAB0207-5E10-2902-5B03-CA3F0F466B40";
-            XCTAssertEqualObjects(redBearLabBLEShieldServiceUUIDString,
+            XCTAssertEqualObjects(kRedBearLabBLEShieldServiceUUIDString,
                                   [peripheral.identifier UUIDString],
                                   @"expected first found peripheral UUIDString");
-            XCTAssertEqualObjects(@"BLE Shield",
+            XCTAssertEqualObjects(kRedBearLabBLEShieldName,
                                   peripheral.name,
                                   @"expected first found peripheral name");
+
+            // dereference the pointer to set the BOOL value
             *didFinish = YES;
         }
     };
 
-    [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:20.0];
+    // SH_performAsyncTestsWithinBlock calls testBlock
+    // and supplies its argument, a pointer to BOOL didFinish.
+    // SH_performAsyncTestsWithinBlock keeps calling the block
+    // until the block sets didFinish YES or the test times out.
+    [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:60.0];
 }
- */
 
 # pragma mark - test post notifications
 - (void)testCentralManagerOffDidUpdateStatePostsBleDiscoveryDidRefreshNotification
