@@ -299,8 +299,14 @@ didFailToConnectPeripheral:(CBPeripheral *)peripheral
 didDisconnectPeripheral:(CBPeripheral *)peripheral
                  error:(NSError *)error
 {
-    NSDictionary *userInfo = @{ @"peripheral" : peripheral,
-                                @"error" : error };
+    NSDictionary *userInfo = nil;
+    if (!error) {
+        // don't attempt to add nil object to dictionary
+        userInfo = @{ @"peripheral" : peripheral};
+    } else {
+        userInfo = @{ @"peripheral" : peripheral,
+                      @"error" : error };
+    }
     [self.notificationCenter postNotificationName:kBleDiscoveryDidDisconnectPeripheralNotification
                                            object:self
                                          userInfo:userInfo];
