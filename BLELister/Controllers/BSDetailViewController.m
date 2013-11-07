@@ -162,6 +162,27 @@
     return stateString;
 }
 
+- (NSString *)connectLabelTextForState:(CBPeripheralState)state
+{
+    NSString *connectLabelText = @"";
+    switch (state) {
+
+        case CBPeripheralStateDisconnected:
+            connectLabelText = @"Connect";
+            break;
+        case CBPeripheralStateConnecting:
+            connectLabelText = @"";
+            break;
+        case CBPeripheralStateConnected:
+            connectLabelText = @"Disconnect";
+            break;
+        default:
+            connectLabelText = @"";
+            break;
+    }
+    return connectLabelText;
+}
+
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
