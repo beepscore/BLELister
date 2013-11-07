@@ -198,6 +198,12 @@
     [aLeDiscovery connectPeripheral:aPeripheral];
 }
 
+- (void)disconnect:(BSLeDiscovery *)aLeDiscovery
+     peripheral:(CBPeripheral *)aPeripheral;
+{
+    [aLeDiscovery disconnectPeripheral:aPeripheral];
+}
+
 #pragma mark - Register for notifications
 - (void)registerForBleDiscoveryDidConnectPeripheralNotification
 {
