@@ -190,70 +190,69 @@
     NSLog(@"central state %d", central.state);
 
     switch ([self.centralManager state]) {
-        case CBCentralManagerStatePoweredOff:
-            {
-                [self clearDevices];
-                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
-                                                       object:self
-                                                     userInfo:nil];
-
-                /* Tell user to power ON BT for functionality, but not on first run - the Framework will alert in that instance. */
-                // cast -1 to CBCentralManagerState to eliminate warning
-                if (previousState != (CBCentralManagerState)-1) {
-                    [self.notificationCenter postNotificationName:kBleDiscoveryStatePoweredOffNotification
-                                                           object:self
-                                                         userInfo:nil];
-                }
-                break;
-            }
-
-        case CBCentralManagerStateUnauthorized:
-            {
-                /* Tell user the app is not allowed. */
-                break;
-            }
 
         case CBCentralManagerStateUnknown:
-            {
-                /* Bad news, let's wait for another event. */
-                break;
-            }
-
-        case CBCentralManagerStatePoweredOn:
-            {
-                [self loadSavedDevices];
-
-                //FIXME: specify services argument
-                NSArray *peripherals = [self.centralManager retrieveConnectedPeripheralsWithServices:@[]];
-
-                // Add to list.
-                for (CBPeripheral *peripheral in peripherals) {
-                    [central connectPeripheral:peripheral options:nil];
-                }
-                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
-                                                       object:self
-                                                     userInfo:nil];
-                break;
-            }
-
+        {
+            /* Bad news, let's wait for another event. */
+            break;
+        }
         case CBCentralManagerStateResetting:
-            {
-                [self clearDevices];
-                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+        {
+            [self clearDevices];
+            [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                   object:self
+                                                 userInfo:nil];
+            //[peripheralDelegate alarmServiceDidReset];
+            break;
+        }
+            
+        case CBCentralManagerStateUnsupported:
+        {
+            // original code didn't list this case and xcode warned
+            // so list case to silence warning, but don't do anything
+            break;
+        }
+            
+        case CBCentralManagerStateUnauthorized:
+        {
+            /* Tell user the app is not allowed. */
+            break;
+        }
+            
+        case CBCentralManagerStatePoweredOff:
+        {
+            [self clearDevices];
+            [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                   object:self
+                                                 userInfo:nil];
+            
+            /* Tell user to power ON BT for functionality, but not on first run - the Framework will alert in that instance. */
+            // cast -1 to CBCentralManagerState to eliminate warning
+            if (previousState != (CBCentralManagerState)-1) {
+                [self.notificationCenter postNotificationName:kBleDiscoveryStatePoweredOffNotification
                                                        object:self
                                                      userInfo:nil];
-                //[peripheralDelegate alarmServiceDidReset];
-
-                break;
             }
-
-        case CBCentralManagerStateUnsupported:
-            {
-                // original code didn't list this case and xcode warned
-                // so list case to silence warning, but don't do anything
+            break;
+        }
+            
+        case CBCentralManagerStatePoweredOn:
+        {
+            [self loadSavedDevices];
+            
+            //FIXME: specify services argument
+            NSArray *peripherals = [self.centralManager retrieveConnectedPeripheralsWithServices:@[]];
+            
+            // Add to list.
+            for (CBPeripheral *peripheral in peripherals) {
+                [central connectPeripheral:peripheral options:nil];
             }
+            [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                   object:self
+                                                 userInfo:nil];
+            break;
+        }
     }
-
     previousState = [self.centralManager state];
 }
 
