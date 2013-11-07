@@ -39,7 +39,7 @@
     // call sharedInstance again to check it returns the same instance
     // XCTAssertEqual is the identical object
     // XCTAssertEqualObjects tests objectA isEqual:objectB
-    XCTAssertEqual([BSLeDiscovery  sharedInstance],
+    XCTAssertEqual([BSLeDiscovery sharedInstance],
                    self.bsLeDiscovery,
                    @"expected sharedInstance returns same instance");
 }
