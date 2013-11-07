@@ -435,4 +435,37 @@
     [mockNotificationCenter verify];
 }
 
+- (void)testCentralManagerDidDisconnectPeripheralPostsBleDiscoveryDidDisconnectPeripheralNotification
+{
+    id mockNotificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
+    
+    BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
+    stubCentralManager.state = CBCentralManagerStatePoweredOn;
+    
+    self.bsLeDiscovery = [[BSLeDiscovery alloc]
+                          initWithCentralManager:(CBCentralManager *)stubCentralManager
+                          foundPeripherals:nil
+                          connectedServices:nil
+                          notificationCenter:mockNotificationCenter];
+    
+    // Instantiating a CBPeripheral made program crash.
+    // So use an NSObject and cast it.
+    // CBPeripheral *fakePeripheral = [[CBPeripheral alloc] init];
+    NSObject *fakePeripheral = [[NSObject alloc] init];
+    NSError *fakeError = [[NSError alloc] init];
+    NSDictionary *fakeUserInfo = @{ @"peripheral" : fakePeripheral,
+                                    @"error" : fakeError };
+    [[mockNotificationCenter expect]
+     postNotificationName:kBleDiscoveryDidDisconnectPeripheralNotification
+     object:self.bsLeDiscovery
+     userInfo:fakeUserInfo];
+    
+    [self.bsLeDiscovery centralManager:(CBCentralManager *)stubCentralManager
+               didDisconnectPeripheral:(CBPeripheral *)fakePeripheral
+                                 error:fakeError];
+    
+    // Verify all stubbed or expected methods were called.
+    [mockNotificationCenter verify];
+}
+
 @end

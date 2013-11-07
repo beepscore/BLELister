@@ -299,6 +299,11 @@ didFailToConnectPeripheral:(CBPeripheral *)peripheral
 didDisconnectPeripheral:(CBPeripheral *)peripheral
                  error:(NSError *)error
 {
+    NSDictionary *userInfo = @{ @"peripheral" : peripheral,
+                                @"error" : error };
+    [self.notificationCenter postNotificationName:kBleDiscoveryDidDisconnectPeripheralNotification
+                                           object:self
+                                         userInfo:userInfo];
     /*
      LeTemperatureAlarmService	*service	= nil;
 
