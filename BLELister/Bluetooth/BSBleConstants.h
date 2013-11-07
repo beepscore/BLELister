@@ -16,3 +16,4 @@
 
 extern NSString * const kBleDiscoveryDidRefreshNotification;
 extern NSString * const kBleDiscoveryStatePoweredOffNotification;
+extern NSString * const kBleDiscoveryDidConnectPeripheralNotification;

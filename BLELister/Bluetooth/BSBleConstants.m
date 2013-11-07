@@ -10,3 +10,4 @@
 
 NSString *const kBleDiscoveryDidRefreshNotification = @"bleDiscoveryDidRefreshNotification";
 NSString *const kBleDiscoveryStatePoweredOffNotification = @"bleDiscoveryStatePoweredOffNotification";
+NSString *const kBleDiscoveryDidConnectPeripheralNotification = @"bleDiscoveryDidConnectPeripheralNotification";
