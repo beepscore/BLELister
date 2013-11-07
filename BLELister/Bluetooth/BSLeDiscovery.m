@@ -26,7 +26,7 @@
         // later code should set delegate to self
         CBCentralManager *aCentralManager = [[CBCentralManager alloc]
                                              initWithDelegate:nil
-                                             queue:dispatch_get_main_queue()];
+                                             queue:nil];
         // call designated initializer
         sharedInstance = [[self alloc]
                           initWithCentralManager:aCentralManager
