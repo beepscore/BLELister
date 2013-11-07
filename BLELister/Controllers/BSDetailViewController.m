@@ -52,6 +52,7 @@
 
     self.notificationCenter = [NSNotificationCenter defaultCenter];
     [self registerForBleDiscoveryDidConnectPeripheralNotification];
+    [self registerForBleDiscoveryDidDisconnectPeripheralNotification];
 
     [self configureView];
 }
@@ -186,8 +187,28 @@
      object:nil];
 }
 
+- (void)registerForBleDiscoveryDidDisconnectPeripheralNotification
+{
+    [self.notificationCenter
+     addObserver:self
+     selector:@selector(discoveryDidDisconnectPeripheralWithNotification:)
+     name:kBleDiscoveryDidDisconnectPeripheralNotification
+     object:nil];
+}
+
 #pragma mark - Notification response methods
 - (void) discoveryDidConnectPeripheralWithNotification:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    if (userInfo[@"peripheral"] == self.detailItem) {
+        // notification is about self's peripheral, not some other peripheral
+        NSLog(@"notification userInfo peripheral equals detailItem");
+        // reloadData will get the current detailItem.state
+        [self.tableView reloadData];
+    }
+}
+
+- (void) discoveryDidDisconnectPeripheralWithNotification:(NSNotification *)notification
 {
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
