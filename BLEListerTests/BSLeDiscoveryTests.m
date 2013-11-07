@@ -230,6 +230,110 @@
     [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:60.0];
 }
 
+#pragma mark - test Connect/Disconnect
+/*
+ // This test runs asynchronously, and is preferable to blocking the main thread.
+ // It's not working, so comment it out for now.
+ // TODO: figure out why centralManager status never says powered on.
+ // This test assumes iOS device will find at least one peripheral, and tries to connect.
+- (void)testConnectAsync {
+    
+    // using __block allows block to change bsLeDiscovery
+    __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
+
+    SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
+        
+        NSLog(@"In testBlock. *didFinish: %hhd", *didFinish);
+        
+        // wait for centralManager to become powered on.
+        // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
+        if(CBCentralManagerStatePoweredOn == bsLeDiscovery.centralManager.state) {
+            // centralManager is powered on, ok to scan and retrieve
+            NSLog(@"CBCentralManagerStatePoweredOn");
+            
+            if(!bsLeDiscovery.foundPeripherals
+               || ([@[]  isEqual: bsLeDiscovery.foundPeripherals])) {
+                [bsLeDiscovery startScanningForUUIDString:nil];
+            } else {
+                // foundPeripherals has at least one peripheral
+                CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
+
+                // TODO: Call connectPeripheral only once?
+                [bsLeDiscovery connectPeripheral:peripheral];
+                
+                if (CBPeripheralStateConnected == peripheral.state) {
+                    XCTAssert((CBPeripheralStateConnected == peripheral.state), @"");
+                    // dereference the pointer to set the BOOL value
+                    *didFinish = YES;
+                }
+            }
+        } else {
+            NSLog(@"still not powered on");
+        }
+    };
+    
+    // SH_performAsyncTestsWithinBlock calls testBlock
+    // and supplies its argument, a pointer to BOOL didFinish.
+    // SH_performAsyncTestsWithinBlock keeps calling the block
+    // until the block sets didFinish YES or the test times out.
+    [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:15.0];
+}
+*/
+
+/*
+ // This test blocks the main thread.
+ // It's not working, so comment it out for now.
+ // TODO: figure out why centralManager status never says powered on.
+- (void)testConnect {
+    
+    BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    CBPeripheral *peripheral = nil;
+
+    BOOL didCallConnect = NO;
+    BOOL isConnected = NO;
+    
+    NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
+    
+    while (!isConnected
+           && (NSOrderedDescending != [[NSDate date] compare: timeoutDate]) ) {
+        NSLog(@"not timed out");
+        sleep(1);
+
+        if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
+            NSLog(@"still not powered on");
+            NSLog(@"state %d", bsLeDiscovery.centralManager.state);
+        } else {
+            // centralManager is powered on, ok to scan and retrieve
+            // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
+            NSLog(@"CBCentralManagerStatePoweredOn");
+        [bsLeDiscovery startScanningForUUIDString:nil];
+
+            if(!bsLeDiscovery.foundPeripherals
+               || ([@[]  isEqual: bsLeDiscovery.foundPeripherals])) {
+                NSLog(@"foundPeripherals nil or empty");
+                //[bsLeDiscovery startScanningForUUIDString:nil];
+            } else {
+                // foundPeripherals has at least one peripheral
+                NSLog(@"foundPeripherals has at least one peripheral");
+                peripheral = [bsLeDiscovery.foundPeripherals firstObject];
+                
+                if (!didCallConnect) {
+                    NSLog(@"calling connectPeripheral");
+                    [bsLeDiscovery connectPeripheral:peripheral];
+                    didCallConnect = YES;
+                }
+                
+                if (CBPeripheralStateConnected == peripheral.state) {
+                    // dereference the pointer to set the BOOL value
+                    isConnected = YES;
+                }
+            }
+        }
+    }
+    XCTAssert((CBPeripheralStateConnected == peripheral.state), @"");
+}
+ */
+
 # pragma mark - test post notifications
 - (void)testCentralManagerOffDidUpdateStatePostsBleDiscoveryDidRefreshNotification
 {
