@@ -47,7 +47,6 @@
     // call super's designated intializer
     self = [super init];
     if (self) {
-        pendingInit = YES;
         self.centralManager = aCentralManager;
         self.centralManager.delegate = self;
         self.foundPeripherals = aFoundPeripherals;
@@ -220,7 +219,6 @@
 
         case CBCentralManagerStatePoweredOn:
             {
-                pendingInit = NO;
                 [self loadSavedDevices];
 
                 //FIXME: specify services argument
@@ -244,7 +242,6 @@
                                                      userInfo:nil];
                 //[peripheralDelegate alarmServiceDidReset];
 
-                pendingInit = YES;
                 break;
             }
 

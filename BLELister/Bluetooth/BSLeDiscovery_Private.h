@@ -17,7 +17,6 @@
 /// http://lisles.net/accessing-private-methods-and-properties-in-objc-unit-tests/
 
 @interface BSLeDiscovery () {
-    BOOL pendingInit;
 }
 
 /// Usually set to singleton [NSNotificationCenter defaultCenter]
