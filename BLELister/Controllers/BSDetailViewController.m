@@ -7,9 +7,12 @@
 //
 
 #import "BSDetailViewController.h"
+#import "BSDetailViewController_Private.h"
+#import "BSBleConstants.h"
 
 @interface BSDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+
 - (void)configureView;
 @end
 
@@ -45,6 +48,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.leDiscovery = [BSLeDiscovery sharedInstance];
+
+    self.notificationCenter = [NSNotificationCenter defaultCenter];
+    [self registerForBleDiscoveryDidConnectPeripheralNotification];
+
     [self configureView];
 }
 
@@ -52,6 +60,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [self.notificationCenter removeObserver:self];
 }
 
 #pragma mark - Split view
@@ -90,7 +103,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
-
+    
     switch (indexPath.row) {
         case 0:
             // TODO: need to connect to device to get RSSI?
@@ -113,12 +126,17 @@
             cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
             cell.detailTextLabel.text = [self.detailItem description];
             break;
+        case 4:
+            cell.textLabel.text = @"Connect";
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.font = [UIFont systemFontOfSize:16];
+            cell.detailTextLabel.text = @"";
+            break;
         default:
             cell.textLabel.text = @"";
             cell.detailTextLabel.text = @"";
             break;
     }
-    
     return cell;
 }
 
@@ -144,5 +162,39 @@
 }
 
 #pragma mark - UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (4 == indexPath.row) {
+        [self connect:self.leDiscovery peripheral:self.detailItem];
+    }
+}
+
+#pragma mark -
+- (void)connect:(BSLeDiscovery *)aLeDiscovery
+     peripheral:(CBPeripheral *)aPeripheral;
+{
+    [aLeDiscovery connectPeripheral:aPeripheral];
+}
+
+#pragma mark - Register for notifications
+- (void)registerForBleDiscoveryDidConnectPeripheralNotification
+{
+    [self.notificationCenter addObserver:self
+                                selector:@selector(discoveryDidConnectPeripheral:)
+                                    name:kBleDiscoveryDidConnectPeripheralNotification
+                                  object:nil];        
+}
+
+#pragma mark - Notification response methods
+- (void) discoveryDidConnectPeripheral:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    if (userInfo[@"peripheral"] == self.detailItem) {
+        // notification is about self's peripheral, not some other peripheral
+        NSLog(@"notification userInfo peripheral equals detailItem");
+        // reloadData will get the current detailItem.state
+        [self.tableView reloadData];
+    }
+}
 
 @end
