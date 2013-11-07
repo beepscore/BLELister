@@ -179,14 +179,15 @@
 #pragma mark - Register for notifications
 - (void)registerForBleDiscoveryDidConnectPeripheralNotification
 {
-    [self.notificationCenter addObserver:self
-                                selector:@selector(discoveryDidConnectPeripheral:)
-                                    name:kBleDiscoveryDidConnectPeripheralNotification
-                                  object:nil];        
+    [self.notificationCenter
+     addObserver:self
+     selector:@selector(discoveryDidConnectPeripheralWithNotification:)
+     name:kBleDiscoveryDidConnectPeripheralNotification
+     object:nil];
 }
 
 #pragma mark - Notification response methods
-- (void) discoveryDidConnectPeripheral:(NSNotification *)notification
+- (void) discoveryDidConnectPeripheralWithNotification:(NSNotification *)notification
 {
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
