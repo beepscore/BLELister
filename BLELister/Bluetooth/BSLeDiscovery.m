@@ -264,10 +264,15 @@
     [self removeSavedDevice:uuid];
 }
 
-- (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
+- (void) centralManager:(CBCentralManager *)central
+   didConnectPeripheral:(CBPeripheral *)peripheral
 {
+    NSDictionary *userInfo = @{ @"peripheral" : peripheral };
+    [self.notificationCenter postNotificationName:kBleDiscoveryDidConnectPeripheralNotification
+                                           object:self
+                                         userInfo:userInfo];
     /*
-    LeTemperatureAlarmService	*service	= nil;
+     LeTemperatureAlarmService	*service	= nil;
 
     // Create a service instance
     service = [[[LeTemperatureAlarmService alloc] initWithPeripheral:peripheral controller:peripheralDelegate] autorelease];
