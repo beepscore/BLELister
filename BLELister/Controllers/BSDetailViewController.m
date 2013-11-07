@@ -12,6 +12,7 @@
 
 @interface BSDetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@property (weak, nonatomic) IBOutlet UITableViewCell *connectCell;
 
 - (void)configureView;
 @end
@@ -128,7 +129,8 @@
             cell.detailTextLabel.text = [self.detailItem description];
             break;
         case 4:
-            cell.textLabel.text = @"Connect";
+            self.connectCell = cell;
+            cell.textLabel.text = [self connectLabelTextForState:self.detailItem.state];
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.textLabel.font = [UIFont systemFontOfSize:16];
             cell.detailTextLabel.text = @"";
@@ -186,8 +188,15 @@
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (4 == indexPath.row) {
-        [self connect:self.leDiscovery peripheral:self.detailItem];
+    if ([self.tableView cellForRowAtIndexPath:indexPath] == self.connectCell) {
+
+        if (CBPeripheralStateDisconnected == self.detailItem.state) {
+            [self connect:self.leDiscovery peripheral:self.detailItem];
+        } else if (CBPeripheralStateConnected == self.detailItem.state) {
+            [self disconnect:self.leDiscovery peripheral:self.detailItem];
+        }
+        // reloadData will get the current detailItem.state and update UI
+        [self.tableView reloadData];
     }
 }
 
