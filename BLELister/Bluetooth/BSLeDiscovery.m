@@ -187,6 +187,8 @@
 {
     static CBCentralManagerState previousState = -1;
 
+    NSLog(@"central state %d", central.state);
+
     switch ([self.centralManager state]) {
         case CBCentralManagerStatePoweredOff:
             {
