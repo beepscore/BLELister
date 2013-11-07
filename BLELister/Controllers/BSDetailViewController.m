@@ -157,8 +157,8 @@
         case CBPeripheralStateConnected:
             stateString = @"connected";
             break;
-
         default:
+            stateString = @"";
             break;
     }
     return stateString;
