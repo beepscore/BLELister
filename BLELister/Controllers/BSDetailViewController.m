@@ -41,6 +41,7 @@
 
     if (self.detailItem) {
         self.title = [self.detailItem name];
+        [self.detailItem readRSSI];
         [self.tableView reloadData];
     }
 }
@@ -110,6 +111,7 @@
         case 0:
             // TODO: need to connect to device to get RSSI?
             cell.textLabel.text = @"RSSI";
+            [self.detailItem readRSSI];
             cell.detailTextLabel.text = [self.detailItem.RSSI description];
             break;
         case 1:
