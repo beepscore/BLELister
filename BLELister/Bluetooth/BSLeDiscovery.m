@@ -34,6 +34,10 @@
                           foundPeripherals:[[NSMutableArray alloc] init]
                           connectedServices:[[NSMutableArray alloc] init]
                           notificationCenter:[NSNotificationCenter defaultCenter]];
+        
+        NSLog(@"[[BSLeDiscovery sharedInstance] %@", sharedInstance);
+        NSLog(@"[[BSLeDiscovery sharedInstance] centralManager] %@",
+              [sharedInstance centralManager]);
     });
     return sharedInstance;
 }
