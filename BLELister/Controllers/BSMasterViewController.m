@@ -166,10 +166,10 @@
 
 #pragma mark - Notification response methods
 - (void) discoveryDidRefreshWithNotification:(NSNotification *)notification {
-    NSLog(@"discoveryDidRefresh");
+    NSLog(@"in discoveryDidRefreshWithNotification:");
 
     if (notification.userInfo) {
-        NSLog(@"%@", notification.userInfo);
+        NSLog(@"notification.userInfo %@", notification.userInfo);
     }
     _objects = self.leDiscovery.foundPeripherals;
     [self.tableView reloadData];
