@@ -52,24 +52,6 @@
                    @"expected sharedInstance sets centralManager");
 }
 
-- (void)testSharedInstanceCentralManagerState {
-    self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
-    // centralManager state varies.
-    // Delay did not cause centralManager state to stabilize
-    //[self SH_waitForTimeInterval:15];
-
-    NSLog(@"centralManager state: %d", (int)self.bsLeDiscovery.centralManager.state);
-
-    BOOL isValidManagerState = ( (CBCentralManagerStateUnknown == self.bsLeDiscovery.centralManager.state)
-                                || (CBCentralManagerStateResetting == self.bsLeDiscovery.centralManager.state)
-                                || (CBCentralManagerStateUnsupported == self.bsLeDiscovery.centralManager.state)
-                                || (CBCentralManagerStateUnauthorized == self.bsLeDiscovery.centralManager.state)
-                                || (CBCentralManagerStatePoweredOff == self.bsLeDiscovery.centralManager.state)
-                                || (CBCentralManagerStatePoweredOn == self.bsLeDiscovery.centralManager.state)
-                                );
-    XCTAssertTrue(isValidManagerState, @"expected centralManager state valid");
-}
-
 - (void)testSharedInstanceCentralManagerDelegate {
     self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
     // Could reduce scope of this test by testing sharedInstance calls

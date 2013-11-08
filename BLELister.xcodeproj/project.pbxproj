@@ -12,6 +12,7 @@
 		DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DE6B73C01808F663007EC396 /* BSBleConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B73BF1808F663007EC396 /* BSBleConstants.m */; };
 		DE6B73C11808F663007EC396 /* BSBleConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B73BF1808F663007EC396 /* BSBleConstants.m */; };
+		DE7671DD182C77DE00E4CD1C /* CBCentralManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7671DC182C77DE00E4CD1C /* CBCentralManagerTests.m */; };
 		DE90FA9E180950920000DBDA /* BSStubCBCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */; };
 		DEBC532317F547A800F2ACFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532217F547A800F2ACFF /* README.md */; };
 		DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532417F547BB00F2ACFF /* LICENSE.txt */; };
@@ -57,6 +58,7 @@
 		DE580DED17F5995000292810 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		DE6B73BE1808F663007EC396 /* BSBleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSBleConstants.h; path = Bluetooth/BSBleConstants.h; sourceTree = "<group>"; };
 		DE6B73BF1808F663007EC396 /* BSBleConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSBleConstants.m; path = Bluetooth/BSBleConstants.m; sourceTree = "<group>"; };
+		DE7671DC182C77DE00E4CD1C /* CBCentralManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBCentralManagerTests.m; sourceTree = "<group>"; };
 		DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSLeDiscovery_Private.h; path = Bluetooth/BSLeDiscovery_Private.h; sourceTree = "<group>"; };
 		DE90FA9C180950920000DBDA /* BSStubCBCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStubCBCentralManager.h; sourceTree = "<group>"; };
 		DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStubCBCentralManager.m; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				DEE990F017F543F70041CAB6 /* Supporting Files */,
 				DEF7469417F92D3F00502764 /* TestResources */,
+				DE7671DC182C77DE00E4CD1C /* CBCentralManagerTests.m */,
 				DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */,
 				DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */,
 				DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */,
@@ -405,6 +408,7 @@
 				DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */,
 				DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */,
 				DE6B73C11808F663007EC396 /* BSBleConstants.m in Sources */,
+				DE7671DD182C77DE00E4CD1C /* CBCentralManagerTests.m in Sources */,
 				DEE990F617F543F70041CAB6 /* BSLeDiscoveryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
