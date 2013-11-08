@@ -74,8 +74,7 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
-
-    [self.leDiscovery.centralManager scanForPeripheralsWithServices:nil options:nil];
+    [self.leDiscovery scanForPeripheralsWithServices:nil options:nil];
 }
 
 #pragma mark - Table View

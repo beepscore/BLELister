@@ -11,6 +11,7 @@
 #import "BSLeDiscovery.h"
 #import "BSLeDiscovery_Private.h"
 #import "BSBleConstants.h"
+#import "CBCentralManager_BSSafe.h"
 
 @implementation BSLeDiscovery
 
@@ -132,6 +133,11 @@
 }
 
 #pragma mark - Discovery
+- (void)scanForPeripheralsWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options
+{
+    [self.centralManager safeScanForPeripheralsWithServices:serviceUUIDs options:options];
+}
+
 - (void) startScanningForUUIDString:(NSString *)uuidString
 {
     NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
@@ -140,11 +146,11 @@
         // BLE requires device, not simulator
         // If running simulator, app crashes here with "bad access".
         // Also Apple says services argument nil works, but is not recommended.
-        [self.centralManager scanForPeripheralsWithServices:nil options:options];
+        [self.centralManager safeScanForPeripheralsWithServices:nil options:options];
     } else {
         CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
         NSArray *uuidArray = @[uuid];
-        [self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
+        [self.centralManager safeScanForPeripheralsWithServices:uuidArray options:options];
     }
 }
 

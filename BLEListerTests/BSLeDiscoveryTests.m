@@ -64,7 +64,7 @@
 - (void)findAndTestPeripheral:(NSString *)peripheralKey {
     self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
 
-    [self.bsLeDiscovery.centralManager scanForPeripheralsWithServices:nil options:nil];
+    [self.bsLeDiscovery scanForPeripheralsWithServices:nil options:nil];
     // Need to add some delay to enable test to pass.
     [self SH_waitForTimeInterval:10];
 

@@ -30,8 +30,9 @@
 @property (nonatomic, strong) CBCentralManager *centralManager;
 
 // Actions
-- (void) startScanningForUUIDString:(NSString *)uuidString;
-- (void) stopScanning;
+- (void)scanForPeripheralsWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options;
+- (void)startScanningForUUIDString:(NSString *)uuidString;
+- (void)stopScanning;
 
 - (void) connectPeripheral:(CBPeripheral*)peripheral;
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral;
