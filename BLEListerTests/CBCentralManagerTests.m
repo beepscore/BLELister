@@ -35,7 +35,7 @@
 
 - (BOOL)isNowBefore:(NSDate *)aDate
 {
-    return (NSOrderedDescending == [[NSDate date] compare:aDate]);
+    return (NSOrderedDescending == [aDate compare:[NSDate date]]);
 }
 
 #pragma mark -
@@ -64,7 +64,7 @@
     NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
 
     while ( (CBCentralManagerStatePoweredOn != self.centralManager.state)
-           && ![self isNowBefore:timeoutDate] ) {
+           && [self isNowBefore:timeoutDate] ) {
         NSLog(@"%@ state: %d", self.centralManager,
               (int)self.centralManager.state);
         sleep(1);
@@ -72,7 +72,7 @@
     XCTAssertEqual(CBCentralManagerStatePoweredOn, self.centralManager.state,
                      @"expected centralManager state on");
 }
-*/
+ */
 
 - (void)findAndTestPeripheral:(NSString *)peripheralKey {
     
