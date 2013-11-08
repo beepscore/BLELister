@@ -256,13 +256,13 @@
             [self loadSavedDevices];
             
             //FIXME: specify services argument
-            NSArray *peripherals = [central retrieveConnectedPeripheralsWithServices:@[]];
+            //NSArray *peripherals = [central retrieveConnectedPeripheralsWithServices:@[]];
 
             // Add to list.
-            for (CBPeripheral *peripheral in peripherals) {
-                // method documentation: Attempts to connect to a peripheral do not time out.
-                [central connectPeripheral:peripheral options:nil];
-            }
+//            for (CBPeripheral *peripheral in peripherals) {
+//                // method documentation: Attempts to connect to a peripheral do not time out.
+//                [central connectPeripheral:peripheral options:nil];
+//            }
             [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
                                                    object:self
                                                  userInfo:nil];
@@ -281,6 +281,10 @@
 - (void) centralManager:(CBCentralManager *)central
    didConnectPeripheral:(CBPeripheral *)peripheral
 {
+    if (![self.foundPeripherals containsObject:peripheral]) {
+        [self.foundPeripherals addObject:peripheral];
+    }
+
     NSDictionary *userInfo = @{ @"peripheral" : peripheral };
     [self.notificationCenter postNotificationName:kBleDiscoveryDidConnectPeripheralNotification
                                            object:self

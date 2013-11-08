@@ -64,9 +64,19 @@
 - (void)findAndTestPeripheral:(NSString *)peripheralKey {
     self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
 
-    [self.bsLeDiscovery scanForPeripheralsWithServices:nil options:nil];
+    NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
+    NSString *expectedIdentifier = bleDevices[peripheralKey][@"identifier"];
+    NSString *expectedName = bleDevices[peripheralKey][@"name"];
+
+    //[self.bsLeDiscovery scanForPeripheralsWithServices:nil options:nil];
+    [self.bsLeDiscovery startScanningForUUIDString:expectedIdentifier];
+
+
+// TODO: add retry loop if array is empty, then exit or timeout and assert
+
+    
     // Need to add some delay to enable test to pass.
-    [self SH_waitForTimeInterval:10];
+    [self SH_waitForTimeInterval:4];
 
     XCTAssertNotNil(self.bsLeDiscovery.foundPeripherals,
                     @"expected sharedInstance sets foundPeripherals");
@@ -76,10 +86,6 @@
     NSLog(@"foundPeripherals: %@", self.bsLeDiscovery.foundPeripherals);
 
     CBPeripheral *peripheral = [self.bsLeDiscovery.foundPeripherals firstObject];
-
-    NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
-    NSString *expectedIdentifier = bleDevices[peripheralKey][@"identifier"];
-    NSString *expectedName = bleDevices[peripheralKey][@"name"];
 
     XCTAssertEqualObjects(expectedIdentifier,
                           [peripheral.identifier UUIDString],
@@ -91,17 +97,19 @@
 
 // testFoundPeripheralBLEShield requires an Arduino with RedBearLab BLE shield
 // within range of the iOS device.
-// It assumes BLE shield with be the first device found.
+// It assumes BLE shield will be the first device found.
 - (void)testFoundPeripheralBLEShield {
     [self findAndTestPeripheral:@"redbearshield"];
 }
 
+/*
 // testFoundPeripheralTISensorTag requires a TI SensorTag within range of the iOS device.
-// It assumes SensorTag with be the first device found.
+// It assumes SensorTag will be the first device found.
 // Before running test, press SensorTag side button to activate it.
 - (void)testFoundPeripheralTISensorTag {
     [self findAndTestPeripheral:@"sensortag"];
 }
+*/
 
 - (void)testSharedInstanceConnectedServices {
     self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
@@ -171,24 +179,27 @@
     XCTAssertTrue(assertion, @"expected assertion true");
 }
 
+/*
 // This test assumes iOS device will find at least one peripheral
 // and the first is a Red Bear Lab Ble Shield
 - (void)testFoundPeripherals {
 
-    NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
-    NSString *expectedIdentifier = bleDevices[@"redbearshield"][@"identifier"];
-    NSString *expectedName = bleDevices[@"redbearshield"][@"name"];
-
     // using __block allows block to change bsLeDiscovery, set property foundPeripherals??
     __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
 
+    NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
+    NSString *expectedIdentifier = bleDevices[@"redbearshield"][@"identifier"];
+    NSString *expectedName = bleDevices[@"redbearshield"][@"name"];
     // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
-    //[bsLeDiscovery startScanningForUUIDString:kRedBearLabBLEShieldServiceUUIDString];
-    [bsLeDiscovery startScanningForUUIDString:nil];
+    //[bsLeDiscovery startScanningForUUIDString:nil];
+    // this is a safe scan, won't happen if not powered up. Need to retry?
+    //[bsLeDiscovery startScanningForUUIDString:expectedIdentifier];
 
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
 
         NSLog(@"In testBlock. foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
+        [bsLeDiscovery startScanningForUUIDString:expectedIdentifier];
+        sleep(4);
 
         if ( 1 <= [bsLeDiscovery.foundPeripherals count]) {
             CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
@@ -209,11 +220,12 @@
     // and supplies its argument, a pointer to BOOL didFinish.
     // SH_performAsyncTestsWithinBlock keeps calling the block
     // until the block sets didFinish YES or the test times out.
-    [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:60.0];
+    [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:30.0];
 }
+ */
 
-#pragma mark - test Connect/Disconnect
 /*
+#pragma mark - test Connect/Disconnect
  // This test runs asynchronously, and is preferable to blocking the main thread.
  // It's not working, so comment it out for now.
  // TODO: figure out why centralManager status never says powered on.
@@ -222,35 +234,26 @@
     
     // using __block allows block to change bsLeDiscovery
     __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
-
+    
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
         
         NSLog(@"In testBlock. *didFinish: %hhd", *didFinish);
         
-        // wait for centralManager to become powered on.
-        // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
-        if(CBCentralManagerStatePoweredOn == bsLeDiscovery.centralManager.state) {
-            // centralManager is powered on, ok to scan and retrieve
-            NSLog(@"CBCentralManagerStatePoweredOn");
-            
-            if(!bsLeDiscovery.foundPeripherals
-               || ([@[]  isEqual: bsLeDiscovery.foundPeripherals])) {
-                [bsLeDiscovery startScanningForUUIDString:nil];
-            } else {
-                // foundPeripherals has at least one peripheral
-                CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
-
-                // TODO: Call connectPeripheral only once?
-                [bsLeDiscovery connectPeripheral:peripheral];
-                
-                if (CBPeripheralStateConnected == peripheral.state) {
-                    XCTAssert((CBPeripheralStateConnected == peripheral.state), @"");
-                    // dereference the pointer to set the BOOL value
-                    *didFinish = YES;
-                }
-            }
+        if(!bsLeDiscovery.foundPeripherals
+           || ([@[]  isEqual: bsLeDiscovery.foundPeripherals])) {
+            [bsLeDiscovery startScanningForUUIDString:nil];
         } else {
-            NSLog(@"still not powered on");
+            // foundPeripherals has at least one peripheral
+            CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
+            
+            // TODO: Call connectPeripheral only once?
+            [bsLeDiscovery connectPeripheral:peripheral];
+            
+            if (CBPeripheralStateConnected == peripheral.state) {
+                XCTAssert((CBPeripheralStateConnected == peripheral.state), @"");
+                // dereference the pointer to set the BOOL value
+                *didFinish = YES;
+            }
         }
     };
     
@@ -260,7 +263,7 @@
     // until the block sets didFinish YES or the test times out.
     [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:15.0];
 }
-*/
+ */
 
 /*
  // This test blocks the main thread.
