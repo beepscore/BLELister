@@ -152,7 +152,7 @@
 - (void)registerForBleDiscoveryDidRefreshNotification
 {
     [self.notificationCenter addObserver:self
-                                selector:@selector(discoveryDidRefresh)
+                                selector:@selector(discoveryDidRefreshWithNotification:)
                                     name:kBleDiscoveryDidRefreshNotification
                                   object:nil];        
 }
@@ -166,8 +166,12 @@
 }
 
 #pragma mark - Notification response methods
-- (void) discoveryDidRefresh {
+- (void) discoveryDidRefreshWithNotification:(NSNotification *)notification {
     NSLog(@"discoveryDidRefresh");
+
+    if (notification.userInfo) {
+        NSLog(@"%@", notification.userInfo);
+    }
     _objects = self.leDiscovery.foundPeripherals;
     [self.tableView reloadData];
 }
