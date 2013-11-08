@@ -156,13 +156,18 @@
 - (void)centralManager:(CBCentralManager *)central
  didDiscoverPeripheral:(CBPeripheral *)peripheral
      advertisementData:(NSDictionary *)advertisementData
-                  RSSI:(NSNumber *)RSSI {
-
+                  RSSI:(NSNumber *)RSSI
+{
     if (![self.foundPeripherals containsObject:peripheral]) {
         [self.foundPeripherals addObject:peripheral];
+        
+        // Argument RSSI may be non-nil even when peripheral.RSSI is nil
+        NSDictionary *userInfo = @{@"peripheral" : peripheral,
+                                   @"advertisementData" : advertisementData,
+                                   @"RSSI" : RSSI };
         [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
                                                object:self
-                                             userInfo:nil];
+                                             userInfo:userInfo];
     }
 }
 
