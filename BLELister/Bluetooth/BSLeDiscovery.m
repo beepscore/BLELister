@@ -194,7 +194,7 @@
 
     NSLog(@"central state %d", central.state);
 
-    switch ([self.centralManager state]) {
+    switch ([central state]) {
 
         case CBCentralManagerStateUnknown:
         {
@@ -246,10 +246,11 @@
             [self loadSavedDevices];
             
             //FIXME: specify services argument
-            NSArray *peripherals = [self.centralManager retrieveConnectedPeripheralsWithServices:@[]];
-            
+            NSArray *peripherals = [central retrieveConnectedPeripheralsWithServices:@[]];
+
             // Add to list.
             for (CBPeripheral *peripheral in peripherals) {
+                // method documentation: Attempts to connect to a peripheral do not time out.
                 [central connectPeripheral:peripheral options:nil];
             }
             [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
