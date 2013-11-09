@@ -179,7 +179,6 @@
     XCTAssertTrue(assertion, @"expected assertion true");
 }
 
-/*
 // This test assumes iOS device will find at least one peripheral
 // and the first is a Red Bear Lab Ble Shield
 - (void)testFoundPeripherals {
@@ -191,15 +190,12 @@
     NSString *expectedIdentifier = bleDevices[@"redbearshield"][@"identifier"];
     NSString *expectedName = bleDevices[@"redbearshield"][@"name"];
     // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
-    //[bsLeDiscovery startScanningForUUIDString:nil];
-    // this is a safe scan, won't happen if not powered up. Need to retry?
     //[bsLeDiscovery startScanningForUUIDString:expectedIdentifier];
+    [bsLeDiscovery startScanningForUUIDString:nil];
 
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
 
         NSLog(@"In testBlock. foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
-        [bsLeDiscovery startScanningForUUIDString:expectedIdentifier];
-        sleep(4);
 
         if ( 1 <= [bsLeDiscovery.foundPeripherals count]) {
             CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
@@ -222,7 +218,6 @@
     // until the block sets didFinish YES or the test times out.
     [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:30.0];
 }
- */
 
 /*
 #pragma mark - test Connect/Disconnect

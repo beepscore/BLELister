@@ -150,11 +150,13 @@
         // BLE requires device, not simulator
         // If running simulator, app crashes here with "bad access".
         // Also Apple says services argument nil works, but is not recommended.
-        [self.centralManager safeScanForPeripheralsWithServices:nil options:options];
+        //[self.centralManager safeScanForPeripheralsWithServices:nil options:options];
+        [self.centralManager scanForPeripheralsWithServices:nil options:options];
     } else {
         CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
         NSArray *uuidArray = @[uuid];
-        [self.centralManager safeScanForPeripheralsWithServices:uuidArray options:options];
+        //[self.centralManager safeScanForPeripheralsWithServices:uuidArray options:options];
+        [self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
     }
 }
 
