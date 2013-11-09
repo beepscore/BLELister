@@ -69,8 +69,8 @@
     NSString *expectedName = bleDevices[peripheralKey][@"name"];
 
     //[self.bsLeDiscovery scanForPeripheralsWithServices:nil options:nil];
-    [self.bsLeDiscovery startScanningForUUIDString:expectedIdentifier];
-
+    //[self.bsLeDiscovery startScanningForUUIDString:expectedIdentifier];
+    [self.bsLeDiscovery.centralManager scanForPeripheralsWithServices:nil options:nil];
 
 // TODO: add retry loop if array is empty, then exit or timeout and assert
 
