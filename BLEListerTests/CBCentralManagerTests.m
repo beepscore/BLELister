@@ -81,25 +81,26 @@
                            queue:nil];
 
     NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
-    NSString *expectedIdentifier = bleDevices[peripheralKey][@"identifier"];
+    NSString *expectedIdentifierString = bleDevices[peripheralKey][@"identifier"];
+    NSUUID *expectedIdentifier = [[NSUUID alloc] initWithUUIDString:expectedIdentifierString];
     NSString *expectedName = bleDevices[peripheralKey][@"name"];
 
-    NSArray *peripheralsWithIdentifiers = [self.centralManager retrievePeripheralsWithIdentifiers:@[expectedIdentifier]];
+    NSArray *peripheralsWithIdentifiers = [self.centralManager
+                                           retrievePeripheralsWithIdentifiers:@[expectedIdentifier]];
 
-    // TODO: add retry loop if array is empty, then exit or timeout and assert
     NSLog(@"peripheralsWithIdentifiers %@", peripheralsWithIdentifiers);
     XCTAssertNotNil(peripheralsWithIdentifiers, @"");
-    XCTAssertTrue((0 <= [peripheralsWithIdentifiers count]),
-                  @"expected peripheralsWithIdentifiers has 0 or more objects");
+    XCTAssertTrue((1 <= [peripheralsWithIdentifiers count]),
+                  @"expected peripheralsWithIdentifiers has 1 or more objects");
 
     CBPeripheral *peripheral = [peripheralsWithIdentifiers firstObject];
 
     XCTAssertEqualObjects(expectedIdentifier,
-                          [peripheral.identifier UUIDString],
-                          @"expected first found peripheral UUIDString");
+                          peripheral.identifier,
+                          @"expected peripheral identifier");
     XCTAssertEqualObjects(expectedName,
                           peripheral.name,
-                          @"expected first found peripheral name");
+                          @"expected peripheral name");
 }
 
 // testFoundPeripheralBLEShield requires an Arduino with RedBearLab BLE shield
