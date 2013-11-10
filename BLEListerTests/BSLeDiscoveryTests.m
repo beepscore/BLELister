@@ -129,18 +129,19 @@
     XCTAssertTrue(assertion, @"expected assertion true");
 }
 
+// TODO: testFoundPeripheralsAsync is failing. Fix it.
 // This test assumes iOS device will find at least one peripheral
 // and the first is a Red Bear Lab Ble Shield
-- (void)testFoundPeripherals {
+- (void)testFoundPeripheralsAsync {
 
     // using __block allows block to change bsLeDiscovery, set property foundPeripherals??
     __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
 
     NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
-    NSString *expectedIdentifier = bleDevices[@"redbearshield"][@"identifier"];
+    NSString *expectedIdentifierString = bleDevices[@"redbearshield"][@"identifier"];
     NSString *expectedName = bleDevices[@"redbearshield"][@"name"];
     // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
-    //[bsLeDiscovery startScanningForUUIDString:expectedIdentifier];
+    //[bsLeDiscovery startScanningForUUIDString:expectedIdentifierString];
     [bsLeDiscovery startScanningForUUIDString:nil];
 
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
@@ -150,7 +151,7 @@
         if ( 1 <= [bsLeDiscovery.foundPeripherals count]) {
             CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
 
-            XCTAssertEqualObjects(expectedIdentifier,
+            XCTAssertEqualObjects(expectedIdentifierString,
                                   [peripheral.identifier UUIDString],
                                   @"expected first found peripheral UUIDString");
             XCTAssertEqualObjects(expectedName,
