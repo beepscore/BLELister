@@ -61,6 +61,9 @@
     NSLog(@"%@ state: %d", self.centralManager,
           (int)self.centralManager.state);
 
+    // This didn't cause centralManager to power on.
+    //[self.centralManager scanForPeripheralsWithServices:nil options:nil];
+
     NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
 
     while ( (CBCentralManagerStatePoweredOn != self.centralManager.state)
