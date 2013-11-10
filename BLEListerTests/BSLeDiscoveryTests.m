@@ -170,6 +170,37 @@
     [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:30.0];
 }
 
+// TODO: testFoundPeripherals is failing. Fix it.
+// This test is not asynchronous.
+// This test assumes iOS device will find at least one peripheral
+// and the first is a Red Bear Lab Ble Shield
+- (void)testFoundPeripherals {
+    
+    BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    
+    NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
+    NSString *expectedIdentifierString = bleDevices[@"redbearshield"][@"identifier"];
+    NSString *expectedName = bleDevices[@"redbearshield"][@"name"];
+    // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
+    [bsLeDiscovery startScanningForUUIDString:expectedIdentifierString];
+
+    NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
+    
+    while ( (0 == [bsLeDiscovery.foundPeripherals count])
+           && [[timeoutDate laterDate:[NSDate date]] isEqualToDate:timeoutDate] ) {
+        NSLog(@"In while loop. foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
+        sleep(1);
+    }
+    CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
+    
+    XCTAssertEqualObjects(expectedIdentifierString,
+                          [peripheral.identifier UUIDString],
+                          @"expected first found peripheral UUIDString");
+    XCTAssertEqualObjects(expectedName,
+                          peripheral.name,
+                          @"expected first found peripheral name");
+}
+
 /*
 #pragma mark - test Connect/Disconnect
  // This test runs asynchronously, and is preferable to blocking the main thread.
