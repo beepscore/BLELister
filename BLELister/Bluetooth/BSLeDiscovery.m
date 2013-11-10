@@ -204,7 +204,7 @@
 {
     static CBCentralManagerState previousState = -1;
 
-    NSLog(@"central state %d", central.state);
+    NSLog(@"%@ state %d", central, central.state);
 
     switch ([central state]) {
 

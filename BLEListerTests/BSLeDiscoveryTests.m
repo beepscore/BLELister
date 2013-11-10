@@ -281,7 +281,8 @@
 
         if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
             NSLog(@"still not powered on");
-            NSLog(@"state %d", bsLeDiscovery.centralManager.state);
+             NSLog(@"%@ state %d", bsLeDiscovery.centralManager,
+                 bsLeDiscovery.centralManager.state);
         } else {
             // centralManager is powered on, ok to scan and retrieve
             // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
