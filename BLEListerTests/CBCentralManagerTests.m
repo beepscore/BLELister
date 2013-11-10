@@ -78,7 +78,9 @@
  */
 
 - (void)findAndTestPeripheral:(NSString *)peripheralKey {
-    
+
+    // CBCentralManager wants a delegate that implements centralManagerDidUpdateState:
+    // this test passes without a delegate.
     self.centralManager = [[CBCentralManager alloc]
                            initWithDelegate:nil
                            queue:nil];
