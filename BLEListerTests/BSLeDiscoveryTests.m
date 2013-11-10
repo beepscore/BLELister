@@ -61,56 +61,6 @@
                    @"expected sharedInstance sets centralManager delegate to self");
 }
 
-- (void)findAndTestPeripheral:(NSString *)peripheralKey {
-    self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
-
-    NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
-    NSString *expectedIdentifier = bleDevices[peripheralKey][@"identifier"];
-    NSString *expectedName = bleDevices[peripheralKey][@"name"];
-
-    //[self.bsLeDiscovery scanForPeripheralsWithServices:nil options:nil];
-    //[self.bsLeDiscovery startScanningForUUIDString:expectedIdentifier];
-    [self.bsLeDiscovery.centralManager scanForPeripheralsWithServices:nil options:nil];
-
-// TODO: add retry loop if array is empty, then exit or timeout and assert
-
-    
-    // Need to add some delay to enable test to pass.
-    [self SH_waitForTimeInterval:4];
-
-    XCTAssertNotNil(self.bsLeDiscovery.foundPeripherals,
-                    @"expected sharedInstance sets foundPeripherals");
-    XCTAssertTrue((0 <= [self.bsLeDiscovery.foundPeripherals count]),
-                  @"expected foundPeripherals has 0 or more objects");
-
-    NSLog(@"foundPeripherals: %@", self.bsLeDiscovery.foundPeripherals);
-
-    CBPeripheral *peripheral = [self.bsLeDiscovery.foundPeripherals firstObject];
-
-    XCTAssertEqualObjects(expectedIdentifier,
-                          [peripheral.identifier UUIDString],
-                          @"expected first found peripheral UUIDString");
-    XCTAssertEqualObjects(expectedName,
-                          peripheral.name,
-                          @"expected first found peripheral name");
-}
-
-// testFoundPeripheralBLEShield requires an Arduino with RedBearLab BLE shield
-// within range of the iOS device.
-// It assumes BLE shield will be the first device found.
-- (void)testFoundPeripheralBLEShield {
-    [self findAndTestPeripheral:@"redbearshield"];
-}
-
-/*
-// testFoundPeripheralTISensorTag requires a TI SensorTag within range of the iOS device.
-// It assumes SensorTag will be the first device found.
-// Before running test, press SensorTag side button to activate it.
-- (void)testFoundPeripheralTISensorTag {
-    [self findAndTestPeripheral:@"sensortag"];
-}
-*/
-
 - (void)testSharedInstanceConnectedServices {
     self.bsLeDiscovery = [BSLeDiscovery sharedInstance];
     // Could reduce scope of this test by testing sharedInstance calls
