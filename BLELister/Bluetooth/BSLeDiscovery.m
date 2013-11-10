@@ -144,8 +144,9 @@
 
 - (void) startScanningForUUIDString:(NSString *)uuidString
 {
-    NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO]
-                                                        forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
+    NSDictionary *options = @{
+                              CBCentralManagerScanOptionAllowDuplicatesKey:[NSNumber numberWithBool:NO]
+                              };
     if ((!uuidString) || [@"" isEqualToString:uuidString]) {
         // BLE requires device, not simulator
         // If running simulator, app crashes here with "bad access".
