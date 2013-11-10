@@ -33,11 +33,6 @@
     [super tearDown];
 }
 
-- (BOOL)isNowBefore:(NSDate *)aDate
-{
-    return (NSOrderedDescending == [aDate compare:[NSDate date]]);
-}
-
 #pragma mark -
 // This test fails
 // I think Xcode may be running app before starting tests.
@@ -73,7 +68,7 @@
     NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
 
     while ( (CBCentralManagerStatePoweredOn != self.centralManager.state)
-           && [self isNowBefore:timeoutDate] ) {
+           && [[timeoutDate laterDate:[NSDate date]] isEqualToDate:timeoutDate]) {
         NSLog(@"%@ state: %d", self.centralManager,
               (int)self.centralManager.state);
         sleep(1);
