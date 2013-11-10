@@ -110,4 +110,11 @@
     [self findAndTestPeripheral:@"redbearshield"];
 }
 
+// testFoundPeripheralTISensorTag requires a TI SensorTag within range of the iOS device.
+// It assumes SensorTag will be the first device found.
+// Before running test, press SensorTag side button to activate it.
+- (void)testFoundPeripheralTISensorTag {
+    [self findAndTestPeripheral:@"sensortag"];
+}
+
 @end
