@@ -45,6 +45,7 @@
 // Xcode creates a [BSLeDiscovery sharedInstance] with a centralManager.
 // Test creates a central manager, but it doesn't become powered on.
 // Possible causes:
+// Central manager may need a delegate.
 // Could be because only one centralManager can be poweredOn,
 // Could be because test runs in background and iOS won't let it power on.
 // If centralManager used by tests isn't powered on, then scans won't work.
@@ -52,17 +53,22 @@
 // Possible fixes:
 // Might be able to change unit test scheme to not build app first.
 // Might be able to make initial [BSLeDiscovery sharedInstance] available to test.
-/*
+
 - (void)testState {
     //self.centralManager = [[BSLeDiscovery sharedInstance] centralManager];
 
-    self.centralManager = [[CBCentralManager alloc] initWithDelegate:nil
-                                                                queue:nil];
+    self.centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:nil];
+
     NSLog(@"%@ state: %d", self.centralManager,
           (int)self.centralManager.state);
 
     // This didn't cause centralManager to power on.
     //[self.centralManager scanForPeripheralsWithServices:nil options:nil];
+
+    // This didn't cause centralManager to power on.
+    //NSUUID *uuidIdentifier =[[NSUUID alloc] initWithUUIDString:@"DDAB0207-5E10-2902-5B03-CA3F0F466B40"];
+//    NSArray *peripheralsWithIdentifiers = [self.centralManager
+//                                          retrievePeripheralsWithIdentifiers:@[uuidIdentifier]];
 
     NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
 
@@ -75,7 +81,7 @@
     XCTAssertEqual(CBCentralManagerStatePoweredOn, self.centralManager.state,
                      @"expected centralManager state on");
 }
- */
+
 
 - (void)findAndTestPeripheral:(NSString *)peripheralKey {
 
