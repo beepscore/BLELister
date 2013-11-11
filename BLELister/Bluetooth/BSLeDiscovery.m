@@ -75,7 +75,7 @@
 // Reload from file
 - (void) loadSavedDevices
 {
-    NSArray	*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:@"StoredDevices"];
+    NSArray	*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:kStoredDevices];
 
     if (![storedDevices isKindOfClass:[NSArray class]]) {
         NSLog(@"No stored array to load");
@@ -100,7 +100,7 @@
 
 - (void) addSavedDevice:(CBUUID *)uuid
 {
-    NSArray			*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:@"StoredDevices"];
+    NSArray			*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:kStoredDevices];
     NSMutableArray	*newDevices		= nil;
 
     if (![storedDevices isKindOfClass:[NSArray class]]) {
@@ -114,14 +114,14 @@
         [newDevices addObject:uuid];
     }
     /* Store */
-    [[NSUserDefaults standardUserDefaults] setObject:newDevices forKey:@"StoredDevices"];
+    [[NSUserDefaults standardUserDefaults] setObject:newDevices forKey:kStoredDevices];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
 - (void) removeSavedDevice:(CBUUID *)uuid
 {
-    NSArray			*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:@"StoredDevices"];
+    NSArray			*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:kStoredDevices];
     NSMutableArray	*newDevices		= nil;
 
     if ([storedDevices isKindOfClass:[NSArray class]]) {
@@ -131,7 +131,7 @@
             [newDevices removeObject:uuid];
         }
         /* Store */
-        [[NSUserDefaults standardUserDefaults] setObject:newDevices forKey:@"StoredDevices"];
+        [[NSUserDefaults standardUserDefaults] setObject:newDevices forKey:kStoredDevices];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
