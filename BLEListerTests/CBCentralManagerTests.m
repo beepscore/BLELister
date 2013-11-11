@@ -110,6 +110,8 @@
                           @"expected peripheral name");
 }
 
+// This test passes even when BLE shield is off, and the app doesn't show the device in the table view.
+// It must be getting stored info.
 // testRetrievePeripheralBLEShield requires an Arduino with RedBearLab BLE shield
 // within range of the iOS device.
 // It assumes BLE shield with be the first device found.
