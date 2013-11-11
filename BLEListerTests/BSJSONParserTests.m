@@ -69,6 +69,17 @@
     XCTAssertEqualObjects(expectedDict, actualDict, @"");
 }
 
+- (void)testDictFromJSONWithNull {
+
+    NSDictionary *expectedDict = @{@"raspberry_pi":@{@"identifier":@"D2BD8809-5D04-9C44-650D-86E3A5CC3D82", @"name":[NSNull null]}};
+
+    NSString *testString = @"{\"raspberry_pi\":{\"identifier\":\"D2BD8809-5D04-9C44-650D-86E3A5CC3D82\",\"name\":null}}";
+
+    NSDictionary *actualDict = [BSJSONParser dictFromJSON:testString];
+    
+    XCTAssertEqualObjects(expectedDict, actualDict, @"");
+}
+
 - (void)testDictFromJSONEmpty {
 
     NSDictionary *expectedDict = @{};
