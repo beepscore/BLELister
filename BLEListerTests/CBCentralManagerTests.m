@@ -88,10 +88,10 @@
 
     NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
     NSString *expectedIdentifierString = bleDevices[peripheralKey][@"identifier"];
-    // Note peripheral.identifier is NSUUID not CBUUID
     NSUUID *expectedIdentifier = [[NSUUID alloc] initWithUUIDString:expectedIdentifierString];
     NSString *expectedName = bleDevices[peripheralKey][@"name"];
 
+    // NOTE: retrievePeripheralsWithIdentifiers: argument is array of NSUUID not CBUUID
     NSArray *peripheralsWithIdentifiers = [self.centralManager
                                            retrievePeripheralsWithIdentifiers:@[expectedIdentifier]];
 
