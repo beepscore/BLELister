@@ -35,23 +35,24 @@
 
 #pragma mark -
 
+// This test is synchronous, blocks main thread
 - (void)testState {
     // Init with queue nil (uses default main queue), test failed.
-    // self.centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:nil];
+    // centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:nil];
     // Init with queue non-nil, test passes.
     // http://stackoverflow.com/questions/18970247/cbcentralmanager-changes-for-ios-7
     dispatch_queue_t centralQueue = dispatch_queue_create("com.beepscore.central_manager", DISPATCH_QUEUE_SERIAL);
-    self.centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:centralQueue];
+    CBCentralManager *centralManager = [[CBCentralManager alloc]
+                                        initWithDelegate:nil queue:centralQueue];
     
-    NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
+    NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:10];
     
-    while ( (CBCentralManagerStatePoweredOn != self.centralManager.state)
+    while ( (CBCentralManagerStatePoweredOn != centralManager.state)
            && [[timeoutDate laterDate:[NSDate date]] isEqualToDate:timeoutDate]) {
-        NSLog(@"%@ state: %d", self.centralManager,
-              (int)self.centralManager.state);
+        NSLog(@"%@ state: %d", centralManager, centralManager.state);
         sleep(1);
     }
-    XCTAssertEqual(CBCentralManagerStatePoweredOn, self.centralManager.state,
+    XCTAssertEqual(CBCentralManagerStatePoweredOn, centralManager.state,
                    @"expected centralManager state on");
 }
 
