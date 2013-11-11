@@ -186,6 +186,13 @@
         NSDictionary *userInfo = @{@"peripheral" : peripheral,
                                    @"advertisementData" : advertisementData,
                                    @"RSSI" : RSSI };
+        // TODO: Do we need to get main queue, in case centralManager is using non-main queue?
+        // http://stackoverflow.com/questions/18970247/cbcentralmanager-changes-for-ios-7
+        // dispatch_async(dispatch_get_main_queue(), ^{
+        //[self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+        //                                       object:self
+        //                                     userInfo:userInfo];
+        //});
         [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
                                                object:self
                                              userInfo:userInfo];
@@ -213,6 +220,7 @@
 {
     static CBCentralManagerState previousState = -1;
 
+    // TODO: Do we need to get main queue, in case centralManager is using non-main queue?
     NSLog(@"%@ state %d", central, central.state);
 
     switch ([central state]) {
