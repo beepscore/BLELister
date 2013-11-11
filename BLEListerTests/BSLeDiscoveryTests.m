@@ -322,8 +322,10 @@
 
     [self.bsLeDiscovery centralManagerDidUpdateState:(CBCentralManager *)stubCentralManager];
     
-    // Verify all stubbed or expected methods were called.
-    [mockNotificationCenter verify];
+    // Verify all stubbed or expected methods were called, and called on main queue.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mockNotificationCenter verify];
+    });
 }
 
 - (void)testCentralManagerOffDidUpdateStatePostsBleDiscoveryStatePoweredOffNotification
@@ -346,8 +348,10 @@
 
     [self.bsLeDiscovery centralManagerDidUpdateState:(CBCentralManager *)stubCentralManager];
     
-    // Verify all stubbed or expected methods were called.
-    [mockNotificationCenter verify];
+    // Verify all stubbed or expected methods were called, and called on main queue.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mockNotificationCenter verify];
+    });
 }
 
 - (void)testCentralManagerOnDidUpdateStatePostsBleDiscoveryDidRefreshNotification
@@ -369,8 +373,10 @@
 
     [self.bsLeDiscovery centralManagerDidUpdateState:(CBCentralManager *)stubCentralManager];
     
-    // Verify all stubbed or expected methods were called.
-    [mockNotificationCenter verify];
+    // Verify all stubbed or expected methods were called, and called on main queue.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mockNotificationCenter verify];
+    });
 }
 
 - (void)testCentralManagerDidConnectPeripheralPostsBleDiscoveryDidConnectPeripheralNotification
@@ -399,8 +405,10 @@
     [self.bsLeDiscovery centralManager:(CBCentralManager *)stubCentralManager
                   didConnectPeripheral:(CBPeripheral *)fakePeripheral];
 
-    // Verify all stubbed or expected methods were called.
-    [mockNotificationCenter verify];
+    // Verify all stubbed or expected methods were called, and called on main queue.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mockNotificationCenter verify];
+    });
 }
 
 - (void)testCentralManagerDidDisconnectPeripheralPostsBleDiscoveryDidDisconnectPeripheralNotification
@@ -432,8 +440,10 @@
                didDisconnectPeripheral:(CBPeripheral *)fakePeripheral
                                  error:fakeError];
     
-    // Verify all stubbed or expected methods were called.
-    [mockNotificationCenter verify];
+    // Verify all stubbed or expected methods were called, and called on main queue.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mockNotificationCenter verify];
+    });
 }
 
 @end

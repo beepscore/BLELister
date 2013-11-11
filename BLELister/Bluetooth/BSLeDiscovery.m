@@ -186,16 +186,13 @@
         NSDictionary *userInfo = @{@"peripheral" : peripheral,
                                    @"advertisementData" : advertisementData,
                                    @"RSSI" : RSSI };
-        // TODO: Do we need to get main queue, in case centralManager is using non-main queue?
-        // http://stackoverflow.com/questions/18970247/cbcentralmanager-changes-for-ios-7
-        // dispatch_async(dispatch_get_main_queue(), ^{
-        //[self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
-        //                                       object:self
-        //                                     userInfo:userInfo];
-        //});
-        [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
-                                               object:self
-                                             userInfo:userInfo];
+        
+        // http://stackoverflow.com/questions/15813764/posting-nsnotification-on-the-main-thread?rq=1
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                   object:self
+                                                 userInfo:userInfo];
+        });
     }
 }
 
@@ -233,9 +230,11 @@
         case CBCentralManagerStateResetting:
         {
             [self clearDevices];
-            [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
-                                                   object:self
-                                                 userInfo:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                       object:self
+                                                     userInfo:nil];
+            });
             //[peripheralDelegate alarmServiceDidReset];
             break;
         }
@@ -256,16 +255,19 @@
         case CBCentralManagerStatePoweredOff:
         {
             [self clearDevices];
-            [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
-                                                   object:self
-                                                 userInfo:nil];
-            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                       object:self
+                                                     userInfo:nil];
+            });
             /* Tell user to power ON BT for functionality, but not on first run - the Framework will alert in that instance. */
             // cast -1 to CBCentralManagerState to eliminate warning
             if (previousState != (CBCentralManagerState)-1) {
-                [self.notificationCenter postNotificationName:kBleDiscoveryStatePoweredOffNotification
-                                                       object:self
-                                                     userInfo:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.notificationCenter postNotificationName:kBleDiscoveryStatePoweredOffNotification
+                                                           object:self
+                                                         userInfo:nil];
+                });
             }
             break;
         }
@@ -276,15 +278,17 @@
             
             //FIXME: specify services argument
             //NSArray *peripherals = [central retrieveConnectedPeripheralsWithServices:@[]];
-
+            
             // Add to list.
-//            for (CBPeripheral *peripheral in peripherals) {
-//                // method documentation: Attempts to connect to a peripheral do not time out.
-//                [central connectPeripheral:peripheral options:nil];
-//            }
-            [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
-                                                   object:self
-                                                 userInfo:nil];
+            //            for (CBPeripheral *peripheral in peripherals) {
+            //                // method documentation: Attempts to connect to a peripheral do not time out.
+            //                [central connectPeripheral:peripheral options:nil];
+            //            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                                       object:self
+                                                     userInfo:nil];
+            });
             break;
         }
     }
@@ -305,11 +309,13 @@ didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
     if (![self.foundPeripherals containsObject:peripheral]) {
         [self.foundPeripherals addObject:peripheral];
     }
-
+    
     NSDictionary *userInfo = @{ @"peripheral" : peripheral };
-    [self.notificationCenter postNotificationName:kBleDiscoveryDidConnectPeripheralNotification
-                                           object:self
-                                         userInfo:userInfo];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.notificationCenter postNotificationName:kBleDiscoveryDidConnectPeripheralNotification
+                                               object:self
+                                             userInfo:userInfo];
+    });
     /*
      LeTemperatureAlarmService	*service	= nil;
 
@@ -347,9 +353,11 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
         userInfo = @{ @"peripheral" : peripheral,
                       @"error" : error };
     }
-    [self.notificationCenter postNotificationName:kBleDiscoveryDidDisconnectPeripheralNotification
-                                           object:self
-                                         userInfo:userInfo];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.notificationCenter postNotificationName:kBleDiscoveryDidDisconnectPeripheralNotification
+                                               object:self
+                                             userInfo:userInfo];
+    });
     /*
      LeTemperatureAlarmService	*service	= nil;
 
