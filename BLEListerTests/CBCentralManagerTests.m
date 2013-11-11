@@ -124,4 +124,38 @@
     [self retrievePeripheral:@"sensortag"];
 }
 
+// This test passes even when Raspberry Pi is off, and the app doesn't show the device in the table view.
+// I think it is getting stored info, or else the device is not the Raspberry Pi.
+// testRetrievePeripheralRaspberryPi requires a Raspberry Pi with a BLE adapter
+// configured as an iBeacon within range of the iOS device.
+// It assumes Raspberry Pi will be the first device found.
+- (void)testRetrievePeripheralRaspberryPi {
+    // CBCentralManager wants a delegate that implements centralManagerDidUpdateState:
+    // this test passes without a delegate.
+    self.centralManager = [[CBCentralManager alloc]
+                           initWithDelegate:nil
+                           queue:nil];
+
+    NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
+    NSString *peripheralKey = @"raspberry_pi";
+    NSString *expectedIdentifierString = bleDevices[peripheralKey][@"identifier"];
+    NSUUID *expectedIdentifier = [[NSUUID alloc] initWithUUIDString:expectedIdentifierString];
+
+    // NOTE: retrievePeripheralsWithIdentifiers: argument is array of NSUUID not CBUUID
+    NSArray *peripheralsWithIdentifiers = [self.centralManager
+                                           retrievePeripheralsWithIdentifiers:@[expectedIdentifier]];
+
+    NSLog(@"peripheralsWithIdentifiers %@", peripheralsWithIdentifiers);
+    XCTAssertNotNil(peripheralsWithIdentifiers, @"");
+    XCTAssertTrue((1 <= [peripheralsWithIdentifiers count]),
+                  @"expected peripheralsWithIdentifiers has 1 or more objects");
+
+    CBPeripheral *peripheral = [peripheralsWithIdentifiers firstObject];
+
+    XCTAssertEqualObjects(expectedIdentifier,
+                          peripheral.identifier,
+                          @"expected peripheral identifier");
+    XCTAssertNil(peripheral.name, @"expected peripheral name nil");
+}
+
 @end
