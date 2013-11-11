@@ -78,7 +78,7 @@
 }
 
 
-- (void)findAndTestPeripheral:(NSString *)peripheralKey {
+- (void)retrievePeripheral:(NSString *)peripheralKey {
 
     // CBCentralManager wants a delegate that implements centralManagerDidUpdateState:
     // this test passes without a delegate.
@@ -110,18 +110,18 @@
                           @"expected peripheral name");
 }
 
-// testFoundPeripheralBLEShield requires an Arduino with RedBearLab BLE shield
+// testRetrievePeripheralBLEShield requires an Arduino with RedBearLab BLE shield
 // within range of the iOS device.
 // It assumes BLE shield with be the first device found.
-- (void)testFoundPeripheralBLEShield {
-    [self findAndTestPeripheral:@"redbearshield"];
+- (void)testRetrievePeripheralBLEShield {
+    [self retrievePeripheral:@"redbearshield"];
 }
 
-// testFoundPeripheralTISensorTag requires a TI SensorTag within range of the iOS device.
+// testRetrievePeripheralTISensorTag requires a TI SensorTag within range of the iOS device.
 // It assumes SensorTag will be the first device found.
 // Before running test, press SensorTag side button to activate it.
-- (void)testFoundPeripheralTISensorTag {
-    [self findAndTestPeripheral:@"sensortag"];
+- (void)testRetrievePeripheralTISensorTag {
+    [self retrievePeripheral:@"sensortag"];
 }
 
 @end
