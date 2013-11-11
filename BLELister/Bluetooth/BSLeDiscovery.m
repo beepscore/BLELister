@@ -282,7 +282,9 @@
     previousState = [self.centralManager state];
 }
 
-- (void) centralManager:(CBCentralManager *)central didFailToRetrievePeripheralForUUID:(CBUUID *)uuid error:(NSError *)error
+- (void) centralManager:(CBCentralManager *)central
+didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
+                  error:(NSError *)error
 {
     /* Delete from plist. */
     [self removeSavedDevice:uuid];
