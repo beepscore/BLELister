@@ -157,6 +157,13 @@
         CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
         NSArray *uuidArray = @[uuid];
         //[self.centralManager safeScanForPeripheralsWithServices:uuidArray options:options];
+
+        // NOTE: scanForPeripheralsWithServices:options:
+        // services is array of CBUUID not NSUUID
+        // Applications that have specified the bluetooth-central background mode
+        // are allowed to scan while backgrounded, with two caveats:
+        // the scan must specify one or more service types in serviceUUIDs,
+        // and the CBCentralManagerScanOptionAllowDuplicatesKey scan option will be ignored.
         [self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
     }
 }
