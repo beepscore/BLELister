@@ -184,7 +184,10 @@
     NSString *expectedIdentifierString = bleDevices[@"redbearshield"][@"identifier"];
     NSString *expectedName = bleDevices[@"redbearshield"][@"name"];
     // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
-    [bsLeDiscovery startScanningForUUIDString:expectedIdentifierString];
+    //[bsLeDiscovery startScanningForUUIDString:expectedIdentifierString];
+    //[bsLeDiscovery startScanningForUUIDString:@"180A"];
+    [bsLeDiscovery startScanningForUUIDString:nil];
+
 
     NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
     
