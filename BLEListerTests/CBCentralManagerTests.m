@@ -56,6 +56,35 @@
                    @"expected centralManager state on");
 }
 
+// This test is asynchronous. It tests the same thing as testState.
+- (void)testStateAsync {
+    // Init with queue nil (uses default main queue), test failed.
+    // CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:nil];
+    // Init with queue non-nil, test passes.
+    // http://stackoverflow.com/questions/18970247/cbcentralmanager-changes-for-ios-7
+    dispatch_queue_t centralQueue = dispatch_queue_create("com.beepscore.central_manager", DISPATCH_QUEUE_SERIAL);
+    CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:centralQueue];
+
+    SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
+
+        NSLog(@"In testBlock.");
+        NSLog(@"centralManager %@ state %d", centralManager, centralManager.state);
+
+        if (CBCentralManagerStatePoweredOn == centralManager.state) {
+
+            XCTAssertEqual(CBCentralManagerStatePoweredOn, centralManager.state,
+                    @"expected centralManager state on");
+            // dereference the pointer to set the BOOL value
+            *didFinish = YES;
+        }
+    };
+
+    // SH_performAsyncTestsWithinBlock calls testBlock
+    // and supplies its argument, a pointer to BOOL didFinish.
+    // SH_performAsyncTestsWithinBlock keeps calling the block
+    // until the block sets didFinish YES or the test times out.
+    [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:10.0];
+}
 
 - (void)retrievePeripheral:(NSString *)peripheralKey {
 
