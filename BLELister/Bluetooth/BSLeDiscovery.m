@@ -65,8 +65,8 @@
 - (id) init {
     // call designated initializer
     return [self initWithCentralManager:nil
-                       foundPeripherals:nil
-                      connectedServices:nil
+                       foundPeripherals:[[NSMutableArray alloc] init]
+                      connectedServices:[[NSMutableArray alloc] init]
                      notificationCenter:nil];
 }
 

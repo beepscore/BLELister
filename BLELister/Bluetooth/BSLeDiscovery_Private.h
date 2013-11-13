@@ -35,6 +35,9 @@
  If aFoundPeripherals is nil, we won't be able to add objects to self.foundPeripherals.
  @param aConnectedServices
  sets property self.connectedServices
+ Normally aConnectedServices is empty mutable array.
+ Then we can add objects to self.connectedServices.
+ If aConnectedServices is nil, we won't be able to add objects to self.connectedServices.
  @param aNotificationCenter
  sets property self.notificationCenter
  @return a BSLeDiscovery, generally used as a singleton
