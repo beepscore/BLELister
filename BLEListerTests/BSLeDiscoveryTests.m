@@ -67,7 +67,7 @@
     // designated initializer.
     XCTAssertNotNil(self.bsLeDiscovery.connectedServices,
                     @"expected sharedInstance sets connectedServices");
-    XCTAssertEqualObjects(@[],
+    XCTAssertEqualObjects([NSMutableArray arrayWithArray:@[]],
                           self.bsLeDiscovery.connectedServices,
                           @"expected sharedInstance connectedServices is empty array");
 }
