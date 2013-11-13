@@ -172,7 +172,12 @@
         NSLog(@"notification.userInfo %@", notification.userInfo);
     }
     _objects = self.leDiscovery.foundPeripherals;
-    [self.tableView reloadData];
+    // Notification may be from a background queue.
+    // Get main queue before updating UI.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // reloadData will get the current model state
+        [self.tableView reloadData];
+    });
 }
 
 - (void) discoveryStatePoweredOff {

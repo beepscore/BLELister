@@ -239,10 +239,14 @@
 {
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
-        // notification is about self's peripheral, not some other peripheral
+        // Notification is about self's peripheral, not some other peripheral
         NSLog(@"notification userInfo peripheral equals detailItem");
-        // reloadData will get the current detailItem.state
-        [self.tableView reloadData];
+        // Notification may be from a background queue.
+        // Get main queue before updating UI.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // reloadData will get the current detailItem.state
+            [self.tableView reloadData];
+        });
     }
 }
 
@@ -250,10 +254,14 @@
 {
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
-        // notification is about self's peripheral, not some other peripheral
+        // Notification is about self's peripheral, not some other peripheral
         NSLog(@"notification userInfo peripheral equals detailItem");
-        // reloadData will get the current detailItem.state
-        [self.tableView reloadData];
+        // Notification may be from a background queue.
+        // Get main queue before updating UI.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // reloadData will get the current detailItem.state
+            [self.tableView reloadData];
+        });
     }
 }
 
