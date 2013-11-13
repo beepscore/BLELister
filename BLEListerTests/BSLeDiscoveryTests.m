@@ -238,12 +238,12 @@
                           @"expected first found peripheral name");
 }
 
-/*
 #pragma mark - test Connect/Disconnect
- // This test runs asynchronously, and is preferable to blocking the main thread.
- // It's not working, so comment it out for now.
- // TODO: figure out why centralManager status never says powered on.
- // This test assumes iOS device will find at least one peripheral, and tries to connect.
+// TODO: Fix using code similar to testFoundPeripherals
+// This test runs asynchronously, and is preferable to blocking the main thread.
+// It's not working, so comment it out for now.
+// This test assumes iOS device will find at least one peripheral, and tries to connect.
+/*
 - (void)testConnectAsync {
     
     // using __block allows block to change bsLeDiscovery
@@ -254,7 +254,7 @@
         NSLog(@"In testBlock. *didFinish: %hhd", *didFinish);
         
         if(!bsLeDiscovery.foundPeripherals
-           || ([@[]  isEqual: bsLeDiscovery.foundPeripherals])) {
+           || ([NSMutableArray arrayWithArray:@[] isEqual:bsLeDiscovery.foundPeripherals])) {
             [bsLeDiscovery startScanningForUUIDString:nil];
         } else {
             // foundPeripherals has at least one peripheral
@@ -277,17 +277,28 @@
     // until the block sets didFinish YES or the test times out.
     [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:15.0];
 }
- */
+*/
 
+// TODO: Fix using code similar to testFoundPeripherals
+// It's not working, so comment it out for now.
+// This test blocks the main thread.
 /*
- // This test blocks the main thread.
- // It's not working, so comment it out for now.
- // TODO: figure out why centralManager status never says powered on.
 - (void)testConnect {
     
-    BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    // http://stackoverflow.com/questions/18970247/cbcentralmanager-changes-for-ios-7
+    dispatch_queue_t centralQueue = dispatch_queue_create("com.beepscore.central_manager", DISPATCH_QUEUE_SERIAL);
+    CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:centralQueue];
+    NSNotificationCenter *fakeNotificationCenter = [[NSNotificationCenter alloc] init];
+    
+    BSLeDiscovery *bsLeDiscovery = [[BSLeDiscovery alloc]
+                                    initWithCentralManager:centralManager
+                                    foundPeripherals:nil
+                                    connectedServices:nil
+                                    notificationCenter:fakeNotificationCenter];
+
     CBPeripheral *peripheral = nil;
 
+    BOOL didStartScanning = NO;
     BOOL didCallConnect = NO;
     BOOL isConnected = NO;
     
@@ -306,12 +317,16 @@
             // centralManager is powered on, ok to scan and retrieve
             // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
             NSLog(@"CBCentralManagerStatePoweredOn");
-        [bsLeDiscovery startScanningForUUIDString:nil];
 
-            if(!bsLeDiscovery.foundPeripherals
-               || ([@[]  isEqual: bsLeDiscovery.foundPeripherals])) {
+            if(!didStartScanning) {
+                [bsLeDiscovery startScanningForUUIDString:nil];
+                didStartScanning = YES;
+            }
+            
+            if( !bsLeDiscovery.foundPeripherals
+               || ([[NSMutableArray arrayWithArray:@[]]
+                    isEqual:bsLeDiscovery.foundPeripherals]) ) {
                 NSLog(@"foundPeripherals nil or empty");
-                //[bsLeDiscovery startScanningForUUIDString:nil];
             } else {
                 // foundPeripherals has at least one peripheral
                 NSLog(@"foundPeripherals has at least one peripheral");
