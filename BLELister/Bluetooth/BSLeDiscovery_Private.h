@@ -30,6 +30,9 @@
  sets ivar centralManager
  @param aFoundPeripherals
  sets property self.foundPeripherals
+ Normally aFoundPeripherals is empty mutable array.
+ Then we can add objects to self.foundPeripherals.
+ If aFoundPeripherals is nil, we won't be able to add objects to self.foundPeripherals.
  @param aConnectedServices
  sets property self.connectedServices
  @param aNotificationCenter
