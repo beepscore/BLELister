@@ -172,29 +172,61 @@
 }
  */
 
-// TODO: testFoundPeripherals is failing. Fix it.
-// This test is not asynchronous.
 // This test assumes iOS device will find at least one peripheral
 // and the first is a Red Bear Lab Ble Shield
+// This test is not asynchronous.
 - (void)testFoundPeripherals {
-    
-    BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
-    
+
+    // must set foundPeripherals to empty mutable array so we can add objects to it.
+    BSLeDiscovery *bsLeDiscovery = [[BSLeDiscovery alloc]
+                                    initWithCentralManager:nil
+                                    foundPeripherals:[NSMutableArray arrayWithArray:@[]]
+                                    connectedServices:nil
+                                    notificationCenter:nil];
+
+    // Init with queue nil (uses default main queue), test failed.
+    // CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:nil];
+    // Init with queue non-nil.
+    // http://stackoverflow.com/questions/18970247/cbcentralmanager-changes-for-ios-7
+    dispatch_queue_t centralQueue = dispatch_queue_create("com.beepscore.central_manager", DISPATCH_QUEUE_SERIAL);
+    CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil
+                                                                            queue:centralQueue];
+
+    bsLeDiscovery.centralManager = centralManager;
+    bsLeDiscovery.centralManager.delegate = bsLeDiscovery;
+
     NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
     NSString *expectedIdentifierString = bleDevices[@"redbearshield"][@"identifier"];
     NSString *expectedName = bleDevices[@"redbearshield"][@"name"];
     // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
-    //[bsLeDiscovery startScanningForUUIDString:expectedIdentifierString];
-    //[bsLeDiscovery startScanningForUUIDString:@"180A"];
-    [bsLeDiscovery startScanningForUUIDString:nil];
-
-
+    
+    BOOL didStartScanning = NO;
     NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
     
-    while ( (0 == [bsLeDiscovery.foundPeripherals count])
+    while ( (!bsLeDiscovery.foundPeripherals
+             || [[NSMutableArray arrayWithArray:@[]] isEqual:bsLeDiscovery.foundPeripherals]
+             || (0 == [bsLeDiscovery.foundPeripherals count]) )
            && [[timeoutDate laterDate:[NSDate date]] isEqualToDate:timeoutDate] ) {
-        NSLog(@"In while loop. foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
+        
+        NSLog(@"In while loop. foundPeripherals nil or empty");
         sleep(1);
+        
+        if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
+            NSLog(@"still not powered on");
+            NSLog(@"%@ state %d", bsLeDiscovery.centralManager,
+                  bsLeDiscovery.centralManager.state);
+        } else {
+            NSLog(@"CBCentralManagerStatePoweredOn");
+            // centralManager is powered on, ok to scan and retrieve
+            // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
+            
+            if(!didStartScanning) {
+                //[bsLeDiscovery startScanningForUUIDString:expectedIdentifierString];
+                //[bsLeDiscovery startScanningForUUIDString:@"180A"];
+                [bsLeDiscovery startScanningForUUIDString:nil];
+                didStartScanning = YES;
+            }
+        }
     }
     CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
     
