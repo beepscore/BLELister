@@ -183,7 +183,8 @@
         [self.foundPeripherals addObject:peripheral];
         
         // Argument RSSI may be non-nil even when peripheral.RSSI is nil
-        NSDictionary *userInfo = @{@"peripheral" : peripheral,
+        NSDictionary *userInfo = @{@"central" : central,
+                                   @"peripheral" : peripheral,
                                    @"advertisementData" : advertisementData,
                                    @"RSSI" : RSSI };
 
