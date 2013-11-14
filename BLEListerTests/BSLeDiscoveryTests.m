@@ -204,17 +204,16 @@
     NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
     
     while ( (!bsLeDiscovery.foundPeripherals
-             || [[NSMutableArray arrayWithArray:@[]] isEqual:bsLeDiscovery.foundPeripherals]
              || (0 == [bsLeDiscovery.foundPeripherals count]) )
            && [[timeoutDate laterDate:[NSDate date]] isEqualToDate:timeoutDate] ) {
         
-        NSLog(@"In while loop. foundPeripherals nil or empty");
-        sleep(1);
-        
+        NSLog(@"In while loop.");
+        NSLog(@"foundPeripherals %@", bsLeDiscovery.foundPeripherals);
+        NSLog(@"%@ state %d", bsLeDiscovery.centralManager,
+              bsLeDiscovery.centralManager.state);
+
         if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
             NSLog(@"still not powered on");
-            NSLog(@"%@ state %d", bsLeDiscovery.centralManager,
-                  bsLeDiscovery.centralManager.state);
         } else {
             NSLog(@"CBCentralManagerStatePoweredOn");
             // centralManager is powered on, ok to scan and retrieve
@@ -227,6 +226,7 @@
                 didStartScanning = YES;
             }
         }
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
     }
     CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
     
