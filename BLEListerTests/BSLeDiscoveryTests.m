@@ -220,11 +220,12 @@
     // Init with queue non-nil.
     // http://stackoverflow.com/questions/18970247/cbcentralmanager-changes-for-ios-7
     dispatch_queue_t centralQueue = dispatch_queue_create("com.beepscore.central_manager", DISPATCH_QUEUE_SERIAL);
-    CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil
-                                                                            queue:centralQueue];
+    // CBCentralManager should instantiate and then power on.
+    CBCentralManager *centralManager = [[CBCentralManager alloc]
+                                        initWithDelegate:bsLeDiscovery
+                                        queue:centralQueue];
 
     bsLeDiscovery.centralManager = centralManager;
-    bsLeDiscovery.centralManager.delegate = bsLeDiscovery;
 
     NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
     NSString *expectedIdentifierString = bleDevices[@"redbearshield"][@"identifier"];
@@ -260,7 +261,7 @@
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
     }
     CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
-    
+
     XCTAssertEqualObjects(expectedIdentifierString,
                           [peripheral.identifier UUIDString],
                           @"expected first found peripheral UUIDString");
