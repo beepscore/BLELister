@@ -166,7 +166,8 @@
 
 #pragma mark - Notification response methods
 - (void) discoveryDidRefreshWithNotification:(NSNotification *)notification {
-    NSLog(@"in discoveryDidRefreshWithNotification:");
+    NSLog(@"in BSMasterViewController discoveryDidRefreshWithNotification:");
+    NSLog(@"notification.object: %@", notification.object);
 
     if (notification.userInfo) {
         NSLog(@"notification.userInfo %@", notification.userInfo);
