@@ -129,38 +129,69 @@
     XCTAssertTrue(assertion, @"expected assertion true");
 }
 
-/*
-// TODO: testFoundPeripheralsAsync is failing. Fix it.
+// TODO: testFoundPeripheralsAsync fails. Fix it.
 // This test assumes iOS device will find at least one peripheral
 // and the first is a Red Bear Lab Ble Shield
+/*
 - (void)testFoundPeripheralsAsync {
 
-    // using __block allows block to change bsLeDiscovery, set property foundPeripherals??
-    __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    // using __block allows block to change bsLeDiscovery
+    // must set foundPeripherals to empty mutable array so we can add objects to it.
+    __block BSLeDiscovery *bsLeDiscovery = [[BSLeDiscovery alloc]
+                                    initWithCentralManager:nil
+                                    foundPeripherals:[NSMutableArray arrayWithArray:@[]]
+                                    connectedServices:nil
+                                    notificationCenter:nil];
+
+    // Init with queue non-nil.
+    // http://stackoverflow.com/questions/18970247/cbcentralmanager-changes-for-ios-7
+    dispatch_queue_t centralQueue = dispatch_queue_create("com.beepscore.central_manager", DISPATCH_QUEUE_SERIAL);
+    // CBCentralManager should instantiate and then power on.
+    CBCentralManager *centralManager = [[CBCentralManager alloc]
+                                        initWithDelegate:bsLeDiscovery
+                                        queue:centralQueue];
+
+    bsLeDiscovery.centralManager = centralManager;
+
+    __block BOOL didStartScanning = NO;
 
     NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
     NSString *expectedIdentifierString = bleDevices[@"redbearshield"][@"identifier"];
     NSString *expectedName = bleDevices[@"redbearshield"][@"name"];
-    // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
-    //[bsLeDiscovery startScanningForUUIDString:expectedIdentifierString];
-    [bsLeDiscovery startScanningForUUIDString:nil];
 
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
 
         NSLog(@"In testBlock. foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
 
-        if ( 1 <= [bsLeDiscovery.foundPeripherals count]) {
-            CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
+        if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
+            NSLog(@"still not powered on");
+        } else {
+            NSLog(@"CBCentralManagerStatePoweredOn");
+            // centralManager is powered on, ok to scan and retrieve
+            // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
+            
+            if(!didStartScanning) {
+                // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
+                //[bsLeDiscovery startScanningForUUIDString:expectedIdentifierString];
+                //[bsLeDiscovery startScanningForUUIDString:@"180A"];
+                [bsLeDiscovery startScanningForUUIDString:nil];
+                didStartScanning = YES;
+            }
+            
+            if ( 1 <= [bsLeDiscovery.foundPeripherals count]) {
+                CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
 
-            XCTAssertEqualObjects(expectedIdentifierString,
-                                  [peripheral.identifier UUIDString],
-                                  @"expected first found peripheral UUIDString");
-            XCTAssertEqualObjects(expectedName,
-                                  peripheral.name,
-                                  @"expected first found peripheral name");
-
-            // dereference the pointer to set the BOOL value
-            *didFinish = YES;
+                NSLog(@"my peripheral %@", peripheral);
+                XCTAssertEqualObjects(expectedIdentifierString,
+                                      [peripheral.identifier UUIDString],
+                                      @"expected first found peripheral UUIDString");
+                XCTAssertEqualObjects(expectedName,
+                                      peripheral.name,
+                                      @"expected first found peripheral name");
+                
+                // dereference the pointer to set the BOOL value
+                *didFinish = YES;
+            }
         }
     };
 
@@ -168,7 +199,7 @@
     // and supplies its argument, a pointer to BOOL didFinish.
     // SH_performAsyncTestsWithinBlock keeps calling the block
     // until the block sets didFinish YES or the test times out.
-    [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:30.0];
+    [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:10.0];
 }
  */
 
