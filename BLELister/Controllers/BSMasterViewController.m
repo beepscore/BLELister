@@ -9,7 +9,6 @@
 #import "BSMasterViewController_Private.h"
 #import "BSDetailViewController.h"
 #import "BSBleConstants.h"
-#import "DDLog.h"
 
 @implementation BSMasterViewController
 

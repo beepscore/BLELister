@@ -12,7 +12,6 @@
 #import "BSLeDiscovery_Private.h"
 #import "BSBleConstants.h"
 #import "CBCentralManager_BSSafe.h"
-#import "DDLog.h"
 
 @implementation BSLeDiscovery
 

@@ -8,7 +8,6 @@
 
 #import "BSDetailViewController.h"
 #import "BSDetailViewController_Private.h"
-#import "DDLog.h"
 #import "BSBleConstants.h"
 
 @interface BSDetailViewController ()
