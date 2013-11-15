@@ -12,6 +12,7 @@
 #import "BSLeDiscovery_Private.h"
 #import "BSBleConstants.h"
 #import "CBCentralManager_BSSafe.h"
+#import "DDLog.h"
 
 @implementation BSLeDiscovery
 
@@ -21,7 +22,7 @@
     static id sharedInstance;
     dispatch_once(&once, ^{
 
-        NSLog(@"This block should run only one time. &once: %p, once: %ld", &once, once);
+        DDLogVerbose(@"This block should run only one time. &once: %p, once: %ld", &once, once);
         
         // self isn't complete yet, so at first set CBCentralManagerDelegate to nil
         // later code should set delegate to self
@@ -35,8 +36,8 @@
                           connectedServices:[[NSMutableArray alloc] init]
                           notificationCenter:[NSNotificationCenter defaultCenter]];
         
-        NSLog(@"[[BSLeDiscovery sharedInstance] %@", sharedInstance);
-        NSLog(@"[[BSLeDiscovery sharedInstance] centralManager] %@",
+        DDLogVerbose(@"[[BSLeDiscovery sharedInstance] %@", sharedInstance);
+        DDLogVerbose(@"[[BSLeDiscovery sharedInstance] centralManager] %@",
               [sharedInstance centralManager]);
     });
     return sharedInstance;
@@ -78,7 +79,7 @@
     NSArray	*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:kStoredDevices];
 
     if (![storedDevices isKindOfClass:[NSArray class]]) {
-        NSLog(@"No stored array to load");
+        DDLogVerbose(@"No stored array to load");
         return;
     }
 
@@ -104,7 +105,7 @@
     NSMutableArray	*newDevices		= nil;
 
     if (![storedDevices isKindOfClass:[NSArray class]]) {
-        NSLog(@"Can't find/create an array to store the uuid");
+        DDLogVerbose(@"Can't find/create an array to store the uuid");
         return;
     }
 
@@ -221,7 +222,7 @@
     static CBCentralManagerState previousState = -1;
 
     // TODO: Do we need to get main queue, in case centralManager is using non-main queue?
-    NSLog(@"%@ state %d", central, central.state);
+    DDLogVerbose(@"%@ state %d", central, central.state);
 
     switch ([central state]) {
 
@@ -331,7 +332,7 @@ didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
 didFailToConnectPeripheral:(CBPeripheral *)peripheral
                  error:(NSError *)error
 {
-    NSLog(@"Attempted connection to peripheral %@ failed: %@", [peripheral name], [error localizedDescription]);
+    DDLogVerbose(@"Attempted connection to peripheral %@ failed: %@", [peripheral name], [error localizedDescription]);
 }
 
 - (void)centralManager:(CBCentralManager *)central

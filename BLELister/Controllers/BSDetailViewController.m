@@ -8,6 +8,7 @@
 
 #import "BSDetailViewController.h"
 #import "BSDetailViewController_Private.h"
+#import "DDLog.h"
 #import "BSBleConstants.h"
 
 @interface BSDetailViewController ()
@@ -124,7 +125,7 @@
             cell.detailTextLabel.text = [self.detailItem.identifier UUIDString];
             break;
         case 3:
-            NSLog(@"description %@", [self.detailItem description]);
+            DDLogVerbose(@"description %@", [self.detailItem description]);
             cell.textLabel.text = @"Desc";
             // Use custom cell and autolayout instead?
             cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
@@ -240,7 +241,7 @@
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
         // Notification is about self's peripheral, not some other peripheral
-        NSLog(@"notification userInfo peripheral equals detailItem");
+        DDLogVerbose(@"notification userInfo peripheral equals detailItem");
         // Notification may be from a background queue.
         // Get main queue before updating UI.
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -255,7 +256,7 @@
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
         // Notification is about self's peripheral, not some other peripheral
-        NSLog(@"notification userInfo peripheral equals detailItem");
+        DDLogVerbose(@"notification userInfo peripheral equals detailItem");
         // Notification may be from a background queue.
         // Get main queue before updating UI.
         dispatch_async(dispatch_get_main_queue(), ^{

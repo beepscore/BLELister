@@ -9,6 +9,7 @@
 #import "BSMasterViewController_Private.h"
 #import "BSDetailViewController.h"
 #import "BSBleConstants.h"
+#import "DDLog.h"
 
 @implementation BSMasterViewController
 
@@ -166,11 +167,11 @@
 
 #pragma mark - Notification response methods
 - (void) discoveryDidRefreshWithNotification:(NSNotification *)notification {
-    NSLog(@"in BSMasterViewController discoveryDidRefreshWithNotification:");
-    NSLog(@"notification.object: %@", notification.object);
+    DDLogVerbose(@"in BSMasterViewController discoveryDidRefreshWithNotification:");
+    DDLogVerbose(@"notification.object: %@", notification.object);
 
     if (notification.userInfo) {
-        NSLog(@"notification.userInfo %@", notification.userInfo);
+        DDLogVerbose(@"notification.userInfo %@", notification.userInfo);
     }
     _objects = self.leDiscovery.foundPeripherals;
     // Notification may be from a background queue.
@@ -182,7 +183,7 @@
 }
 
 - (void) discoveryStatePoweredOff {
-    NSLog(@"discoveryStatePoweredOff");
+    DDLogVerbose(@"discoveryStatePoweredOff");
 }
 
 @end
