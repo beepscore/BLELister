@@ -1,10 +1,18 @@
 PODS:
+  - CocoaLumberjack (1.6.3):
+    - CocoaLumberjack/Core
+    - CocoaLumberjack/Extensions
+  - CocoaLumberjack/Core (1.6.3)
+  - CocoaLumberjack/Extensions (1.6.3):
+    - CocoaLumberjack/Core
   - SHTestCaseAdditions (1.2.1)
 
 DEPENDENCIES:
+  - CocoaLumberjack (~> 1.6)
   - SHTestCaseAdditions (~> 1.2.1)
 
 SPEC CHECKSUMS:
+  CocoaLumberjack: 0af89e0de15835a499fcc6ee5e0b6d396bc95976
   SHTestCaseAdditions: 0db8321846d0240ca90ab497c10b6800e5954f7e
 
-COCOAPODS: 0.25.0
+COCOAPODS: 0.28.0
