@@ -49,7 +49,7 @@
     
     while ( (CBCentralManagerStatePoweredOn != centralManager.state)
            && [[timeoutDate laterDate:[NSDate date]] isEqualToDate:timeoutDate]) {
-        NSLog(@"%@ state: %d", centralManager, centralManager.state);
+        DDLogVerbose(@"%@ state: %d", centralManager, centralManager.state);
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
     }
     XCTAssertEqual(CBCentralManagerStatePoweredOn, centralManager.state,
@@ -68,8 +68,8 @@
 
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
 
-        NSLog(@"In testBlock.");
-        NSLog(@"centralManager %@ state %d", centralManager, centralManager.state);
+        DDLogVerbose(@"In testBlock.");
+        DDLogVerbose(@"centralManager %@ state %d", centralManager, centralManager.state);
 
         if (CBCentralManagerStatePoweredOn == centralManager.state) {
 
@@ -104,7 +104,7 @@
     NSArray *peripheralsWithIdentifiers = [self.centralManager
                                            retrievePeripheralsWithIdentifiers:@[expectedIdentifier]];
 
-    NSLog(@"peripheralsWithIdentifiers %@", peripheralsWithIdentifiers);
+    DDLogVerbose(@"peripheralsWithIdentifiers %@", peripheralsWithIdentifiers);
     XCTAssertNotNil(peripheralsWithIdentifiers, @"");
     XCTAssertTrue((1 <= [peripheralsWithIdentifiers count]),
                   @"expected peripheralsWithIdentifiers has 1 or more objects");
@@ -156,7 +156,7 @@
     NSArray *peripheralsWithIdentifiers = [self.centralManager
                                            retrievePeripheralsWithIdentifiers:@[expectedIdentifier]];
 
-    NSLog(@"peripheralsWithIdentifiers %@", peripheralsWithIdentifiers);
+    DDLogVerbose(@"peripheralsWithIdentifiers %@", peripheralsWithIdentifiers);
     XCTAssertNotNil(peripheralsWithIdentifiers, @"");
     XCTAssertTrue((1 <= [peripheralsWithIdentifiers count]),
                   @"expected peripheralsWithIdentifiers has 1 or more objects");

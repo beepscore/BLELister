@@ -161,12 +161,12 @@
 
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
 
-        NSLog(@"In testBlock. foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
+        DDLogVerbose(@"In testBlock. foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
 
         if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
-            NSLog(@"still not powered on");
+            DDLogVerbose(@"still not powered on");
         } else {
-            NSLog(@"CBCentralManagerStatePoweredOn");
+            DDLogVerbose(@"CBCentralManagerStatePoweredOn");
             // centralManager is powered on, ok to scan and retrieve
             // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
             
@@ -181,7 +181,7 @@
             if ( 1 <= [bsLeDiscovery.foundPeripherals count]) {
                 CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
 
-                NSLog(@"my peripheral %@", peripheral);
+                DDLogVerbose(@"my peripheral %@", peripheral);
                 XCTAssertEqualObjects(expectedIdentifierString,
                                       [peripheral.identifier UUIDString],
                                       @"expected first found peripheral UUIDString");
@@ -239,15 +239,15 @@
              || (0 == [bsLeDiscovery.foundPeripherals count]) )
            && [[timeoutDate laterDate:[NSDate date]] isEqualToDate:timeoutDate] ) {
         
-        NSLog(@"In while loop.");
-        NSLog(@"foundPeripherals %@", bsLeDiscovery.foundPeripherals);
-        NSLog(@"%@ state %d", bsLeDiscovery.centralManager,
+        DDLogVerbose(@"In while loop.");
+        DDLogVerbose(@"foundPeripherals %@", bsLeDiscovery.foundPeripherals);
+        DDLogVerbose(@"%@ state %d", bsLeDiscovery.centralManager,
               bsLeDiscovery.centralManager.state);
 
         if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
-            NSLog(@"still not powered on");
+            DDLogVerbose(@"still not powered on");
         } else {
-            NSLog(@"CBCentralManagerStatePoweredOn");
+            DDLogVerbose(@"CBCentralManagerStatePoweredOn");
             // centralManager is powered on, ok to scan and retrieve
             // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
             
@@ -283,7 +283,7 @@
     
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
         
-        NSLog(@"In testBlock. *didFinish: %hhd", *didFinish);
+        DDLogVerbose(@"In testBlock. *didFinish: %hhd", *didFinish);
         
         if(!bsLeDiscovery.foundPeripherals
            || ([NSMutableArray arrayWithArray:@[] isEqual:bsLeDiscovery.foundPeripherals])) {
@@ -338,17 +338,17 @@
     
     while (!isConnected
            && (NSOrderedDescending != [[NSDate date] compare: timeoutDate]) ) {
-        NSLog(@"not timed out");
+        DDLogVerbose(@"not timed out");
         sleep(1);
 
         if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
-            NSLog(@"still not powered on");
-             NSLog(@"%@ state %d", bsLeDiscovery.centralManager,
+            DDLogVerbose(@"still not powered on");
+             DDLogVerbose(@"%@ state %d", bsLeDiscovery.centralManager,
                  bsLeDiscovery.centralManager.state);
         } else {
             // centralManager is powered on, ok to scan and retrieve
             // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
-            NSLog(@"CBCentralManagerStatePoweredOn");
+            DDLogVerbose(@"CBCentralManagerStatePoweredOn");
 
             if(!didStartScanning) {
                 [bsLeDiscovery startScanningForUUIDString:nil];
@@ -358,14 +358,14 @@
             if( !bsLeDiscovery.foundPeripherals
                || ([[NSMutableArray arrayWithArray:@[]]
                     isEqual:bsLeDiscovery.foundPeripherals]) ) {
-                NSLog(@"foundPeripherals nil or empty");
+                DDLogVerbose(@"foundPeripherals nil or empty");
             } else {
                 // foundPeripherals has at least one peripheral
-                NSLog(@"foundPeripherals has at least one peripheral");
+                DDLogVerbose(@"foundPeripherals has at least one peripheral");
                 peripheral = [bsLeDiscovery.foundPeripherals firstObject];
                 
                 if (!didCallConnect) {
-                    NSLog(@"calling connectPeripheral");
+                    DDLogVerbose(@"calling connectPeripheral");
                     [bsLeDiscovery connectPeripheral:peripheral];
                     didCallConnect = YES;
                 }

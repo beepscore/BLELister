@@ -112,8 +112,8 @@
     NSString *expectedString = @"{\"redbearshield\":{\"identifier\":\"DDAB0207-5E10-2902-5B03-CA3F0F466B40\",\"name\":\"BLE Shield\"},\"sensortag\":{\"identifier\":\"B42E4E5D-B2D3-F03F-3139-7B735C8E8964\",\"name\":\"TI BLE Sensor Tag\"},\"raspberry_pi\":{\"identifier\":\"D2BD8809-5D04-9C44-650D-86E3A5CC3D82\",\"name\":null}}";
 
     NSString *actualString = [BSJSONParser JSONStringFromFile:@"bleDevices"];
-    NSLog(@"expectedString %@, length, %d", expectedString,[expectedString length]);
-    NSLog(@"actualString %@, length %d", actualString,[actualString length]);
+    DDLogVerbose(@"expectedString %@, length, %d", expectedString,[expectedString length]);
+    DDLogVerbose(@"actualString %@, length %d", actualString,[actualString length]);
     
     // Testing length checks two strings that appear similar except for newline at end.
     XCTAssertEqual([expectedString length], [actualString length], @"");
