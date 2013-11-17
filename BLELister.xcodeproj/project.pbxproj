@@ -16,6 +16,7 @@
 		DE6B73C11808F663007EC396 /* BSBleConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B73BF1808F663007EC396 /* BSBleConstants.m */; };
 		DE7671DD182C77DE00E4CD1C /* CBCentralManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7671DC182C77DE00E4CD1C /* CBCentralManagerTests.m */; };
 		DE90FA9E180950920000DBDA /* BSStubCBCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */; };
+		DE956C2918388E5B0054DE1B /* BSDetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */; };
 		DEBC532317F547A800F2ACFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532217F547A800F2ACFF /* README.md */; };
 		DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532417F547BB00F2ACFF /* LICENSE.txt */; };
 		DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */; };
@@ -68,6 +69,7 @@
 		DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSLeDiscovery_Private.h; path = Bluetooth/BSLeDiscovery_Private.h; sourceTree = "<group>"; };
 		DE90FA9C180950920000DBDA /* BSStubCBCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStubCBCentralManager.h; sourceTree = "<group>"; };
 		DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStubCBCentralManager.m; sourceTree = "<group>"; };
+		DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDetailViewControllerTests.m; sourceTree = "<group>"; };
 		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DEBC532417F547BB00F2ACFF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DEC48973182B08EC006E72B7 /* BSDetailViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDetailViewController_Private.h; path = Controllers/BSDetailViewController_Private.h; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */,
 				DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */,
 				DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */,
+				DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */,
 				DE90FA9C180950920000DBDA /* BSStubCBCentralManager.h */,
 				DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */,
 			);
@@ -449,6 +452,7 @@
 				DEF56FDB17F9386600A99FF2 /* BSJSONParser.m in Sources */,
 				DE90FA9E180950920000DBDA /* BSStubCBCentralManager.m in Sources */,
 				DEF56FDD17F93CC500A99FF2 /* BSJSONParserTests.m in Sources */,
+				DE956C2918388E5B0054DE1B /* BSDetailViewControllerTests.m in Sources */,
 				DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */,
 				DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */,
 				DE6B73C11808F663007EC396 /* BSBleConstants.m in Sources */,
