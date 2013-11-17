@@ -50,6 +50,14 @@ typedef void (^NotificationBlock)(id, NSNotification*);
                           @"expected viewDidLoad sets notificationCenter to defaultCenter");
 }
 
+/**
+  Use block parameter.
+  Blocks are flexible and powerful, method will be easy to modify if needed.
+  Alternatively could pass a selector.
+  However selector has several disadvantages:
+  - It's cumbersome for the caller to pass the selector argument
+  - compiler warns selector may create a leak
+ */
 - (void)checkDiscoveryNotificationCallsUpdateUIOnMainQueue:(NotificationBlock)aNotificationBlock
 {
 
