@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "OCMock/OCMock.h"
 #import "BSDetailViewController.h"
 #import "BSDetailViewController_Private.h"
 
@@ -45,6 +46,39 @@
     XCTAssertEqualObjects([NSNotificationCenter defaultCenter],
                           vc.notificationCenter,
                           @"expected viewDidLoad sets notificationCenter to defaultCenter");
+}
+
+- (void)testDiscoveryDidConnectPeripheralWithNotificationCallsUpdateUIOnMainQueue
+{
+
+    BSDetailViewController *vc = [[BSDetailViewController alloc] init];
+    // Use mock to avoid warning
+    // CoreBluetooth[WARNING] <CBPeripheral: 0x176f9860
+    // identifier = (null), Name = "(null)", state = disconnected> is not a valid peripheral
+    id mockPeripheral = [OCMockObject niceMockForClass:[CBPeripheral class]];
+    [[[mockPeripheral stub] andReturn:@"123"] identifier];
+    [[[mockPeripheral stub] andReturn:@"joe"] name];
+    // To check state in debugger, must cast type
+    // $ p (CBPeripheralState)[mockPeripheral state]
+    // (CBPeripheralState) $1 = CBPeripheralStateConnected
+    [[[mockPeripheral stub] andReturnValue:OCMOCK_VALUE(CBPeripheralStateConnected)] state];
+    vc.detailItem = mockPeripheral;
+
+    // discoveryDidConnectPeripheralWithNotification: checks
+    // notification userInfo peripheral equals self.detailItem
+    NSDictionary *userInfo = @{@"peripheral" : vc.detailItem};
+    NSNotification *notification = [NSNotification notificationWithName:@"boo"
+                                                                 object:self
+                                                               userInfo:userInfo];
+
+    id mockDetailViewController = [OCMockObject partialMockForObject:vc];
+    [[[mockDetailViewController stub] andReturn:vc.detailItem] detailItem];
+    [[mockDetailViewController expect] updateUIOnMainQueue];
+
+    [mockDetailViewController discoveryDidConnectPeripheralWithNotification:notification];
+    
+    // Verify all stubbed or expected methods were called.
+    [mockDetailViewController verify];
 }
 
 @end

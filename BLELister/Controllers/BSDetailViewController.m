@@ -235,27 +235,32 @@
 }
 
 #pragma mark - Notification response methods
-- (void) discoveryDidConnectPeripheralWithNotification:(NSNotification *)notification
+- (void)updateUIOnMainQueue
+{
+    // Get main queue before updating UI.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // reloadData will get the current detailItem.state
+        [self.tableView reloadData];
+    });
+}
+
+- (void)discoveryDidConnectPeripheralWithNotification:(NSNotification *)notification
 {
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
         // Notification is about self's peripheral, not some other peripheral
-        DDLogVerbose(@"notification userInfo peripheral equals detailItem");
+        DDLogVerbose(@"did connect notification userInfo peripheral equals detailItem");
         // Notification may be from a background queue.
-        // Get main queue before updating UI.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // reloadData will get the current detailItem.state
-            [self.tableView reloadData];
-        });
+        [self updateUIOnMainQueue];
     }
 }
 
-- (void) discoveryDidDisconnectPeripheralWithNotification:(NSNotification *)notification
+- (void)discoveryDidDisconnectPeripheralWithNotification:(NSNotification *)notification
 {
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
         // Notification is about self's peripheral, not some other peripheral
-        DDLogVerbose(@"notification userInfo peripheral equals detailItem");
+        DDLogVerbose(@"did disconnect notification userInfo peripheral equals detailItem");
         // Notification may be from a background queue.
         // Get main queue before updating UI.
         dispatch_async(dispatch_get_main_queue(), ^{
