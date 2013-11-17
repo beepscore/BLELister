@@ -7,9 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "OCMock/OCMock.h"
 #import "BSMasterViewController.h"
 #import "BSMasterViewController_Private.h"
 #import "BSLeDiscovery.h"
+#import "BSBleTestConstants.h"
 
 @interface BSMasterViewControllerTests : XCTestCase
 
@@ -54,6 +56,30 @@
     XCTAssertEqualObjects([NSNotificationCenter defaultCenter],
                           vc.notificationCenter,
                           @"expected viewDidLoad sets notificationCenter to defaultCenter");
+}
+
+- (void)checkDiscoveryNotificationCallsUpdateUIOnMainQueue:(BSBLENotificationBlock)aNotificationBlock
+{
+    BSMasterViewController *vc = [[BSMasterViewController alloc] init];
+    id mockMasterViewController = [OCMockObject partialMockForObject:vc];
+    NSNotification *notification = nil;
+
+    [[mockMasterViewController expect] updateUIOnMainQueue];
+
+    // call block, using local values for arguments
+    aNotificationBlock(mockMasterViewController, notification);
+
+    // Verify all stubbed or expected methods were called.
+    [mockMasterViewController verify];
+}
+
+- (void)testDiscoveryDidRefreshWithNotificationCallsUpdateUIOnMainQueue
+{
+    BSBLENotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
+        [aMock discoveryDidRefreshWithNotification:aNotification];
+    };
+    
+    [self checkDiscoveryNotificationCallsUpdateUIOnMainQueue:notificationBlock];
 }
 
 @end

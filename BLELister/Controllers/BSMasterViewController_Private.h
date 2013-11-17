@@ -15,4 +15,7 @@
 // viewDidLoad sets self.notificationCenter. Unit test can set it to a mock notificationCenter.
 @property (nonatomic, strong) NSNotificationCenter *notificationCenter;
 
+- (void) discoveryDidRefreshWithNotification:(NSNotification *)notification;
+- (void)updateUIOnMainQueue;
+
 @end

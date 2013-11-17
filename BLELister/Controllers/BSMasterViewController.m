@@ -165,6 +165,15 @@
 }
 
 #pragma mark - Notification response methods
+- (void)updateUIOnMainQueue
+{
+    // Get main queue before updating UI.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // reloadData will get the current detailItem.state
+        [self.tableView reloadData];
+    });
+}
+
 - (void) discoveryDidRefreshWithNotification:(NSNotification *)notification {
     DDLogVerbose(@"in BSMasterViewController discoveryDidRefreshWithNotification:");
     DDLogVerbose(@"notification.object: %@", notification.object);
@@ -174,11 +183,7 @@
     }
     _objects = self.leDiscovery.foundPeripherals;
     // Notification may be from a background queue.
-    // Get main queue before updating UI.
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // reloadData will get the current model state
-        [self.tableView reloadData];
-    });
+    [self updateUIOnMainQueue];
 }
 
 - (void) discoveryStatePoweredOff {
