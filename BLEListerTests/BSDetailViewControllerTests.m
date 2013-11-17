@@ -13,6 +13,8 @@
 
 @interface BSDetailViewControllerTests : XCTestCase
 
+typedef void (^NotificationBlock)(id, NSNotification*);
+
 @end
 
 @implementation BSDetailViewControllerTests
@@ -48,7 +50,7 @@
                           @"expected viewDidLoad sets notificationCenter to defaultCenter");
 }
 
-- (void)testDiscoveryDidConnectPeripheralWithNotificationCallsUpdateUIOnMainQueue
+- (void)checkDiscoveryNotificationCallsUpdateUIOnMainQueue:(NotificationBlock)aNotificationBlock
 {
 
     BSDetailViewController *vc = [[BSDetailViewController alloc] init];
@@ -66,7 +68,7 @@
 
     // discoveryDidConnectPeripheralWithNotification: checks
     // notification userInfo peripheral equals self.detailItem
-    NSDictionary *userInfo = @{@"peripheral" : vc.detailItem};
+    NSDictionary *userInfo = @{@"peripheral" : mockPeripheral};
     NSNotification *notification = [NSNotification notificationWithName:@"boo"
                                                                  object:self
                                                                userInfo:userInfo];
@@ -75,10 +77,29 @@
     [[[mockDetailViewController stub] andReturn:vc.detailItem] detailItem];
     [[mockDetailViewController expect] updateUIOnMainQueue];
 
-    [mockDetailViewController discoveryDidConnectPeripheralWithNotification:notification];
-    
+    // call block, using local values for arguments
+    aNotificationBlock(mockDetailViewController, notification);
+
     // Verify all stubbed or expected methods were called.
     [mockDetailViewController verify];
+}
+
+- (void)testDiscoveryDidConnectPeripheralWithNotificationCallsUpdateUIOnMainQueue
+{
+    NotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
+        [aMock discoveryDidConnectPeripheralWithNotification:aNotification];
+    };
+    
+    [self checkDiscoveryNotificationCallsUpdateUIOnMainQueue:notificationBlock];
+}
+
+- (void)testDiscoveryDidDisconnectPeripheralWithNotificationCallsUpdateUIOnMainQueue
+{
+    NotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
+        [aMock discoveryDidDisconnectPeripheralWithNotification:aNotification];
+    };
+    
+    [self checkDiscoveryNotificationCallsUpdateUIOnMainQueue:notificationBlock];
 }
 
 @end

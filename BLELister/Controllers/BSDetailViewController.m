@@ -262,11 +262,7 @@
         // Notification is about self's peripheral, not some other peripheral
         DDLogVerbose(@"did disconnect notification userInfo peripheral equals detailItem");
         // Notification may be from a background queue.
-        // Get main queue before updating UI.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // reloadData will get the current detailItem.state
-            [self.tableView reloadData];
-        });
+        [self updateUIOnMainQueue];
     }
 }
 

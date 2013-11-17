@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSNotificationCenter *notificationCenter;
 
 - (void)discoveryDidConnectPeripheralWithNotification:(NSNotification *)notification;
+- (void)discoveryDidDisconnectPeripheralWithNotification:(NSNotification *)notification;
 
 - (void)updateUIOnMainQueue;
 
