@@ -36,4 +36,15 @@
     XCTAssertNotNil(vc.leDiscovery, @"expected leDiscovery");
 }
 
+- (void)testViewDidLoadSetsNotificationCenter
+{
+    BSDetailViewController *vc = [[BSDetailViewController alloc] init];
+    XCTAssertNil(vc.notificationCenter, @"expected notificationCenter nil");
+    [vc viewDidLoad];
+    XCTAssertNotNil(vc.notificationCenter, @"expected notificationCenter");
+    XCTAssertEqualObjects([NSNotificationCenter defaultCenter],
+                          vc.notificationCenter,
+                          @"expected viewDidLoad sets notificationCenter to defaultCenter");
+}
+
 @end
