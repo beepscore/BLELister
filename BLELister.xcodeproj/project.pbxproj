@@ -72,6 +72,7 @@
 		DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDetailViewControllerTests.m; sourceTree = "<group>"; };
 		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DEBC532417F547BB00F2ACFF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		DEC38EFC18394ECD000DB30F /* BSBleTestConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBleTestConstants.h; sourceTree = "<group>"; };
 		DEC48973182B08EC006E72B7 /* BSDetailViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDetailViewController_Private.h; path = Controllers/BSDetailViewController_Private.h; sourceTree = "<group>"; };
 		DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BSMasterViewControllerTests.m; path = BLEListerTests/BSMasterViewControllerTests.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DEDACD7518093633003CC569 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,13 +236,14 @@
 			children = (
 				DEE990F017F543F70041CAB6 /* Supporting Files */,
 				DEF7469417F92D3F00502764 /* TestResources */,
-				DE7671DC182C77DE00E4CD1C /* CBCentralManagerTests.m */,
+				DEC38EFC18394ECD000DB30F /* BSBleTestConstants.h */,
+				DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */,
 				DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */,
 				DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */,
 				DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */,
-				DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */,
 				DE90FA9C180950920000DBDA /* BSStubCBCentralManager.h */,
 				DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */,
+				DE7671DC182C77DE00E4CD1C /* CBCentralManagerTests.m */,
 			);
 			path = BLEListerTests;
 			sourceTree = "<group>";

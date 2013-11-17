@@ -10,10 +10,9 @@
 #import "OCMock/OCMock.h"
 #import "BSDetailViewController.h"
 #import "BSDetailViewController_Private.h"
+#import "BSBleTestConstants.h"
 
 @interface BSDetailViewControllerTests : XCTestCase
-
-typedef void (^BSBLENotificationBlock)(id, NSNotification*);
 
 @end
 
