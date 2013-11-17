@@ -13,7 +13,7 @@
 
 @interface BSDetailViewControllerTests : XCTestCase
 
-typedef void (^NotificationBlock)(id, NSNotification*);
+typedef void (^BSBLENotificationBlock)(id, NSNotification*);
 
 @end
 
@@ -58,7 +58,7 @@ typedef void (^NotificationBlock)(id, NSNotification*);
   - It's cumbersome for the caller to pass the selector argument
   - compiler warns selector may create a leak
  */
-- (void)checkDiscoveryNotificationCallsUpdateUIOnMainQueue:(NotificationBlock)aNotificationBlock
+- (void)checkDiscoveryNotificationCallsUpdateUIOnMainQueue:(BSBLENotificationBlock)aNotificationBlock
 {
 
     BSDetailViewController *vc = [[BSDetailViewController alloc] init];
@@ -94,7 +94,7 @@ typedef void (^NotificationBlock)(id, NSNotification*);
 
 - (void)testDiscoveryDidConnectPeripheralWithNotificationCallsUpdateUIOnMainQueue
 {
-    NotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
+    BSBLENotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
         [aMock discoveryDidConnectPeripheralWithNotification:aNotification];
     };
     
@@ -103,7 +103,7 @@ typedef void (^NotificationBlock)(id, NSNotification*);
 
 - (void)testDiscoveryDidDisconnectPeripheralWithNotificationCallsUpdateUIOnMainQueue
 {
-    NotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
+    BSBLENotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
         [aMock discoveryDidDisconnectPeripheralWithNotification:aNotification];
     };
     
