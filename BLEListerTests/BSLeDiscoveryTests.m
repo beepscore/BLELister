@@ -320,7 +320,11 @@
 */
 
 // This test blocks the main thread.
-- (void)testConnect {
+- (void)testConnectAndDisconnect {
+    
+    // If test exits with device still connected, Xcode warns
+    // CoreBluetooth[WARNING] <CBPeripheral: 0x15e955d0 identifier = DDAB0207-5E10-2902-5B03-CA3F0F466B40, Name = "BLE Shield", state = connected> is being dealloc'ed while connected
+    // Combine test connect and disconnect into one test.
     
     // http://stackoverflow.com/questions/18970247/cbcentralmanager-changes-for-ios-7
     dispatch_queue_t centralQueue = dispatch_queue_create("com.beepscore.central_manager", DISPATCH_QUEUE_SERIAL);
@@ -332,29 +336,31 @@
                                     foundPeripherals:[NSMutableArray arrayWithArray:@[]]
                                     connectedServices:nil
                                     notificationCenter:fakeNotificationCenter];
-
+    
     CBPeripheral *peripheral = nil;
-
+    
     BOOL didStartScanning = NO;
     BOOL didCallConnect = NO;
+    BOOL didCallDisconnect = NO;
     BOOL isConnected = NO;
     
     NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
     
+    // test connect
     while (!isConnected
            && (NSOrderedDescending != [[NSDate date] compare: timeoutDate]) ) {
-        DDLogVerbose(@"not timed out");
+        DDLogVerbose(@"connect not timed out");
         sleep(1);
-
+        
         if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
-            DDLogVerbose(@"still not powered on");
-             DDLogVerbose(@"%@ state %d", bsLeDiscovery.centralManager,
-                 bsLeDiscovery.centralManager.state);
+            DDLogVerbose(@"not powered on");
+            DDLogVerbose(@"%@ state %d", bsLeDiscovery.centralManager,
+                         bsLeDiscovery.centralManager.state);
         } else {
             // centralManager is powered on, ok to scan and retrieve
             // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
             DDLogVerbose(@"CBCentralManagerStatePoweredOn");
-
+            
             if(!didStartScanning) {
                 [bsLeDiscovery startScanningForUUIDString:nil];
                 didStartScanning = YES;
@@ -376,13 +382,31 @@
                 }
                 
                 if (CBPeripheralStateConnected == peripheral.state) {
-                    // dereference the pointer to set the BOOL value
                     isConnected = YES;
                 }
             }
         }
     }
-    XCTAssert((CBPeripheralStateConnected == peripheral.state), @"");
+    XCTAssert((CBPeripheralStateConnected == peripheral.state), @"Connect failed.");
+    
+    // test disconnect
+    timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
+    while (isConnected
+           && (NSOrderedDescending != [[NSDate date] compare: timeoutDate]) ) {
+        DDLogVerbose(@"disconnect not timed out");
+        sleep(1);
+        
+        if (!didCallDisconnect) {
+            DDLogVerbose(@"calling disconnectPeripheral");
+            [bsLeDiscovery disconnectPeripheral:peripheral];
+            didCallDisconnect = YES;
+        }
+        
+        if (CBPeripheralStateDisconnected == peripheral.state) {
+            isConnected = NO;
+        }
+    }
+    XCTAssert((CBPeripheralStateDisconnected == peripheral.state), @"Disconnect failed.");
 }
 
 # pragma mark - test post notifications
