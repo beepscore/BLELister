@@ -271,54 +271,6 @@
 }
 
 #pragma mark - test Connect/Disconnect
-// TODO: Fix using code similar to testFoundPeripherals
-// This test runs asynchronously, and is preferable to blocking the main thread.
-// It's not working, so comment it out for now.
-// This test assumes iOS device will find at least one peripheral, and tries to connect.
-/*
-- (void)testConnectAsync {
-    
-    // using __block allows block to change bsLeDiscovery
-    __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
-    __block BOOL didStartScanning = NO;
-    __block BOOL didCallConnect = NO;
-    
-    SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
-        DDLogVerbose(@"In testBlock. *didFinish: %hhd", *didFinish);
-        if(CBCentralManagerStatePoweredOn == bsLeDiscovery.centralManager.state) {
-            
-            if (NO == didStartScanning) {
-                [bsLeDiscovery startScanningForUUIDString:nil];
-                didStartScanning = YES;
-            }
-            
-            if (bsLeDiscovery.foundPeripherals
-                && (1 <= bsLeDiscovery.foundPeripherals.count))
-            {
-                CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
-                
-                if (NO == didCallConnect) {
-                    [bsLeDiscovery connectPeripheral:peripheral];
-                    didCallConnect = YES;
-                }
-                
-                if (CBPeripheralStateConnected == peripheral.state) {
-                    XCTAssert((CBPeripheralStateConnected == peripheral.state), @"");
-                    // dereference the pointer to set the BOOL value
-                    *didFinish = YES;
-                }
-            }
-        }
-    };
-    
-    // SH_performAsyncTestsWithinBlock calls testBlock
-    // and supplies its argument, a pointer to BOOL didFinish.
-    // SH_performAsyncTestsWithinBlock keeps calling the block
-    // until the block sets didFinish YES or the test times out.
-    [self SH_performAsyncTestsWithinBlock:testBlock withTimeout:15.0];
-}
-*/
-
 // This test blocks the main thread.
 - (void)testConnectAndDisconnect {
     
