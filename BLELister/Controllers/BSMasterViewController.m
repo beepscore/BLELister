@@ -53,7 +53,12 @@
 
 - (void)dealloc
 {
-    [self.notificationCenter removeObserver:self];
+    [self.notificationCenter removeObserver:self
+                                       name:kBleDiscoveryDidRefreshNotification
+                                     object:nil];
+    [self.notificationCenter removeObserver:self
+                                       name:kBleDiscoveryStatePoweredOffNotification
+                                     object:nil];
 }
 
 #pragma mark -

@@ -67,7 +67,12 @@
 
 - (void)dealloc
 {
-    [self.notificationCenter removeObserver:self];
+    [self.notificationCenter removeObserver:self
+                                       name:kBleDiscoveryDidConnectPeripheralNotification
+                                     object:nil];
+    [self.notificationCenter removeObserver:self
+                                       name:kBleDiscoveryDidDisconnectPeripheralNotification
+                                     object:nil];
 }
 
 #pragma mark - Split view
