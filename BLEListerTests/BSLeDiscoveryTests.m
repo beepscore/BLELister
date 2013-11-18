@@ -311,10 +311,7 @@
 }
 */
 
-// TODO: Fix using code similar to testFoundPeripherals
-// It's not working, so comment it out for now.
 // This test blocks the main thread.
-/*
 - (void)testConnect {
     
     // http://stackoverflow.com/questions/18970247/cbcentralmanager-changes-for-ios-7
@@ -324,7 +321,7 @@
     
     BSLeDiscovery *bsLeDiscovery = [[BSLeDiscovery alloc]
                                     initWithCentralManager:centralManager
-                                    foundPeripherals:nil
+                                    foundPeripherals:[NSMutableArray arrayWithArray:@[]]
                                     connectedServices:nil
                                     notificationCenter:fakeNotificationCenter];
 
@@ -379,7 +376,6 @@
     }
     XCTAssert((CBPeripheralStateConnected == peripheral.state), @"");
 }
- */
 
 # pragma mark - test post notifications
 - (void)testCentralManagerOffDidUpdateStatePostsBleDiscoveryDidRefreshNotification
