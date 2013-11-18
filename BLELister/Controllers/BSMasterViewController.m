@@ -153,7 +153,7 @@
     [self.notificationCenter addObserver:self
                                 selector:@selector(discoveryDidRefreshWithNotification:)
                                     name:kBleDiscoveryDidRefreshNotification
-                                  object:nil];        
+                                  object:nil];
 }
 
 - (void)registerFoBleDiscoveryStatePoweredOffNotification
@@ -161,7 +161,7 @@
     [self.notificationCenter addObserver:self
                                 selector:@selector(discoveryStatePoweredOff)
                                     name:kBleDiscoveryStatePoweredOffNotification
-                                  object:nil];        
+                                  object:nil];
 }
 
 #pragma mark - Notification response methods
