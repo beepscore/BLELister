@@ -280,25 +280,33 @@
     
     // using __block allows block to change bsLeDiscovery
     __block BSLeDiscovery *bsLeDiscovery = [BSLeDiscovery sharedInstance];
+    __block BOOL didStartScanning = NO;
+    __block BOOL didCallConnect = NO;
     
     SHTestCaseBlock testBlock = ^(BOOL *didFinish) {
-        
         DDLogVerbose(@"In testBlock. *didFinish: %hhd", *didFinish);
-        
-        if(!bsLeDiscovery.foundPeripherals
-           || ([NSMutableArray arrayWithArray:@[] isEqual:bsLeDiscovery.foundPeripherals])) {
-            [bsLeDiscovery startScanningForUUIDString:nil];
-        } else {
-            // foundPeripherals has at least one peripheral
-            CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
+        if(CBCentralManagerStatePoweredOn == bsLeDiscovery.centralManager.state) {
             
-            // TODO: Call connectPeripheral only once?
-            [bsLeDiscovery connectPeripheral:peripheral];
+            if (NO == didStartScanning) {
+                [bsLeDiscovery startScanningForUUIDString:nil];
+                didStartScanning = YES;
+            }
             
-            if (CBPeripheralStateConnected == peripheral.state) {
-                XCTAssert((CBPeripheralStateConnected == peripheral.state), @"");
-                // dereference the pointer to set the BOOL value
-                *didFinish = YES;
+            if (bsLeDiscovery.foundPeripherals
+                && (1 <= bsLeDiscovery.foundPeripherals.count))
+            {
+                CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
+                
+                if (NO == didCallConnect) {
+                    [bsLeDiscovery connectPeripheral:peripheral];
+                    didCallConnect = YES;
+                }
+                
+                if (CBPeripheralStateConnected == peripheral.state) {
+                    XCTAssert((CBPeripheralStateConnected == peripheral.state), @"");
+                    // dereference the pointer to set the BOOL value
+                    *didFinish = YES;
+                }
             }
         }
     };
