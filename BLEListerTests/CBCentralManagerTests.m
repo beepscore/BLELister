@@ -87,6 +87,7 @@
 }
  */
 
+# pragma mark - test retrievePeripheral
 - (void)retrievePeripheral:(NSString *)peripheralKey {
 
     // CBCentralManager wants a delegate that implements centralManagerDidUpdateState:
