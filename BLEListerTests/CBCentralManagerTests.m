@@ -12,8 +12,6 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "BSBleConstants.h"
 #import "BSJSONParser.h"
-#import "BSLeDiscovery.h"
-#import "BSLeDiscovery_Private.h"
 
 @interface CBCentralManagerTests : XCTestCase
 @property (strong, nonatomic) CBCentralManager *centralManager;
