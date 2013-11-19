@@ -306,6 +306,8 @@ didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
     [self.notificationCenter postNotificationName:kBleDiscoveryDidConnectPeripheralNotification
                                            object:self
                                          userInfo:userInfo];
+    
+    // TODO: get services for this peripheral
     /*
      LeTemperatureAlarmService	*service	= nil;
 
