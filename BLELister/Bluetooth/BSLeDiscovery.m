@@ -139,8 +139,8 @@
 #pragma mark - Discovery
 - (void)scanForPeripheralsWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options
 {
-    //[self.centralManager safeScanForPeripheralsWithServices:serviceUUIDs options:options];
-    [self.centralManager scanForPeripheralsWithServices:serviceUUIDs options:options];
+    //[self.centralManager scanForPeripheralsWithServices:serviceUUIDs options:options];
+    [self.centralManager safeScanForPeripheralsWithServices:serviceUUIDs options:options];
 }
 
 - (void) startScanningForUUIDString:(NSString *)uuidString
@@ -152,12 +152,10 @@
         // BLE requires device, not simulator
         // If running simulator, app crashes here with "bad access".
         // Also Apple says services argument nil works, but is not recommended.
-        //[self.centralManager safeScanForPeripheralsWithServices:nil options:options];
-        [self.centralManager scanForPeripheralsWithServices:nil options:options];
+        [self.centralManager safeScanForPeripheralsWithServices:nil options:options];
     } else {
         CBUUID *uuid = [CBUUID UUIDWithString:uuidString];
         NSArray *uuidArray = @[uuid];
-        //[self.centralManager safeScanForPeripheralsWithServices:uuidArray options:options];
 
         // NOTE: scanForPeripheralsWithServices:options:
         // services is array of CBUUID not NSUUID
@@ -165,7 +163,7 @@
         // are allowed to scan while backgrounded, with two caveats:
         // the scan must specify one or more service types in serviceUUIDs,
         // and the CBCentralManagerScanOptionAllowDuplicatesKey scan option will be ignored.
-        [self.centralManager scanForPeripheralsWithServices:uuidArray options:options];
+        [self.centralManager safeScanForPeripheralsWithServices:uuidArray options:options];
     }
 }
 
