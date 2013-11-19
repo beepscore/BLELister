@@ -6,12 +6,15 @@
 // This class tests Apple's CoreBluetooth framework class CBCentralManager.
 // In general, it's not necessary to test Apple's code.
 // The tests provide a way to check I'm using the class correctly.
+// Also test category CBCentralManager_BSSafe
 
 #import <XCTest/XCTest.h>
 #import "SHTestCaseAdditions.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "BSBleConstants.h"
 #import "BSJSONParser.h"
+#import "OCMock/OCMock.h"
+#import "CBCentralManager_BSSafe.h"
 
 @interface CBCentralManagerTests : XCTestCase
 @property (strong, nonatomic) CBCentralManager *centralManager;
@@ -168,6 +171,23 @@
                           peripheral.identifier,
                           @"expected peripheral identifier");
     XCTAssertNil(peripheral.name, @"expected peripheral name nil");
+}
+
+# pragma mark - test safeScan
+- (void)testSafeScanForPeripheralsWithServicesOptionsCentralManagerOn {
+
+    CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:nil];
+    id mockCentralManager = [OCMockObject partialMockForObject:centralManager];
+    // override readonly property state
+    [[[mockCentralManager stub] andReturnValue:OCMOCK_VALUE(CBCentralManagerStatePoweredOn)] state];
+    XCTAssertEqual(CBCentralManagerStatePoweredOn,
+                   [mockCentralManager state], @"expect test set up mock powered on");
+
+    [[mockCentralManager expect] scanForPeripheralsWithServices:OCMOCK_ANY
+                                                            options:OCMOCK_ANY];
+    [mockCentralManager safeScanForPeripheralsWithServices:OCMOCK_ANY
+                                               options:OCMOCK_ANY];
+    [mockCentralManager verify];
 }
 
 @end
