@@ -139,7 +139,6 @@
 #pragma mark - Discovery
 - (void)scanForPeripheralsWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options
 {
-    //[self.centralManager scanForPeripheralsWithServices:serviceUUIDs options:options];
     [self.centralManager safeScanForPeripheralsWithServices:serviceUUIDs options:options];
 }
 
