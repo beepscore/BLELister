@@ -174,6 +174,23 @@
 }
 
 # pragma mark - test safeScan
+- (void)testSafeScanForPeripheralsWithServicesOptionsCentralManagerOff {
+
+    CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:nil];
+    id mockCentralManager = [OCMockObject partialMockForObject:centralManager];
+    // override readonly property state
+    [[[mockCentralManager stub] andReturnValue:OCMOCK_VALUE(CBCentralManagerStatePoweredOff)] state];
+    XCTAssertEqual(CBCentralManagerStatePoweredOff,
+                   [mockCentralManager state], @"expect test set up mock powered off");
+
+    // http://ocmock.org/features/
+    [[mockCentralManager reject] scanForPeripheralsWithServices:OCMOCK_ANY
+                                                            options:OCMOCK_ANY];
+    [mockCentralManager safeScanForPeripheralsWithServices:OCMOCK_ANY
+                                               options:OCMOCK_ANY];
+    [mockCentralManager verify];
+}
+
 - (void)testSafeScanForPeripheralsWithServicesOptionsCentralManagerOn {
 
     CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:nil];
