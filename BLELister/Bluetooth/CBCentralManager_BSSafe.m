@@ -15,6 +15,8 @@
 {
     if(CBCentralManagerStatePoweredOn == self.state) {
         [self scanForPeripheralsWithServices:serviceUUIDs options:options];
+    } else {
+        DDLogVerbose(@"CBCentralManager not powered on, didn't scan.");
     }
 }
 
