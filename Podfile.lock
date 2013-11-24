@@ -5,14 +5,21 @@ PODS:
   - CocoaLumberjack/Core (1.6.3)
   - CocoaLumberjack/Extensions (1.6.3):
     - CocoaLumberjack/Core
+  - Kiwi/ARC (2.2.3)
+  - Kiwi/NonARC (2.2.3)
+  - Kiwi/XCTest (2.2.3):
+    - Kiwi/ARC
+    - Kiwi/NonARC
   - SHTestCaseAdditions (1.2.1)
 
 DEPENDENCIES:
   - CocoaLumberjack (~> 1.6)
+  - Kiwi/XCTest
   - SHTestCaseAdditions (~> 1.2.1)
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 0af89e0de15835a499fcc6ee5e0b6d396bc95976
+  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
   SHTestCaseAdditions: 0db8321846d0240ca90ab497c10b6800e5954f7e
 
 COCOAPODS: 0.28.0
