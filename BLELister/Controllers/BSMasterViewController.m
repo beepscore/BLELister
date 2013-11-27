@@ -44,6 +44,11 @@
     [self scanForPeripherals];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
 #pragma mark - Memory management
 - (void)didReceiveMemoryWarning
 {
@@ -100,6 +105,7 @@
 
     CBPeripheral *peripheral = _objects[indexPath.row];
     cell.textLabel.text = [peripheral name];
+    cell.detailTextLabel.text = [[peripheral RSSI] description];
     return cell;
 }
 
