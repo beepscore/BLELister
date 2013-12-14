@@ -27,7 +27,7 @@
  instantiates property connectedServices to empty mutable array.
  sets property self.notificationCenter to [NSNotificationCenter defaultCenter]
  */
-+ (id) sharedInstance;
++ (instancetype) sharedInstance;
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
 

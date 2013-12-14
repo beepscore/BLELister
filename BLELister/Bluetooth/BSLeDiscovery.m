@@ -16,7 +16,7 @@
 @implementation BSLeDiscovery
 
 // http://stackoverflow.com/questions/5720029/create-singleton-using-gcds-dispatch-once-in-objective-c
-+ (id)sharedInstance {
++ (instancetype)sharedInstance {
     static dispatch_once_t once;
     static id sharedInstance;
     dispatch_once(&once, ^{
@@ -44,10 +44,10 @@
 
 #pragma mark - Initializers
 // designated initializer
-- (id)initWithCentralManager:(CBCentralManager *)aCentralManager
-            foundPeripherals:(NSMutableArray *)aFoundPeripherals
-           connectedServices:(NSMutableArray *)aConnectedServices
-          notificationCenter:(NSNotificationCenter *)aNotificationCenter {
+- (instancetype)initWithCentralManager:(CBCentralManager *)aCentralManager
+                      foundPeripherals:(NSMutableArray *)aFoundPeripherals
+                     connectedServices:(NSMutableArray *)aConnectedServices
+                    notificationCenter:(NSNotificationCenter *)aNotificationCenter {
 
     // call super's designated intializer
     self = [super init];
@@ -62,7 +62,7 @@
 }
 
 // override superclass' designated initializer. Ref Hillegass pg 57
-- (id) init {
+- (instancetype) init {
     // call designated initializer
     return [self initWithCentralManager:nil
                        foundPeripherals:[[NSMutableArray alloc] init]

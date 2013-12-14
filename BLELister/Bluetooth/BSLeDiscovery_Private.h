@@ -42,9 +42,9 @@
  sets property self.notificationCenter
  @return a BSLeDiscovery, generally used as a singleton
  */
-- (id)initWithCentralManager:(CBCentralManager *)aCentralManager
-            foundPeripherals:(NSMutableArray *)aFoundPeripherals
-           connectedServices:(NSMutableArray *)aConnectedServices
-          notificationCenter:(NSNotificationCenter *)aNotificationCenter;
+- (instancetype)initWithCentralManager:(CBCentralManager *)aCentralManager
+                      foundPeripherals:(NSMutableArray *)aFoundPeripherals
+                     connectedServices:(NSMutableArray *)aConnectedServices
+                    notificationCenter:(NSNotificationCenter *)aNotificationCenter;
 
 @end
