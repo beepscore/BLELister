@@ -306,24 +306,9 @@ didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
     [self.notificationCenter postNotificationName:kBleDiscoveryDidConnectPeripheralNotification
                                            object:self
                                          userInfo:userInfo];
-    
-    // TODO: get services for this peripheral
-    /*
-     LeTemperatureAlarmService	*service	= nil;
-
-    // Create a service instance
-    service = [[[LeTemperatureAlarmService alloc] initWithPeripheral:peripheral controller:peripheralDelegate] autorelease];
-    [service start];
-
-    if (![connectedServices containsObject:service])
-              [connectedServices addObject:service];
-
-    if ([foundPeripherals containsObject:peripheral])
-          [foundPeripherals removeObject:peripheral];
-
-    [peripheralDelegate alarmServiceDidChangeStatus:service];
-    [discoveryDelegate discoveryDidRefresh];
-    */
+    [peripheral setDelegate:self];
+    // discoverServices calls delegate method peripheral:didDiscoverServices:
+    [peripheral discoverServices:nil];
 }
 
 - (void)centralManager:(CBCentralManager *)central
@@ -348,36 +333,83 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
     [self.notificationCenter postNotificationName:kBleDiscoveryDidDisconnectPeripheralNotification
                                            object:self
                                          userInfo:userInfo];
-    /*
-     LeTemperatureAlarmService	*service	= nil;
-
-    for (service in connectedServices) {
-        if ([service peripheral] == peripheral) {
-            [connectedServices removeObject:service];
-            [peripheralDelegate alarmServiceDidChangeStatus:service];
-            break;
-        }
-    }
-
-    [discoveryDelegate discoveryDidRefresh];
-     */
 }
 
 - (void) clearDevices
 {
     [self.foundPeripherals removeAllObjects];
-
-    /*
-    LeTemperatureAlarmService *service;
-    for (service in connectedServices) {
-        [service reset];
-    }
-    */
+    // TODO: reset each service before removing it? Reference Apple TemperatureSensor project
     [self.connectedServices removeAllObjects];
 }
 
 #pragma mark - CBPeripheralDelegate
 // CBPeripheralDelegate has no required methods
 // https://developer.apple.com/library/ios/documentation/CoreBluetooth/Reference/CBPeripheralDelegate_Protocol/translated_content/CBPeripheralDelegate.html
+
+- (void)peripheral:(CBPeripheral *)peripheral
+didDiscoverServices:(NSError *)error
+{
+    DDLogVerbose(@"%@", peripheral);
+    if (error) {
+        DDLogVerbose(@"%@", error);
+    } else {
+        
+        for (CBService *service in peripheral.services) {
+            if (![self.connectedServices containsObject:service]) {
+                DDLogVerbose(@"service.UUID %@", service.UUID);
+                [self.connectedServices addObject:service];
+                
+                // discoverCharacteristics:forService: calls delegate method
+                // peripheral:didDiscoverCharacteristicsForService:error:
+                [peripheral discoverCharacteristics:nil forService:service];
+            }
+        }
+    }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
+didDiscoverCharacteristicsForService:(CBService *)service
+             error:(NSError *)error
+{
+    DDLogVerbose(@"peripheral %@", peripheral);
+    DDLogVerbose(@"service %@", service);
+    if (error) {
+        DDLogVerbose(@"%@", error);
+    } else {
+        
+        for (CBCharacteristic *characteristic in service.characteristics)
+        {
+            DDLogVerbose(@"chacteristic.UUID %@", characteristic.UUID);
+            // readValueForCharacteristic: reads once, doesn't subscribe
+            // calls delegate method
+            // peripheral:didUpdateValueForCharacteristic:error:
+            [peripheral readValueForCharacteristic:characteristic];
+            
+            // TODO:
+            // setNotifyValue:forCharacteristic: requests peripheral start providing notifications
+            // calls delegate method
+            // peripheral:didUpdateNotificationStateForCharacteristic:error:
+            // if peripheral starts notifications, whenever value changes it calls
+            // peripheral:didUpdateValueForCharacteristic:error:
+            // e.g.
+            // [self.polarH7HRMPeripheral setNotifyValue:YES forCharacteristic:characteristic];
+        }
+    }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
+didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic
+             error:(NSError *)error
+{
+    DDLogVerbose(@"peripheral %@", peripheral);
+    DDLogVerbose(@"chacteristic %@", characteristic);
+    if (error) {
+        // Some characteristics aren't readable, give error
+        // Error Domain=CBATTErrorDomain Code=2 "Reading is not permitted."
+        DDLogVerbose(@"%@", error);
+    } else {
+        DDLogVerbose(@"value %@", [characteristic value]);
+    }
+}
 
 @end
