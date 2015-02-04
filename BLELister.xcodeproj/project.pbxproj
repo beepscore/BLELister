@@ -642,6 +642,7 @@
 				HEADER_SEARCH_PATHS = "${inherited) $(SRCROOT)/OCMock/Source";
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-force_load",
 					"\"$(BUILT_PRODUCTS_DIR)/libOCMock.a\"",
 					"-ObjC",
@@ -670,6 +671,7 @@
 				HEADER_SEARCH_PATHS = "${inherited) $(SRCROOT)/OCMock/Source";
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-force_load",
 					"\"$(BUILT_PRODUCTS_DIR)/libOCMock.a\"",
 					"-ObjC",
