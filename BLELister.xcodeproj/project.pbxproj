@@ -57,8 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D3E5DFEA32A44B6A234F4A0 /* Pods-BLEListerTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEListerTests.xcconfig"; path = "Pods/Pods-BLEListerTests.xcconfig"; sourceTree = "<group>"; };
-		57236C266D374FFC906F21A2 /* Pods-BLELister.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLELister.xcconfig"; path = "Pods/Pods-BLELister.xcconfig"; sourceTree = "<group>"; };
+		0D6A6C1E4D51D846A876359B /* Pods-BLELister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLELister.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLELister/Pods-BLELister.debug.xcconfig"; sourceTree = "<group>"; };
+		28CA7B36C51E645AE876B421 /* Pods-BLEListerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEListerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLEListerTests/Pods-BLEListerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		67574C3EF1A979009C31F554 /* Pods-BLEListerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEListerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLEListerTests/Pods-BLEListerTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E171F48B2E7509FF4BB007E /* Pods-BLELister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLELister.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLELister/Pods-BLELister.release.xcconfig"; sourceTree = "<group>"; };
 		C77D51C1FA1A477C99FA184A /* libPods-BLELister.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BLELister.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE408929182CCCC700643E77 /* CBCentralManager_BSSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBCentralManager_BSSafe.h; path = Bluetooth/CBCentralManager_BSSafe.h; sourceTree = "<group>"; };
 		DE40892A182CCCC700643E77 /* CBCentralManager_BSSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBCentralManager_BSSafe.m; path = Bluetooth/CBCentralManager_BSSafe.m; sourceTree = "<group>"; };
@@ -174,8 +176,7 @@
 				DEE990EF17F543F70041CAB6 /* BLEListerTests */,
 				DEE990C317F543F70041CAB6 /* Frameworks */,
 				DEE990C217F543F70041CAB6 /* Products */,
-				1D3E5DFEA32A44B6A234F4A0 /* Pods-BLEListerTests.xcconfig */,
-				57236C266D374FFC906F21A2 /* Pods-BLELister.xcconfig */,
+				F6601EA1D863EAF25FDE06E1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -264,6 +265,17 @@
 				DEF56FDE17F952A800A99FF2 /* stubArray.json */,
 			);
 			path = TestResources;
+			sourceTree = "<group>";
+		};
+		F6601EA1D863EAF25FDE06E1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0D6A6C1E4D51D846A876359B /* Pods-BLELister.debug.xcconfig */,
+				9E171F48B2E7509FF4BB007E /* Pods-BLELister.release.xcconfig */,
+				28CA7B36C51E645AE876B421 /* Pods-BLEListerTests.debug.xcconfig */,
+				67574C3EF1A979009C31F554 /* Pods-BLEListerTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,7 +423,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-BLELister-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BLELister/Pods-BLELister-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EE81B26360B64124A854DC8C /* Copy Pods Resources */ = {
@@ -426,7 +438,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-BLEListerTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BLEListerTests/Pods-BLEListerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -583,13 +595,14 @@
 		};
 		DEE990FA17F543F70041CAB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57236C266D374FFC906F21A2 /* Pods-BLELister.xcconfig */;
+			baseConfigurationReference = 0D6A6C1E4D51D846A876359B /* Pods-BLELister.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "BLELister/BLELister-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -598,13 +611,14 @@
 		};
 		DEE990FB17F543F70041CAB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57236C266D374FFC906F21A2 /* Pods-BLELister.xcconfig */;
+			baseConfigurationReference = 9E171F48B2E7509FF4BB007E /* Pods-BLELister.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "BLELister/BLELister-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -613,7 +627,7 @@
 		};
 		DEE990FD17F543F70041CAB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D3E5DFEA32A44B6A234F4A0 /* Pods-BLEListerTests.xcconfig */;
+			baseConfigurationReference = 28CA7B36C51E645AE876B421 /* Pods-BLEListerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BLELister.app/BLELister";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -625,12 +639,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers\"",
-					"\"${PODS_ROOT}/Headers/CocoaLumberjack\"",
-					"\"${PODS_ROOT}/Headers/SHTestCaseAdditions\"",
-					"$(SRCROOT)/OCMock/Source",
-				);
+				HEADER_SEARCH_PATHS = "${inherited) $(SRCROOT)/OCMock/Source";
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-force_load",
@@ -647,7 +656,7 @@
 		};
 		DEE990FE17F543F70041CAB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D3E5DFEA32A44B6A234F4A0 /* Pods-BLEListerTests.xcconfig */;
+			baseConfigurationReference = 67574C3EF1A979009C31F554 /* Pods-BLEListerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BLELister.app/BLELister";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -658,12 +667,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers\"",
-					"\"${PODS_ROOT}/Headers/CocoaLumberjack\"",
-					"\"${PODS_ROOT}/Headers/SHTestCaseAdditions\"",
-					"$(SRCROOT)/OCMock/Source",
-				);
+				HEADER_SEARCH_PATHS = "${inherited) $(SRCROOT)/OCMock/Source";
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"-force_load",
