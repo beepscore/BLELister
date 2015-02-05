@@ -32,7 +32,6 @@
 		DEE990DE17F543F70041CAB6 /* BSMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */; };
 		DEE990E117F543F70041CAB6 /* BSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990E017F543F70041CAB6 /* BSDetailViewController.m */; };
 		DEE990E317F543F70041CAB6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEE990E217F543F70041CAB6 /* Images.xcassets */; };
-		DEE990EA17F543F70041CAB6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990E917F543F70041CAB6 /* XCTest.framework */; };
 		DEE990EB17F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
 		DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
 		DEE990F417F543F70041CAB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE990F217F543F70041CAB6 /* InfoPlist.strings */; };
@@ -96,7 +95,6 @@
 		DEE990E017F543F70041CAB6 /* BSDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BSDetailViewController.m; path = Controllers/BSDetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DEE990E217F543F70041CAB6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DEE990E817F543F70041CAB6 /* BLEListerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLEListerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DEE990E917F543F70041CAB6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DEE990F117F543F70041CAB6 /* BLEListerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BLEListerTests-Info.plist"; sourceTree = "<group>"; };
 		DEE990F317F543F70041CAB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSLeDiscoveryTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -129,7 +127,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEDACD7618093633003CC569 /* libOCMock.a in Frameworks */,
-				DEE990EA17F543F70041CAB6 /* XCTest.framework in Frameworks */,
 				DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */,
 				DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */,
 				DEE990EB17F543F70041CAB6 /* Foundation.framework in Frameworks */,
@@ -197,7 +194,6 @@
 				DEE990C417F543F70041CAB6 /* Foundation.framework */,
 				DEE990C617F543F70041CAB6 /* CoreGraphics.framework */,
 				DEE990C817F543F70041CAB6 /* UIKit.framework */,
-				DEE990E917F543F70041CAB6 /* XCTest.framework */,
 				F397F7B7489349B99960CC9F /* libPods-BLEListerTests.a */,
 				C77D51C1FA1A477C99FA184A /* libPods-BLELister.a */,
 			);
