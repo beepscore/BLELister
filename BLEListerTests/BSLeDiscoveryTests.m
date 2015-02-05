@@ -459,18 +459,15 @@
                           connectedServices:nil
                           notificationCenter:mockNotificationCenter];
 
-    // Instantiating a CBPeripheral made program crash.
-    // So use an NSObject and cast it.
-    // CBPeripheral *fakePeripheral = [[CBPeripheral alloc] init];
-    NSObject *fakePeripheral = [[NSObject alloc] init];
-    NSDictionary *fakeUserInfo = @{ @"peripheral" : fakePeripheral};
+    CBPeripheral *peripheral = [[CBPeripheral alloc] init];
+    NSDictionary *fakeUserInfo = @{ @"peripheral" : peripheral};
     [[mockNotificationCenter expect]
      postNotificationName:kBleDiscoveryDidConnectPeripheralNotification
      object:self.bsLeDiscovery
      userInfo:fakeUserInfo];
 
     [self.bsLeDiscovery centralManager:(CBCentralManager *)stubCentralManager
-                  didConnectPeripheral:(CBPeripheral *)fakePeripheral];
+                  didConnectPeripheral:peripheral];
 
     // Verify all stubbed or expected methods were called.
     [mockNotificationCenter verify];
