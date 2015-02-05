@@ -241,7 +241,7 @@
         
         DDLogVerbose(@"In while loop.");
         DDLogVerbose(@"foundPeripherals %@", bsLeDiscovery.foundPeripherals);
-        DDLogVerbose(@"%@ state %d", bsLeDiscovery.centralManager,
+        DDLogVerbose(@"%@ CBCentralManagerState %ld", bsLeDiscovery.centralManager,
               bsLeDiscovery.centralManager.state);
 
         if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
@@ -306,7 +306,7 @@
         
         if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
             DDLogVerbose(@"not powered on");
-            DDLogVerbose(@"%@ state %d", bsLeDiscovery.centralManager,
+            DDLogVerbose(@"%@ CBCentralManagerState %ld", bsLeDiscovery.centralManager,
                          bsLeDiscovery.centralManager.state);
         } else {
             // centralManager is powered on, ok to scan and retrieve

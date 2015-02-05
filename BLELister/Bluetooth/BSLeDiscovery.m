@@ -218,7 +218,7 @@
     static CBCentralManagerState previousState = -1;
 
     // TODO: Do we need to get main queue, in case centralManager is using non-main queue?
-    DDLogVerbose(@"%@ state %d", central, central.state);
+    DDLogVerbose(@"%@ CBCentralManagerState %ld", central, central.state);
 
     switch ([central state]) {
 

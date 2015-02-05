@@ -50,7 +50,7 @@
     
     while ( (CBCentralManagerStatePoweredOn != centralManager.state)
            && [[timeoutDate laterDate:[NSDate date]] isEqualToDate:timeoutDate]) {
-        DDLogVerbose(@"%@ state: %d", centralManager, centralManager.state);
+        DDLogVerbose(@"%@ CBCentralManagerState: %ld", centralManager, centralManager.state);
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
     }
     XCTAssertEqual(CBCentralManagerStatePoweredOn, centralManager.state,
