@@ -645,8 +645,6 @@
 					"-force_load",
 					"\"$(BUILT_PRODUCTS_DIR)/libOCMock.a\"",
 					"-ObjC",
-					"-framework",
-					SenTestingKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -677,8 +675,6 @@
 					"-force_load",
 					"\"$(BUILT_PRODUCTS_DIR)/libOCMock.a\"",
 					"-ObjC",
-					"-framework",
-					SenTestingKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
