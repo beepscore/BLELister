@@ -639,7 +639,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				HEADER_SEARCH_PATHS = "${inherited) $(SRCROOT)/OCMock/Source";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/ocmock/Source/**",
+					"${inherited)",
+				);
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -668,7 +671,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BLELister/BLELister-Prefix.pch";
-				HEADER_SEARCH_PATHS = "${inherited) $(SRCROOT)/OCMock/Source";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/ocmock/Source/**",
+					"${inherited)",
+				);
 				INFOPLIST_FILE = "BLEListerTests/BLEListerTests-Info.plist";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
