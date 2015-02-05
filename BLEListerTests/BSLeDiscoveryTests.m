@@ -203,8 +203,6 @@
 }
  */
 
-// This test assumes iOS device will find at least one peripheral
-// and the first is a Red Bear Lab Ble Shield
 // This test is not asynchronous.
 - (void)testFoundPeripherals {
 
@@ -228,8 +226,6 @@
     bsLeDiscovery.centralManager = centralManager;
 
     NSDictionary *bleDevices = [BSJSONParser dictFromJSONFile:@"bleDevices"];
-    NSString *expectedIdentifierString = bleDevices[@"redbearshield"][@"identifier"];
-    NSString *expectedName = bleDevices[@"redbearshield"][@"name"];
     // http://stackoverflow.com/questions/10178293/how-to-get-list-of-available-bluetooth-devices?rq=1
     
     BOOL didStartScanning = NO;
@@ -262,12 +258,30 @@
     }
     CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
 
-    XCTAssertEqualObjects(expectedIdentifierString,
-                          [peripheral.identifier UUIDString],
-                          @"expected first found peripheral UUIDString");
-    XCTAssertEqualObjects(expectedName,
-                          peripheral.name,
-                          @"expected first found peripheral name");
+    // Assume iOS device will find at least one peripheral
+    XCTAssertNotNil(peripheral);
+
+    // Assume the first peripheral is in this predefined list
+    bool foundOne = ([bleDevices[@"one"][@"identifier"]
+                      isEqualToString:[peripheral.identifier UUIDString]] &&
+                     [bleDevices[@"one"][@"name"]
+                      isEqualToString:peripheral.name]);
+    
+    bool foundRaspberryPi = ([bleDevices[@"raspberry_pi"][@"identifier"]
+                              isEqualToString:[peripheral.identifier UUIDString]] &&
+                             [[NSNull null] isEqual:peripheral.name]);
+    
+    bool foundRedBear = ([bleDevices[@"redbearshield"][@"identifier"]
+                          isEqualToString:[peripheral.identifier UUIDString]] &&
+                         [bleDevices[@"redbearshield"][@"name"]
+                          isEqualToString:peripheral.name]);
+    
+    bool foundSensorTag = ([bleDevices[@"sensortag"][@"identifier"]
+                            isEqualToString:[peripheral.identifier UUIDString]] &&
+                           [bleDevices[@"sensortag"][@"name"]
+                            isEqualToString:peripheral.name]);
+    
+    XCTAssertTrue(foundOne || foundRaspberryPi || foundRedBear || foundSensorTag);
 }
 
 #pragma mark - test Connect/Disconnect
