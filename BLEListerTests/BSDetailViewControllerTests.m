@@ -18,28 +18,24 @@
 
 @implementation BSDetailViewControllerTests
 
-- (void)setUp
-{
+- (void)setUp {
     [super setUp];
     // Put setup code here; it will be run once, before the first test case.
 }
 
-- (void)tearDown
-{
+- (void)tearDown {
     // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testViewDidLoadSetsLeDiscovery
-{
+- (void)testViewDidLoadSetsLeDiscovery {
     BSDetailViewController *vc = [[BSDetailViewController alloc] init];
     XCTAssertNil(vc.leDiscovery, @"expected leDiscovery nil");
     [vc viewDidLoad];
     XCTAssertNotNil(vc.leDiscovery, @"expected leDiscovery");
 }
 
-- (void)testViewDidLoadSetsNotificationCenter
-{
+- (void)testViewDidLoadSetsNotificationCenter {
     BSDetailViewController *vc = [[BSDetailViewController alloc] init];
     XCTAssertNil(vc.notificationCenter, @"expected notificationCenter nil");
     [vc viewDidLoad];
@@ -57,8 +53,7 @@
   - It's cumbersome for the caller to pass the selector argument
   - compiler warns selector may create a leak
  */
-- (void)checkDiscoveryNotificationCallsUpdateUIOnMainQueue:(BSBLENotificationBlock)aNotificationBlock
-{
+- (void)checkDiscoveryNotificationCallsUpdateUIOnMainQueue:(BSBLENotificationBlock)aNotificationBlock {
 
     BSDetailViewController *vc = [[BSDetailViewController alloc] init];
     // Use mock to avoid warning
@@ -91,8 +86,7 @@
     [mockDetailViewController verify];
 }
 
-- (void)testDiscoveryDidConnectPeripheralWithNotificationCallsUpdateUIOnMainQueue
-{
+- (void)testDiscoveryDidConnectPeripheralWithNotificationCallsUpdateUIOnMainQueue {
     BSBLENotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
         [aMock discoveryDidConnectPeripheralWithNotification:aNotification];
     };
@@ -100,8 +94,7 @@
     [self checkDiscoveryNotificationCallsUpdateUIOnMainQueue:notificationBlock];
 }
 
-- (void)testDiscoveryDidDisconnectPeripheralWithNotificationCallsUpdateUIOnMainQueue
-{
+- (void)testDiscoveryDidDisconnectPeripheralWithNotificationCallsUpdateUIOnMainQueue {
     BSBLENotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
         [aMock discoveryDidDisconnectPeripheralWithNotification:aNotification];
     };

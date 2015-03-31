@@ -11,8 +11,7 @@
 @implementation CBCentralManager (BSSafe)
 
 - (void)safeScanForPeripheralsWithServices:(NSArray *)serviceUUIDs
-                                   options:(NSDictionary *)options
-{
+                                   options:(NSDictionary *)options {
     if(CBCentralManagerStatePoweredOn == self.state) {
         [self scanForPeripheralsWithServices:serviceUUIDs options:options];
     } else {

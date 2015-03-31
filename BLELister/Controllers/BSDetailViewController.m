@@ -21,8 +21,7 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem
-{
+- (void)setDetailItem:(id)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
         
@@ -35,8 +34,7 @@
     }        
 }
 
-- (void)configureView
-{
+- (void)configureView {
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
@@ -46,8 +44,7 @@
     }
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.leDiscovery = [BSLeDiscovery sharedInstance];
@@ -59,14 +56,12 @@
     [self configureView];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [self.notificationCenter removeObserver:self
                                        name:kBleDiscoveryDidConnectPeripheralNotification
                                      object:nil];
@@ -80,8 +75,7 @@
 - (void)splitViewController:(UISplitViewController *)splitController
      willHideViewController:(UIViewController *)viewController
           withBarButtonItem:(UIBarButtonItem *)barButtonItem
-       forPopoverController:(UIPopoverController *)popoverController
-{
+       forPopoverController:(UIPopoverController *)popoverController {
     barButtonItem.title = NSLocalizedString(@"Master", @"Master");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
@@ -89,8 +83,7 @@
 
 - (void)splitViewController:(UISplitViewController *)splitController
      willShowViewController:(UIViewController *)viewController
-  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
@@ -98,18 +91,17 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
     return 5;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
     
     switch (indexPath.row) {
@@ -150,8 +142,7 @@
     return cell;
 }
 
-- (NSString *)peripheralStateStringForValue:(CBPeripheralState)state
-{
+- (NSString *)peripheralStateStringForValue:(CBPeripheralState)state {
     NSString *stateString = @"";
     switch (state) {
 
@@ -171,8 +162,7 @@
     return stateString;
 }
 
-- (NSString *)connectLabelTextForState:(CBPeripheralState)state
-{
+- (NSString *)connectLabelTextForState:(CBPeripheralState)state {
     NSString *connectLabelText = @"";
     switch (state) {
 
@@ -193,8 +183,8 @@
 }
 
 #pragma mark - UITableViewDelegate
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.tableView cellForRowAtIndexPath:indexPath] == self.connectCell) {
 
         if (CBPeripheralStateDisconnected == self.detailItem.state) {
@@ -209,20 +199,17 @@
 
 #pragma mark -
 - (void)connect:(BSLeDiscovery *)aLeDiscovery
-     peripheral:(CBPeripheral *)aPeripheral;
-{
+     peripheral:(CBPeripheral *)aPeripheral {
     [aLeDiscovery connectPeripheral:aPeripheral];
 }
 
 - (void)disconnect:(BSLeDiscovery *)aLeDiscovery
-     peripheral:(CBPeripheral *)aPeripheral;
-{
+     peripheral:(CBPeripheral *)aPeripheral {
     [aLeDiscovery disconnectPeripheral:aPeripheral];
 }
 
 #pragma mark - Register for notifications
-- (void)registerForBleDiscoveryDidConnectPeripheralNotification
-{
+- (void)registerForBleDiscoveryDidConnectPeripheralNotification {
     [self.notificationCenter
      addObserver:self
      selector:@selector(discoveryDidConnectPeripheralWithNotification:)
@@ -230,8 +217,7 @@
      object:nil];
 }
 
-- (void)registerForBleDiscoveryDidDisconnectPeripheralNotification
-{
+- (void)registerForBleDiscoveryDidDisconnectPeripheralNotification {
     [self.notificationCenter
      addObserver:self
      selector:@selector(discoveryDidDisconnectPeripheralWithNotification:)
@@ -240,8 +226,7 @@
 }
 
 #pragma mark - Notification response methods
-- (void)updateUIOnMainQueue
-{
+- (void)updateUIOnMainQueue {
     // Get main queue before updating UI.
     dispatch_async(dispatch_get_main_queue(), ^{
         // reloadData will get the current detailItem.state
@@ -249,8 +234,7 @@
     });
 }
 
-- (void)discoveryDidConnectPeripheralWithNotification:(NSNotification *)notification
-{
+- (void)discoveryDidConnectPeripheralWithNotification:(NSNotification *)notification {
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
         // Notification is about self's peripheral, not some other peripheral
@@ -260,8 +244,7 @@
     }
 }
 
-- (void)discoveryDidDisconnectPeripheralWithNotification:(NSNotification *)notification
-{
+- (void)discoveryDidDisconnectPeripheralWithNotification:(NSNotification *)notification {
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
         // Notification is about self's peripheral, not some other peripheral

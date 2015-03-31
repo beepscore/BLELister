@@ -73,8 +73,7 @@
 #pragma mark - Restoring
 // Settings
 // Reload from file
-- (void) loadSavedDevices
-{
+- (void) loadSavedDevices {
     NSArray	*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:kStoredDevices];
 
     if (![storedDevices isKindOfClass:[NSArray class]]) {
@@ -97,9 +96,7 @@
     }
 }
 
-
-- (void) addSavedDevice:(CBUUID *)uuid
-{
+- (void) addSavedDevice:(CBUUID *)uuid {
     NSArray			*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:kStoredDevices];
     NSMutableArray	*newDevices		= nil;
 
@@ -118,9 +115,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-
-- (void) removeSavedDevice:(CBUUID *)uuid
-{
+- (void) removeSavedDevice:(CBUUID *)uuid {
     NSArray			*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:kStoredDevices];
     NSMutableArray	*newDevices		= nil;
 
@@ -137,13 +132,12 @@
 }
 
 #pragma mark - Discovery
-- (void)scanForPeripheralsWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options
-{
+- (void)scanForPeripheralsWithServices:(NSArray *)serviceUUIDs
+                               options:(NSDictionary *)options {
     [self.centralManager safeScanForPeripheralsWithServices:serviceUUIDs options:options];
 }
 
-- (void) startScanningForUUIDString:(NSString *)uuidString
-{
+- (void) startScanningForUUIDString:(NSString *)uuidString {
     NSDictionary *options = @{
                               CBCentralManagerScanOptionAllowDuplicatesKey:[NSNumber numberWithBool:NO]
                               };
@@ -166,16 +160,15 @@
     }
 }
 
-- (void) stopScanning
-{
+- (void) stopScanning {
     [self.centralManager stopScan];
 }
 
 - (void)centralManager:(CBCentralManager *)central
  didDiscoverPeripheral:(CBPeripheral *)peripheral
      advertisementData:(NSDictionary *)advertisementData
-                  RSSI:(NSNumber *)RSSI
-{
+                  RSSI:(NSNumber *)RSSI {
+
     if (![self.foundPeripherals containsObject:peripheral]) {
         [self.foundPeripherals addObject:peripheral];
         
@@ -196,16 +189,14 @@
     }
 }
 
-#pragma mark - Connection/Disconnection
-- (void) connectPeripheral:(CBPeripheral*)peripheral
-{
+#pragma mark - Connect/Disconnect
+- (void) connectPeripheral:(CBPeripheral*)peripheral {
     if (peripheral.state == CBPeripheralStateDisconnected) {
         [self.centralManager connectPeripheral:peripheral options:nil];
     }
 }
 
-- (void) disconnectPeripheral:(CBPeripheral*)peripheral
-{
+- (void) disconnectPeripheral:(CBPeripheral*)peripheral {
     [self.centralManager cancelPeripheralConnection:peripheral];
 }
 
@@ -213,8 +204,7 @@
 // https://developer.apple.com/library/ios/documentation/CoreBluetooth/Reference/CBCentralManagerDelegate_Protocol/translated_content/CBCentralManagerDelegate.html
 
 // CBCentralManagerDelegate required method
-- (void) centralManagerDidUpdateState:(CBCentralManager *)central
-{
+- (void) centralManagerDidUpdateState:(CBCentralManager *)central {
     static CBCentralManagerState previousState = -1;
 
     // TODO: Do we need to get main queue, in case centralManager is using non-main queue?
@@ -289,15 +279,14 @@
 
 - (void) centralManager:(CBCentralManager *)central
 didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
-                  error:(NSError *)error
-{
+                  error:(NSError *)error {
     /* Delete from plist. */
     [self removeSavedDevice:uuid];
 }
 
 - (void) centralManager:(CBCentralManager *)central
-   didConnectPeripheral:(CBPeripheral *)peripheral
-{
+   didConnectPeripheral:(CBPeripheral *)peripheral {
+
     if (![self.foundPeripherals containsObject:peripheral]) {
         [self.foundPeripherals addObject:peripheral];
     }
@@ -313,15 +302,15 @@ didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
 
 - (void)centralManager:(CBCentralManager *)central
 didFailToConnectPeripheral:(CBPeripheral *)peripheral
-                 error:(NSError *)error
-{
+                 error:(NSError *)error {
+
     DDLogVerbose(@"Attempted connection to peripheral %@ failed: %@", [peripheral name], [error localizedDescription]);
 }
 
 - (void)centralManager:(CBCentralManager *)central
 didDisconnectPeripheral:(CBPeripheral *)peripheral
-                 error:(NSError *)error
-{
+                 error:(NSError *)error {
+
     NSDictionary *userInfo = nil;
     if (!error) {
         // don't attempt to add nil object to dictionary
@@ -335,8 +324,7 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
                                          userInfo:userInfo];
 }
 
-- (void) clearDevices
-{
+- (void) clearDevices {
     [self.foundPeripherals removeAllObjects];
     // TODO: reset each service before removing it? Reference Apple TemperatureSensor project
     [self.connectedServices removeAllObjects];
@@ -347,8 +335,8 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
 // https://developer.apple.com/library/ios/documentation/CoreBluetooth/Reference/CBPeripheralDelegate_Protocol/translated_content/CBPeripheralDelegate.html
 
 - (void)peripheral:(CBPeripheral *)peripheral
-didDiscoverServices:(NSError *)error
-{
+didDiscoverServices:(NSError *)error {
+
     DDLogVerbose(@"%@", peripheral);
     if (error) {
         DDLogVerbose(@"%@", error);
@@ -369,8 +357,8 @@ didDiscoverServices:(NSError *)error
 
 - (void)peripheral:(CBPeripheral *)peripheral
 didDiscoverCharacteristicsForService:(CBService *)service
-             error:(NSError *)error
-{
+             error:(NSError *)error {
+
     DDLogVerbose(@"peripheral %@", peripheral);
     DDLogVerbose(@"service %@", service);
     if (error) {
@@ -399,8 +387,8 @@ didDiscoverCharacteristicsForService:(CBService *)service
 
 - (void)peripheral:(CBPeripheral *)peripheral
 didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic
-             error:(NSError *)error
-{
+             error:(NSError *)error {
+
     DDLogVerbose(@"peripheral %@", peripheral);
     DDLogVerbose(@"chacteristic %@", characteristic);
     if (error) {

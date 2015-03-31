@@ -10,8 +10,7 @@
 
 @implementation BSStubCBCentralManager
 
-- (NSArray *)retrieveConnectedPeripheralsWithServices:(NSArray *)serviceUUIDs
-{
+- (NSArray *)retrieveConnectedPeripheralsWithServices:(NSArray *)serviceUUIDs {
     return nil;
 }
 

@@ -19,20 +19,17 @@
 
 @implementation BSMasterViewControllerTests
 
-- (void)setUp
-{
+- (void)setUp {
     [super setUp];
     // Put setup code here; it will be run once, before the first test case.
 }
 
-- (void)tearDown
-{
+- (void)tearDown {
     // Put teardown code here; it will be run once, after the last test case.
     [super tearDown];
 }
 
-- (void)testViewDidLoadSetsLeDiscovery
-{
+- (void)testViewDidLoadSetsLeDiscovery {
     BSMasterViewController *vc = [[BSMasterViewController alloc] init];
     XCTAssertNil(vc.leDiscovery, @"expected leDiscovery nil");
     [vc viewDidLoad];
@@ -47,8 +44,7 @@
     //XCTAssertEqualObjects([BSLeDiscovery sharedInstance], vc.leDiscovery, @"expected leDiscovery");
 }
 
-- (void)testViewDidLoadSetsNotificationCenter
-{
+- (void)testViewDidLoadSetsNotificationCenter {
     BSMasterViewController *vc = [[BSMasterViewController alloc] init];
     XCTAssertNil(vc.notificationCenter, @"expected notificationCenter nil");
     [vc viewDidLoad];
@@ -58,8 +54,7 @@
                           @"expected viewDidLoad sets notificationCenter to defaultCenter");
 }
 
-- (void)checkDiscoveryNotificationCallsUpdateUIOnMainQueue:(BSBLENotificationBlock)aNotificationBlock
-{
+- (void)checkDiscoveryNotificationCallsUpdateUIOnMainQueue:(BSBLENotificationBlock)aNotificationBlock {
     BSMasterViewController *vc = [[BSMasterViewController alloc] init];
     id mockMasterViewController = [OCMockObject partialMockForObject:vc];
     NSNotification *notification = nil;
@@ -73,8 +68,7 @@
     [mockMasterViewController verify];
 }
 
-- (void)testDiscoveryDidRefreshWithNotificationCallsUpdateUIOnMainQueue
-{
+- (void)testDiscoveryDidRefreshWithNotificationCallsUpdateUIOnMainQueue {
     BSBLENotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
         [aMock discoveryDidRefreshWithNotification:aNotification];
     };

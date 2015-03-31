@@ -19,5 +19,7 @@
  Reference Apple documentation CBCentralManager class reference
  Before you call CBCentralManager methods, the state of the central manager object must be powered on.
 */
-- (void)safeScanForPeripheralsWithServices:(NSArray *)serviceUUIDs options:(NSDictionary *)options;
+- (void)safeScanForPeripheralsWithServices:(NSArray *)serviceUUIDs
+                                   options:(NSDictionary *)options;
+
 @end
