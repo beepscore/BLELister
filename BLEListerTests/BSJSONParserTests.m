@@ -114,9 +114,9 @@
     NSString *expectedString = @"{\"flex\":{\"identifier\":\"74451A09-E51B-5596-546C-C91A721EBC3D\",\"name\":\"Flex\"},\"one\":{\"identifier\":\"5FEA635E-4E9D-D84C-5713-4D004AABEFA3\",\"name\":\"One\"},\"raspberry_pi\":{\"identifier\":\"D2BD8809-5D04-9C44-650D-86E3A5CC3D82\",\"name\":null},\"redbearshield\":{\"identifier\":\"DDAB0207-5E10-2902-5B03-CA3F0F466B40\",\"name\":\"BLE Shield\"},\"sensortag\":{\"identifier\":\"B42E4E5D-B2D3-F03F-3139-7B735C8E8964\",\"name\":\"TI BLE Sensor Tag\"}}";
 
     NSString *actualString = [BSJSONParser JSONStringFromFile:@"bleDevices"];
-    DDLogVerbose(@"expectedString %@, length, %ld",
+    NSLog(@"expectedString %@, length, %ld",
                  expectedString, [expectedString length]);
-    DDLogVerbose(@"actualString %@, length %ld",
+    NSLog(@"actualString %@, length %ld",
                  actualString,[actualString length]);
     
     // Testing length checks two strings that appear similar except for newline at end.

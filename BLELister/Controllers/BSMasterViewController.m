@@ -179,11 +179,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void) discoveryDidRefreshWithNotification:(NSNotification *)notification {
-    DDLogVerbose(@"in BSMasterViewController discoveryDidRefreshWithNotification:");
-    DDLogVerbose(@"notification.object: %@", notification.object);
+    NSLog(@"in BSMasterViewController discoveryDidRefreshWithNotification:");
+    NSLog(@"notification.object: %@", notification.object);
 
     if (notification.userInfo) {
-        DDLogVerbose(@"notification.userInfo %@", notification.userInfo);
+        NSLog(@"notification.userInfo %@", notification.userInfo);
     }
     _objects = self.leDiscovery.foundPeripherals;
     // Notification may be from a background queue.
@@ -191,7 +191,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void) discoveryStatePoweredOff {
-    DDLogVerbose(@"discoveryStatePoweredOff");
+    NSLog(@"discoveryStatePoweredOff");
 }
 
 @end

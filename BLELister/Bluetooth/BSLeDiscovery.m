@@ -21,7 +21,7 @@
     static id sharedInstance;
     dispatch_once(&once, ^{
 
-        DDLogVerbose(@"This block should run only one time. &once: %p, once: %ld", &once, once);
+        NSLog(@"This block should run only one time. &once: %p, once: %ld", &once, once);
         
         // self isn't complete yet, so at first set CBCentralManagerDelegate to nil
         // later code should set delegate to self
@@ -35,8 +35,8 @@
                           connectedServices:[[NSMutableArray alloc] init]
                           notificationCenter:[NSNotificationCenter defaultCenter]];
         
-        DDLogVerbose(@"[[BSLeDiscovery sharedInstance] %@", sharedInstance);
-        DDLogVerbose(@"[[BSLeDiscovery sharedInstance] centralManager] %@",
+        NSLog(@"[[BSLeDiscovery sharedInstance] %@", sharedInstance);
+        NSLog(@"[[BSLeDiscovery sharedInstance] centralManager] %@",
               [sharedInstance centralManager]);
     });
     return sharedInstance;
@@ -77,7 +77,7 @@
     NSArray	*storedDevices	= [[NSUserDefaults standardUserDefaults] arrayForKey:kStoredDevices];
 
     if (![storedDevices isKindOfClass:[NSArray class]]) {
-        DDLogVerbose(@"No stored array to load");
+        NSLog(@"No stored array to load");
         return;
     }
 
@@ -101,7 +101,7 @@
     NSMutableArray	*newDevices		= nil;
 
     if (![storedDevices isKindOfClass:[NSArray class]]) {
-        DDLogVerbose(@"Can't find/create an array to store the uuid");
+        NSLog(@"Can't find/create an array to store the uuid");
         return;
     }
 
@@ -208,7 +208,7 @@
     static CBCentralManagerState previousState = -1;
 
     // TODO: Do we need to get main queue, in case centralManager is using non-main queue?
-    DDLogVerbose(@"%@ CBCentralManagerState %ld", central, central.state);
+    NSLog(@"%@ CBCentralManagerState %ld", central, central.state);
 
     switch ([central state]) {
 
@@ -304,7 +304,7 @@ didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
 didFailToConnectPeripheral:(CBPeripheral *)peripheral
                  error:(NSError *)error {
 
-    DDLogVerbose(@"Attempted connection to peripheral %@ failed: %@", [peripheral name], [error localizedDescription]);
+    NSLog(@"Attempted connection to peripheral %@ failed: %@", [peripheral name], [error localizedDescription]);
 }
 
 - (void)centralManager:(CBCentralManager *)central
@@ -337,14 +337,14 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
 - (void)peripheral:(CBPeripheral *)peripheral
 didDiscoverServices:(NSError *)error {
 
-    DDLogVerbose(@"%@", peripheral);
+    NSLog(@"%@", peripheral);
     if (error) {
-        DDLogVerbose(@"%@", error);
+        NSLog(@"%@", error);
     } else {
         
         for (CBService *service in peripheral.services) {
             if (![self.connectedServices containsObject:service]) {
-                DDLogVerbose(@"service.UUID %@", service.UUID);
+                NSLog(@"service.UUID %@", service.UUID);
                 [self.connectedServices addObject:service];
                 
                 // discoverCharacteristics:forService: calls delegate method
@@ -359,15 +359,15 @@ didDiscoverServices:(NSError *)error {
 didDiscoverCharacteristicsForService:(CBService *)service
              error:(NSError *)error {
 
-    DDLogVerbose(@"peripheral %@", peripheral);
-    DDLogVerbose(@"service %@", service);
+    NSLog(@"peripheral %@", peripheral);
+    NSLog(@"service %@", service);
     if (error) {
-        DDLogVerbose(@"%@", error);
+        NSLog(@"%@", error);
     } else {
         
         for (CBCharacteristic *characteristic in service.characteristics)
         {
-            DDLogVerbose(@"chacteristic.UUID %@", characteristic.UUID);
+            NSLog(@"chacteristic.UUID %@", characteristic.UUID);
             // readValueForCharacteristic: reads once, doesn't subscribe
             // calls delegate method
             // peripheral:didUpdateValueForCharacteristic:error:
@@ -389,14 +389,14 @@ didDiscoverCharacteristicsForService:(CBService *)service
 didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic
              error:(NSError *)error {
 
-    DDLogVerbose(@"peripheral %@", peripheral);
-    DDLogVerbose(@"chacteristic %@", characteristic);
+    NSLog(@"peripheral %@", peripheral);
+    NSLog(@"chacteristic %@", characteristic);
     if (error) {
         // Some characteristics aren't readable, give error
         // Error Domain=CBATTErrorDomain Code=2 "Reading is not permitted."
-        DDLogVerbose(@"%@", error);
+        NSLog(@"%@", error);
     } else {
-        DDLogVerbose(@"value %@", [characteristic value]);
+        NSLog(@"value %@", [characteristic value]);
     }
 }
 

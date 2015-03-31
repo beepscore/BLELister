@@ -121,7 +121,7 @@
             cell.detailTextLabel.text = [self.detailItem.identifier UUIDString];
             break;
         case 3:
-            DDLogVerbose(@"description %@", [self.detailItem description]);
+            NSLog(@"description %@", [self.detailItem description]);
             cell.textLabel.text = @"Desc";
             // Use custom cell and autolayout instead?
             cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
@@ -238,7 +238,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
         // Notification is about self's peripheral, not some other peripheral
-        DDLogVerbose(@"did connect notification userInfo peripheral equals detailItem");
+        NSLog(@"did connect notification userInfo peripheral equals detailItem");
         // Notification may be from a background queue.
         [self updateUIOnMainQueue];
     }
@@ -248,7 +248,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
         // Notification is about self's peripheral, not some other peripheral
-        DDLogVerbose(@"did disconnect notification userInfo peripheral equals detailItem");
+        NSLog(@"did disconnect notification userInfo peripheral equals detailItem");
         // Notification may be from a background queue.
         [self updateUIOnMainQueue];
     }

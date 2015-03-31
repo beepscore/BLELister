@@ -37,10 +37,10 @@
 
     // Currently this returns 2 different objects and test fails.
     // TODO: Investigate why.
-    DDLogVerbose(@"***sharedInstance %@", (BSLeDiscovery *)[BSLeDiscovery sharedInstance]);
-    DDLogVerbose(@"***vc.leDiscovery %@", vc.leDiscovery);
-    DDLogVerbose(@"***sharedInstance.centralManager %@", [(BSLeDiscovery *)[BSLeDiscovery sharedInstance] centralManager]);
-    DDLogVerbose(@"***vc.leDiscovery.centralManager %@", vc.leDiscovery.centralManager);
+    NSLog(@"***sharedInstance %@", (BSLeDiscovery *)[BSLeDiscovery sharedInstance]);
+    NSLog(@"***vc.leDiscovery %@", vc.leDiscovery);
+    NSLog(@"***sharedInstance.centralManager %@", [(BSLeDiscovery *)[BSLeDiscovery sharedInstance] centralManager]);
+    NSLog(@"***vc.leDiscovery.centralManager %@", vc.leDiscovery.centralManager);
     //XCTAssertEqualObjects([BSLeDiscovery sharedInstance], vc.leDiscovery, @"expected leDiscovery");
 }
 
