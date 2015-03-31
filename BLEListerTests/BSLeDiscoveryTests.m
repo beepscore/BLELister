@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SHTestCaseAdditions.h"
+//#import "SHTestCaseAdditions.h"
 #import "BSLeDiscovery.h"
 #import "BSLeDiscovery_Private.h"
 #import "BSJSONParser.h"
@@ -114,6 +114,8 @@
 }
 
 # pragma mark - test asynchronous
+// TODO: replace deleted third party SHTestCaseAdditions with Apple XCTestExpectation
+/*
 - (void)testSH_waitForTimeInterval {
     __block BOOL assertion = NO;
 
@@ -126,6 +128,7 @@
     [self SH_waitForTimeInterval:delayInSeconds];
     XCTAssertTrue(assertion, @"expected assertion true");
 }
+*/
 
 // TODO: testFoundPeripheralsAsync fails. Fix it.
 // This test assumes iOS device will find at least one peripheral

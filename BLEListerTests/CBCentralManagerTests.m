@@ -9,7 +9,7 @@
 // Also test category CBCentralManager_BSSafe
 
 #import <XCTest/XCTest.h>
-#import "SHTestCaseAdditions.h"
+//#import "SHTestCaseAdditions.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "BSBleConstants.h"
 #import "BSJSONParser.h"

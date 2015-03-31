@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		42A31B137AE24D1C87CBF19F /* libPods-BLELister.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C77D51C1FA1A477C99FA184A /* libPods-BLELister.a */; };
-		B38C8AC0E4F24332917D9BA5 /* libPods-BLEListerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F397F7B7489349B99960CC9F /* libPods-BLEListerTests.a */; };
 		DE40892B182CCCC700643E77 /* CBCentralManager_BSSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = DE40892A182CCCC700643E77 /* CBCentralManager_BSSafe.m */; };
 		DE580DEE17F5995000292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
@@ -56,10 +54,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0D6A6C1E4D51D846A876359B /* Pods-BLELister.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLELister.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLELister/Pods-BLELister.debug.xcconfig"; sourceTree = "<group>"; };
-		28CA7B36C51E645AE876B421 /* Pods-BLEListerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEListerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLEListerTests/Pods-BLEListerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		67574C3EF1A979009C31F554 /* Pods-BLEListerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLEListerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLEListerTests/Pods-BLEListerTests.release.xcconfig"; sourceTree = "<group>"; };
-		9E171F48B2E7509FF4BB007E /* Pods-BLELister.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLELister.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLELister/Pods-BLELister.release.xcconfig"; sourceTree = "<group>"; };
 		C77D51C1FA1A477C99FA184A /* libPods-BLELister.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BLELister.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE408929182CCCC700643E77 /* CBCentralManager_BSSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBCentralManager_BSSafe.h; path = Bluetooth/CBCentralManager_BSSafe.h; sourceTree = "<group>"; };
 		DE40892A182CCCC700643E77 /* CBCentralManager_BSSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBCentralManager_BSSafe.m; path = Bluetooth/CBCentralManager_BSSafe.m; sourceTree = "<group>"; };
@@ -118,7 +112,6 @@
 				DEE990C717F543F70041CAB6 /* CoreGraphics.framework in Frameworks */,
 				DEE990C917F543F70041CAB6 /* UIKit.framework in Frameworks */,
 				DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */,
-				42A31B137AE24D1C87CBF19F /* libPods-BLELister.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +123,6 @@
 				DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */,
 				DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */,
 				DEE990EB17F543F70041CAB6 /* Foundation.framework in Frameworks */,
-				B38C8AC0E4F24332917D9BA5 /* libPods-BLEListerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +165,6 @@
 				DEE990EF17F543F70041CAB6 /* BLEListerTests */,
 				DEE990C317F543F70041CAB6 /* Frameworks */,
 				DEE990C217F543F70041CAB6 /* Products */,
-				F6601EA1D863EAF25FDE06E1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -263,17 +254,6 @@
 			path = TestResources;
 			sourceTree = "<group>";
 		};
-		F6601EA1D863EAF25FDE06E1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0D6A6C1E4D51D846A876359B /* Pods-BLELister.debug.xcconfig */,
-				9E171F48B2E7509FF4BB007E /* Pods-BLELister.release.xcconfig */,
-				28CA7B36C51E645AE876B421 /* Pods-BLEListerTests.debug.xcconfig */,
-				67574C3EF1A979009C31F554 /* Pods-BLEListerTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -281,11 +261,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DEE990F917F543F70041CAB6 /* Build configuration list for PBXNativeTarget "BLELister" */;
 			buildPhases = (
-				3532D09A1DC64CAA897A86FA /* Check Pods Manifest.lock */,
 				DEE990BD17F543F70041CAB6 /* Sources */,
 				DEE990BE17F543F70041CAB6 /* Frameworks */,
 				DEE990BF17F543F70041CAB6 /* Resources */,
-				AF90434644B4410F95E5343F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -300,11 +278,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DEE990FC17F543F70041CAB6 /* Build configuration list for PBXNativeTarget "BLEListerTests" */;
 			buildPhases = (
-				718FAF2C153849D6BFB720C4 /* Check Pods Manifest.lock */,
 				DEE990E417F543F70041CAB6 /* Sources */,
 				DEE990E517F543F70041CAB6 /* Frameworks */,
 				DEE990E617F543F70041CAB6 /* Resources */,
-				EE81B26360B64124A854DC8C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -375,69 +351,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3532D09A1DC64CAA897A86FA /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		718FAF2C153849D6BFB720C4 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AF90434644B4410F95E5343F /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BLELister/Pods-BLELister-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EE81B26360B64124A854DC8C /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BLEListerTests/Pods-BLEListerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DEE990BD17F543F70041CAB6 /* Sources */ = {
@@ -591,7 +504,6 @@
 		};
 		DEE990FA17F543F70041CAB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D6A6C1E4D51D846A876359B /* Pods-BLELister.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -607,7 +519,6 @@
 		};
 		DEE990FB17F543F70041CAB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E171F48B2E7509FF4BB007E /* Pods-BLELister.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -623,7 +534,6 @@
 		};
 		DEE990FD17F543F70041CAB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28CA7B36C51E645AE876B421 /* Pods-BLEListerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BLELister.app/BLELister";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -654,7 +564,6 @@
 		};
 		DEE990FE17F543F70041CAB6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67574C3EF1A979009C31F554 /* Pods-BLEListerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BLELister.app/BLELister";
 				CLANG_ENABLE_OBJC_ARC = YES;
