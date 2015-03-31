@@ -126,22 +126,29 @@
 // testRetrievePeripheralBLEShield requires an Arduino with RedBearLab BLE shield
 // within range of the iOS device.
 // It assumes BLE shield with be the first device found.
-- (void)testRetrievePeripheralBLEShield {
-    [self retrievePeripheral:@"redbearshield"];
+//- (void)testRetrievePeripheralBLEShield {
+//    [self retrievePeripheral:@"redbearshield"];
+//}
+
+// testRetrievePeripheralOne requires a fitbit One within range of the iOS device.
+// It assumes One will be the first device found.
+- (void)testRetrievePeripheralOne {
+    [self retrievePeripheral:@"one"];
 }
 
 // testRetrievePeripheralTISensorTag requires a TI SensorTag within range of the iOS device.
 // It assumes SensorTag will be the first device found.
 // Before running test, press SensorTag side button to activate it.
-- (void)testRetrievePeripheralTISensorTag {
-    [self retrievePeripheral:@"sensortag"];
-}
+//- (void)testRetrievePeripheralTISensorTag {
+//    [self retrievePeripheral:@"sensortag"];
+//}
 
 // This test passes even when Raspberry Pi is off, and the app doesn't show the device in the table view.
 // I think it is getting stored info, or else the device is not the Raspberry Pi.
 // testRetrievePeripheralRaspberryPi requires a Raspberry Pi with a BLE adapter
 // configured as an iBeacon within range of the iOS device.
 // It assumes Raspberry Pi will be the first device found.
+/*
 - (void)testRetrievePeripheralRaspberryPi {
     // CBCentralManager wants a delegate that implements centralManagerDidUpdateState:
     // this test passes without a delegate.
@@ -170,6 +177,7 @@
                           @"expected peripheral identifier");
     XCTAssertNil(peripheral.name, @"expected peripheral name nil");
 }
+*/
 
 # pragma mark - test safeScan
 - (void)testSafeScanForPeripheralsWithServicesOptionsCentralManagerOff {
