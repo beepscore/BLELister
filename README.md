@@ -5,7 +5,7 @@ BLELister is an iOS application that lists Bluetooth Low Energy devices.
 
 ## iOS
 An iOS device with Bluetooth Low Energy (BLE). E.g. iPhone >= 4s.
-iOS 7 or newer.
+iOS 8.2 or newer.
 
 # References
 https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx
