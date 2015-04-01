@@ -99,6 +99,9 @@
 
     CBPeripheral *peripheral = _objects[indexPath.row];
     cell.textLabel.text = [peripheral name];
+
+    // TODO: replace deprecated RSSI
+    // instead use readRSSI and delegate method peripheral:didReadRSSI:error:
     cell.detailTextLabel.text = [[peripheral RSSI] description];
     return cell;
 }

@@ -109,6 +109,8 @@
             // TODO: need to connect to device to get RSSI?
             cell.textLabel.text = @"RSSI";
             [self.detailItem readRSSI];
+            // TODO: replace deprecated RSSI
+            // instead use readRSSI and delegate method peripheral:didReadRSSI:error:
             cell.detailTextLabel.text = [self.detailItem.RSSI description];
             break;
         case 1:
