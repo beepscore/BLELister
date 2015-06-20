@@ -21,6 +21,13 @@
 // Discovery class
 @interface BSLeDiscovery : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
+@property (nonatomic, strong) CBCentralManager *centralManager;
+
+// Access to the devices
+@property (strong, nonatomic) NSMutableArray *foundPeripherals;
+// Array of LeTemperatureAlarmService
+@property (strong, nonatomic) NSMutableArray *connectedServices;
+
 /**
  @return a shared instance, not strictly enforced as a singleton
  instantiates property foundPeripherals to empty mutable array.
@@ -28,8 +35,6 @@
  sets property self.notificationCenter to [NSNotificationCenter defaultCenter]
  */
 + (instancetype) sharedInstance;
-
-@property (nonatomic, strong) CBCentralManager *centralManager;
 
 // Actions
 - (void)scanForPeripheralsWithServices:(NSArray *)serviceUUIDs
@@ -39,10 +44,5 @@
 
 - (void) connectPeripheral:(CBPeripheral*)peripheral;
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral;
-
-// Access to the devices
-@property (strong, nonatomic) NSMutableArray *foundPeripherals;
-// Array of LeTemperatureAlarmService
-@property (strong, nonatomic) NSMutableArray *connectedServices;
 
 @end
