@@ -9,9 +9,9 @@
 // Abstract: Scan for and discover nearby LE peripherals with the matching service UUID.
 
 /**
- BSLeDiscovery posts notifications.
- This way, the app can instantiate one BSLeDiscovery
- to support multilple objects (e.g. view controllers)
+ * BSLeDiscovery posts notifications.
+ * This way, the app can instantiate one BSLeDiscovery
+ * to support multilple objects (e.g. view controllers)
  */
 
 #import <Foundation/Foundation.h>
@@ -29,10 +29,10 @@
 @property (strong, nonatomic) NSMutableArray *connectedServices;
 
 /**
- @return a shared instance, not strictly enforced as a singleton
- instantiates property foundPeripherals to empty mutable array.
- instantiates property connectedServices to empty mutable array.
- sets property self.notificationCenter to [NSNotificationCenter defaultCenter]
+ * @return a shared instance, not strictly enforced as a singleton
+ * instantiates property foundPeripherals to empty mutable array.
+ * instantiates property connectedServices to empty mutable array.
+ * sets property self.notificationCenter to [NSNotificationCenter defaultCenter]
  */
 + (instancetype) sharedInstance;
 
