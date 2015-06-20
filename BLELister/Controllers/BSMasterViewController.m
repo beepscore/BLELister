@@ -100,9 +100,9 @@
     CBPeripheral *peripheral = _objects[indexPath.row];
     cell.textLabel.text = [peripheral name];
 
-    // TODO: replace deprecated RSSI
-    // instead use readRSSI and delegate method peripheral:didReadRSSI:error:
-    cell.detailTextLabel.text = [[peripheral RSSI] description];
+    // TODO: Consider add MVC Model object PeripheralWithRSSI, and collection of them
+    // Then for connected peripherals can display RSSI
+    // cell.detailTextLabel.text = [[peripheralWithRSSI RSSI] description];
     return cell;
 }
 
