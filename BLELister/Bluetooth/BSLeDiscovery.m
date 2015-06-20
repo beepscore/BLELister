@@ -139,7 +139,7 @@
 
 - (void) startScanningForUUIDString:(NSString *)uuidString {
     NSDictionary *options = @{
-                              CBCentralManagerScanOptionAllowDuplicatesKey:[NSNumber numberWithBool:NO]
+                              CBCentralManagerScanOptionAllowDuplicatesKey:@NO
                               };
     if ((!uuidString) || [@"" isEqualToString:uuidString]) {
         // BLE requires device, not simulator
