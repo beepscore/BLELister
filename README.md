@@ -16,3 +16,6 @@ https://developer.bluetooth.org/gatt/services/Pages/ServicesHome.aspx
 ## Results
 
 http://stackoverflow.com/questions/26061359/readrssi-doesnt-call-the-delegate-method?lq=1
+
+TI SensorTag UUID can change, depending upon iOS central device?
+https://e2e.ti.com/support/wireless_connectivity/f/538/t/199289
