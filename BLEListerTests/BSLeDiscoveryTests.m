@@ -257,35 +257,35 @@
         }
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
     }
-    CBPeripheral *peripheral = [bsLeDiscovery.foundPeripherals firstObject];
+    // cast id to CBPeripheral*
+    CBPeripheral *peripheral = (CBPeripheral *)[bsLeDiscovery.foundPeripherals firstObject];
+    NSLog(@"foundPeripherals %@", bsLeDiscovery.foundPeripherals);
 
     // Assume iOS device will find at least one peripheral
     XCTAssertNotNil(peripheral);
+    NSString *UUIDString = [peripheral.identifier UUIDString];
+    NSString *peripheralName = peripheral.name;
 
     // Assume the first peripheral is in this predefined list
-    bool foundFlex = ([bleDevices[@"flex"][@"identifier"]
-                      isEqualToString:[peripheral.identifier UUIDString]] &&
-                     [bleDevices[@"flex"][@"name"]
-                      isEqualToString:peripheral.name]);
+    bool foundFlex = ([bleDevices[@"flex"][@"identifier"] isEqualToString:UUIDString]
+                      && [bleDevices[@"flex"][@"name"] isEqualToString:peripheralName]);
 
-    bool foundOne = ([bleDevices[@"one"][@"identifier"]
-                      isEqualToString:[peripheral.identifier UUIDString]] &&
-                     [bleDevices[@"one"][@"name"]
+    bool foundOne = ([bleDevices[@"one"][@"identifier"] isEqualToString:UUIDString]
+                     && [bleDevices[@"one"][@"name"]
                       isEqualToString:peripheral.name]);
     
-    bool foundRaspberryPi = ([bleDevices[@"raspberry_pi"][@"identifier"]
-                              isEqualToString:[peripheral.identifier UUIDString]] &&
-                             [[NSNull null] isEqual:peripheral.name]);
+    bool foundRaspberryPi = ([bleDevices[@"raspberry_pi"][@"identifier"] isEqualToString:UUIDString]
+                             && [[NSNull null] isEqual:peripheralName]);
     
     bool foundRedBear = ([bleDevices[@"redbearshield"][@"identifier"]
-                          isEqualToString:[peripheral.identifier UUIDString]] &&
-                         [bleDevices[@"redbearshield"][@"name"]
-                          isEqualToString:peripheral.name]);
+                          isEqualToString:UUIDString]
+                         && [bleDevices[@"redbearshield"][@"name"]
+                          isEqualToString:peripheralName]);
     
     bool foundSensorTag = ([bleDevices[@"sensortag"][@"identifier"]
-                            isEqualToString:[peripheral.identifier UUIDString]] &&
-                           [bleDevices[@"sensortag"][@"name"]
-                            isEqualToString:peripheral.name]);
+                            isEqualToString:UUIDString]
+                           && [bleDevices[@"sensortag"][@"name"]
+                            isEqualToString:peripheralName]);
     
     XCTAssertTrue(foundFlex || foundOne || foundRaspberryPi || foundRedBear || foundSensorTag);
 }
