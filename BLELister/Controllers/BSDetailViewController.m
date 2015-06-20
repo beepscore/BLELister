@@ -46,12 +46,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.RSSI = nil;
 	// Do any additional setup after loading the view, typically from a nib.
     self.leDiscovery = [BSLeDiscovery sharedInstance];
 
     self.notificationCenter = [NSNotificationCenter defaultCenter];
     [self registerForBleDiscoveryDidConnectPeripheralNotification];
     [self registerForBleDiscoveryDidDisconnectPeripheralNotification];
+    [self registerForBleDiscoveryDidReadRSSINotification];
 
     [self configureView];
 }
@@ -67,6 +69,9 @@
                                      object:nil];
     [self.notificationCenter removeObserver:self
                                        name:kBleDiscoveryDidDisconnectPeripheralNotification
+                                     object:nil];
+    [self.notificationCenter removeObserver:self
+                                       name:kBleDiscoveryDidReadRSSINotification
                                      object:nil];
 }
 
@@ -105,41 +110,45 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
     
     switch (indexPath.row) {
-        case 0:
-            // TODO: need to connect to device to get RSSI?
+        case 0: {
             cell.textLabel.text = @"RSSI";
-            [self.detailItem readRSSI];
-            // TODO: replace deprecated RSSI
-            // instead use readRSSI and delegate method peripheral:didReadRSSI:error:
-            cell.detailTextLabel.text = [self.detailItem.RSSI description];
+            if (self.RSSI) {
+                cell.detailTextLabel.text = [self.RSSI description];
+            }
             break;
-        case 1:
+        }
+        case 1: {
             cell.textLabel.text = @"State";
             cell.detailTextLabel.text = [self peripheralStateStringForValue:self.detailItem.state];
             break;
-        case 2:
+        }
+        case 2: {
             cell.textLabel.text = @"UUID";
             cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
             cell.detailTextLabel.text = [self.detailItem.identifier UUIDString];
             break;
-        case 3:
+        }
+        case 3: {
             NSLog(@"description %@", [self.detailItem description]);
             cell.textLabel.text = @"Desc";
             // Use custom cell and autolayout instead?
             cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
             cell.detailTextLabel.text = [self.detailItem description];
             break;
-        case 4:
+        }
+        case 4: {
             self.connectCell = cell;
             cell.textLabel.text = [self connectLabelTextForState:self.detailItem.state];
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.textLabel.font = [UIFont systemFontOfSize:16];
             cell.detailTextLabel.text = @"";
             break;
-        default:
+        }
+        default: {
             cell.textLabel.text = @"";
             cell.detailTextLabel.text = @"";
             break;
+        }
     }
     return cell;
 }
@@ -227,6 +236,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
      object:nil];
 }
 
+- (void)registerForBleDiscoveryDidReadRSSINotification {
+    [self.notificationCenter
+     addObserver:self
+     selector:@selector(discoveryDidReadRSSINotification:)
+     name:kBleDiscoveryDidReadRSSINotification
+     object:nil];
+}
+
 #pragma mark - Notification response methods
 - (void)updateUIOnMainQueue {
     // Get main queue before updating UI.
@@ -237,20 +254,35 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void)discoveryDidConnectPeripheralWithNotification:(NSNotification *)notification {
+    NSLog(@"discoveryDidConnectPeripheralWithNotification");
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
         // Notification is about self's peripheral, not some other peripheral
-        NSLog(@"did connect notification userInfo peripheral equals detailItem");
         // Notification may be from a background queue.
         [self updateUIOnMainQueue];
     }
 }
 
 - (void)discoveryDidDisconnectPeripheralWithNotification:(NSNotification *)notification {
+    NSLog(@"discoveryDidDisconnectPeripheralWithNotification");
     NSDictionary *userInfo = [notification userInfo];
     if (userInfo[@"peripheral"] == self.detailItem) {
         // Notification is about self's peripheral, not some other peripheral
-        NSLog(@"did disconnect notification userInfo peripheral equals detailItem");
+        // Notification may be from a background queue.
+        [self updateUIOnMainQueue];
+    }
+}
+
+- (void)discoveryDidReadRSSINotification:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    if (userInfo[@"peripheral"] == self.detailItem) {
+        // Notification is about self's peripheral, not some other peripheral
+        if (userInfo[@"RSSI"]) {
+            self.RSSI = userInfo[@"RSSI"];
+        }
+        if (userInfo[@"error"]) {
+            NSLog(@"error %@", userInfo[@"error"]);
+        }
         // Notification may be from a background queue.
         [self updateUIOnMainQueue];
     }

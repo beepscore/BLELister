@@ -13,6 +13,7 @@
 
 // viewDidLoad sets self.notificationCenter. Unit test can set it to a mock notificationCenter.
 @property (nonatomic, strong) NSNotificationCenter *notificationCenter;
+@property (nonatomic, strong) NSNumber *RSSI;
 
 - (void)discoveryDidConnectPeripheralWithNotification:(NSNotification *)notification;
 - (void)discoveryDidDisconnectPeripheralWithNotification:(NSNotification *)notification;

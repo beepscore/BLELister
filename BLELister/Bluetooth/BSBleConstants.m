@@ -12,5 +12,6 @@ NSString *const kBleDiscoveryDidRefreshNotification = @"bleDiscoveryDidRefreshNo
 NSString *const kBleDiscoveryStatePoweredOffNotification = @"bleDiscoveryStatePoweredOffNotification";
 NSString *const kBleDiscoveryDidConnectPeripheralNotification = @"bleDiscoveryDidConnectPeripheralNotification";
 NSString *const kBleDiscoveryDidDisconnectPeripheralNotification = @"bleDiscoveryDidDisconnectPeripheralNotification";
+NSString *const kBleDiscoveryDidReadRSSINotification = @"bleDiscoveryDidReadRSSINotification";
 
 NSString *const kStoredDevices = @"StoredDevices";

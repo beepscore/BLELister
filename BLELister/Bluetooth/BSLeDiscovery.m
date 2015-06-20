@@ -296,7 +296,13 @@ didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
                                            object:self
                                          userInfo:userInfo];
     [peripheral setDelegate:self];
-    // discoverServices calls delegate method peripheral:didDiscoverServices:
+
+    // must be connected to call readRSSI
+    // could set timer to repeatedly call readRSSI
+    // readRSSI calls back delegate method peripheral:didReadRSSI:error:
+    [peripheral readRSSI];
+
+    // discoverServices calls back delegate method peripheral:didDiscoverServices:
     [peripheral discoverServices:nil];
 }
 
@@ -398,6 +404,30 @@ didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic
     } else {
         NSLog(@"value %@", [characteristic value]);
     }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral
+       didReadRSSI:(NSNumber *)RSSI
+             error:(NSError *)error {
+
+    NSMutableDictionary *mutableUserInfo = [NSMutableDictionary
+                                            dictionaryWithDictionary: @{@"peripheral" : peripheral}];
+    if (RSSI) {
+        [mutableUserInfo setValue:RSSI forKey:@"RSSI"];
+    }
+    if (error) {
+        [mutableUserInfo setValue:error forKey:@"error"];
+    }
+    // NSMutableDictionary not thread safe, so copy to NSDictionary
+    NSDictionary *userInfo = [NSDictionary dictionaryWithDictionary:mutableUserInfo];
+    
+    // Post notification on current thread, whether it's main or a background thread.
+    // Observers will be notified on current thread.
+    // Let each observer decide if it will respond on current thread or not.
+    // For example a view controller might want to get the main queue and then update UI.
+    [self.notificationCenter postNotificationName:kBleDiscoveryDidReadRSSINotification
+                                           object:self
+                                         userInfo:userInfo];
 }
 
 @end
