@@ -164,31 +164,6 @@
     [self.centralManager stopScan];
 }
 
-- (void)centralManager:(CBCentralManager *)central
- didDiscoverPeripheral:(CBPeripheral *)peripheral
-     advertisementData:(NSDictionary *)advertisementData
-                  RSSI:(NSNumber *)RSSI {
-
-    if (![self.foundPeripherals containsObject:peripheral]) {
-        self.foundPeripherals = [self.foundPeripherals arrayByAddingObject:peripheral];
-        
-        // Argument RSSI may be non-nil even when peripheral.RSSI is nil
-        NSDictionary *userInfo = @{@"central" : central,
-                                   @"peripheral" : peripheral,
-                                   @"advertisementData" : advertisementData,
-                                   @"RSSI" : RSSI };
-
-        // centralManager may be calling back from the main queue or a background queue.
-        // Post notification on current thread, whether it's main or a background thread.
-        // Observers will be notified on current thread.
-        // Let each observer decide if it will respond on current thread or not.
-        // For example a view controller might want to get the main queue and then update UI.
-        [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
-                                               object:self
-                                             userInfo:userInfo];
-    }
-}
-
 #pragma mark - Connect/Disconnect
 - (void) connectPeripheral:(CBPeripheral*)peripheral {
     if (peripheral.state == CBPeripheralStateDisconnected) {
@@ -330,6 +305,32 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
                                          userInfo:userInfo];
 }
 
+- (void)centralManager:(CBCentralManager *)central
+ didDiscoverPeripheral:(CBPeripheral *)peripheral
+     advertisementData:(NSDictionary *)advertisementData
+                  RSSI:(NSNumber *)RSSI {
+
+    if (![self.foundPeripherals containsObject:peripheral]) {
+        self.foundPeripherals = [self.foundPeripherals arrayByAddingObject:peripheral];
+        
+        // Argument RSSI may be non-nil even when peripheral.RSSI is nil
+        NSDictionary *userInfo = @{@"central" : central,
+                                   @"peripheral" : peripheral,
+                                   @"advertisementData" : advertisementData,
+                                   @"RSSI" : RSSI };
+
+        // centralManager may be calling back from the main queue or a background queue.
+        // Post notification on current thread, whether it's main or a background thread.
+        // Observers will be notified on current thread.
+        // Let each observer decide if it will respond on current thread or not.
+        // For example a view controller might want to get the main queue and then update UI.
+        [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                               object:self
+                                             userInfo:userInfo];
+    }
+}
+
+#pragma mark -
 - (void) clearDevices {
     self.foundPeripherals = @[];
     // TODO: reset each service before removing it? Reference Apple TemperatureSensor project
