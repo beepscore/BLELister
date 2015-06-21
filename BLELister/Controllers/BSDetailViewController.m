@@ -215,7 +215,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void)disconnect:(BSLeDiscovery *)aLeDiscovery
-     peripheral:(CBPeripheral *)aPeripheral {
+        peripheral:(CBPeripheral *)aPeripheral {
     [aLeDiscovery disconnectPeripheral:aPeripheral];
 }
 
