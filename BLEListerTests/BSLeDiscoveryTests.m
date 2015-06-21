@@ -210,7 +210,7 @@
     // must set foundPeripherals to empty mutable array so we can add objects to it.
     BSLeDiscovery *bsLeDiscovery = [[BSLeDiscovery alloc]
                                     initWithCentralManager:nil
-                                    foundPeripherals:[NSMutableArray arrayWithArray:@[]]
+                                    foundPeripherals:@[]
                                     connectedServices:nil
                                     notificationCenter:nil];
 
