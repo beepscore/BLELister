@@ -24,7 +24,7 @@
 @property (nonatomic, strong) CBCentralManager *centralManager;
 
 // Access to the devices
-@property (strong, nonatomic) NSMutableArray *foundPeripherals;
+@property (strong, nonatomic) NSArray *foundPeripherals;
 // Array of LeTemperatureAlarmService
 @property (strong, nonatomic) NSMutableArray *connectedServices;
 

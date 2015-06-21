@@ -25,26 +25,26 @@
 
 
 /**
- designated initializer
- @param aCentralManager
- sets ivar centralManager
- @param aFoundPeripherals
- sets property self.foundPeripherals
- Normally aFoundPeripherals is empty mutable array.
- Then we can add objects to self.foundPeripherals.
- If aFoundPeripherals is nil, we won't be able to add objects to self.foundPeripherals.
- @param aConnectedServices
- sets property self.connectedServices
- Normally aConnectedServices is empty mutable array.
- Then we can add objects to self.connectedServices.
- If aConnectedServices is nil, we won't be able to add objects to self.connectedServices.
- @param aNotificationCenter
- sets property self.notificationCenter
- @return a BSLeDiscovery, generally used as a singleton
+ * designated initializer
+ * @param aCentralManager
+ * sets ivar centralManager
+ * @param aFoundPeripherals
+ * sets property self.foundPeripherals
+ * Normally aFoundPeripherals is empty mutable array.
+ * Then we can add objects to self.foundPeripherals.
+ * If aFoundPeripherals is nil, we won't be able to add objects to self.foundPeripherals.
+ * @param aConnectedServices
+ * sets property self.connectedServices
+ * Normally aConnectedServices is empty mutable array.
+ * Then we can add objects to self.connectedServices.
+ * If aConnectedServices is nil, we won't be able to add objects to self.connectedServices.
+ * @param aNotificationCenter
+ * sets property self.notificationCenter
+ * @return a BSLeDiscovery, generally used as a singleton
  */
 - (instancetype)initWithCentralManager:(CBCentralManager *)aCentralManager
-                      foundPeripherals:(NSMutableArray *)aFoundPeripherals
+                      foundPeripherals:(NSArray *)aFoundPeripherals
                      connectedServices:(NSMutableArray *)aConnectedServices
-                    notificationCenter:(NSNotificationCenter *)aNotificationCenter;
+                    notificationCenter:(NSNotificationCenter *)aNotificationCenter NS_DESIGNATED_INITIALIZER;
 
 @end

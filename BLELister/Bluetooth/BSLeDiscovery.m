@@ -31,7 +31,7 @@
         // call designated initializer
         sharedInstance = [[self alloc]
                           initWithCentralManager:aCentralManager
-                          foundPeripherals:[[NSMutableArray alloc] init]
+                          foundPeripherals:@[]
                           connectedServices:[[NSMutableArray alloc] init]
                           notificationCenter:[NSNotificationCenter defaultCenter]];
         
@@ -45,7 +45,7 @@
 #pragma mark - Initializers
 // designated initializer
 - (instancetype)initWithCentralManager:(CBCentralManager *)aCentralManager
-                      foundPeripherals:(NSMutableArray *)aFoundPeripherals
+                      foundPeripherals:(NSArray *)aFoundPeripherals
                      connectedServices:(NSMutableArray *)aConnectedServices
                     notificationCenter:(NSNotificationCenter *)aNotificationCenter {
 
@@ -65,7 +65,7 @@
 - (instancetype) init {
     // call designated initializer
     return [self initWithCentralManager:nil
-                       foundPeripherals:[[NSMutableArray alloc] init]
+                       foundPeripherals:@[]
                       connectedServices:[[NSMutableArray alloc] init]
                      notificationCenter:nil];
 }
@@ -170,7 +170,7 @@
                   RSSI:(NSNumber *)RSSI {
 
     if (![self.foundPeripherals containsObject:peripheral]) {
-        [self.foundPeripherals addObject:peripheral];
+        self.foundPeripherals = [self.foundPeripherals arrayByAddingObject:peripheral];
         
         // Argument RSSI may be non-nil even when peripheral.RSSI is nil
         NSDictionary *userInfo = @{@"central" : central,
@@ -288,7 +288,7 @@ didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
    didConnectPeripheral:(CBPeripheral *)peripheral {
 
     if (![self.foundPeripherals containsObject:peripheral]) {
-        [self.foundPeripherals addObject:peripheral];
+        self.foundPeripherals = [self.foundPeripherals arrayByAddingObject:peripheral];
     }
     
     NSDictionary *userInfo = @{ @"peripheral" : peripheral };
@@ -331,7 +331,7 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
 }
 
 - (void) clearDevices {
-    [self.foundPeripherals removeAllObjects];
+    self.foundPeripherals = @[];
     // TODO: reset each service before removing it? Reference Apple TemperatureSensor project
     [self.connectedServices removeAllObjects];
 }
