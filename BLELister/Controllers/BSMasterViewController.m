@@ -9,6 +9,7 @@
 #import "BSMasterViewController_Private.h"
 #import "BSDetailViewController.h"
 #import "BSBleConstants.h"
+#import "BSBlePeripheral.h"
 
 @implementation BSMasterViewController
 
@@ -38,6 +39,7 @@
     self.notificationCenter = [NSNotificationCenter defaultCenter];
     [self registerForBleDiscoveryDidRefreshNotification];
     [self registerFoBleDiscoveryStatePoweredOffNotification];
+    [self registerForBleDiscoveryDidReadRSSINotification];
 
     [self scanForPeripherals];
 }
@@ -59,6 +61,9 @@
                                      object:nil];
     [self.notificationCenter removeObserver:self
                                        name:kBleDiscoveryStatePoweredOffNotification
+                                     object:nil];
+    [self.notificationCenter removeObserver:self
+                                       name:kBleDiscoveryDidReadRSSINotification
                                      object:nil];
 }
 
@@ -92,14 +97,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"
+                                                            forIndexPath:indexPath];
+    
+    BSBlePeripheral *bsBlePeripheral = self.leDiscovery.foundPeripherals[indexPath.row];
+    cell.textLabel.text = [bsBlePeripheral.peripheral name];
+    
+    if (!bsBlePeripheral.RSSI) {
+        cell.detailTextLabel.text = @"unknown";
+    } else {
+        cell.detailTextLabel.text = [bsBlePeripheral.RSSI description];
+    }
 
-    CBPeripheral *peripheral = self.leDiscovery.foundPeripherals[indexPath.row];
-    cell.textLabel.text = [peripheral name];
-
-    // TODO: Consider add MVC Model object PeripheralWithRSSI, and collection of them
-    // Then for connected peripherals can display RSSI
-    // cell.detailTextLabel.text = [[peripheralWithRSSI RSSI] description];
     return cell;
 }
 
@@ -142,8 +151,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        CBPeripheral *object = self.leDiscovery.foundPeripherals[indexPath.row];
-        self.detailViewController.detailItem = object;
+        BSBlePeripheral *bsBlePeripheral = self.leDiscovery.foundPeripherals[indexPath.row];
+        self.detailViewController.detailItem = bsBlePeripheral;
     }
 }
 
@@ -151,8 +160,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                  sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        CBPeripheral *object = self.leDiscovery.foundPeripherals[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        BSBlePeripheral *bsBlePeripheral = self.leDiscovery.foundPeripherals[indexPath.row];
+        [[segue destinationViewController] setDetailItem:bsBlePeripheral];
     }
 }
 
@@ -171,6 +180,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                                   object:nil];
 }
 
+- (void)registerForBleDiscoveryDidReadRSSINotification {
+    [self.notificationCenter addObserver:self
+                                selector:@selector(discoveryDidReadRSSINotification:)
+                                    name:kBleDiscoveryDidReadRSSINotification
+                                  object:nil];
+}
+
 #pragma mark - Notification response methods
 - (void)updateUIOnMainQueue {
     // Get main queue before updating UI.
@@ -180,7 +196,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     });
 }
 
-- (void) discoveryDidRefreshWithNotification:(NSNotification *)notification {
+- (void)discoveryDidRefreshWithNotification:(NSNotification *)notification {
     NSLog(@"in BSMasterViewController discoveryDidRefreshWithNotification:");
     NSLog(@"notification.object: %@", notification.object);
 
@@ -191,8 +207,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self updateUIOnMainQueue];
 }
 
-- (void) discoveryStatePoweredOff {
+- (void)discoveryStatePoweredOff {
     NSLog(@"discoveryStatePoweredOff");
+}
+
+- (void)discoveryDidReadRSSINotification:(NSNotification *)notification {
+    [self updateUIOnMainQueue];
 }
 
 @end

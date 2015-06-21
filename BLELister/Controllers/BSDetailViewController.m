@@ -36,10 +36,10 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
-
+    
     if (self.detailItem) {
-        self.title = [self.detailItem name];
-        [self.detailItem readRSSI];
+        self.title = [self.detailItem.peripheral name];
+        self.RSSI = self.detailItem.RSSI;
         [self.tableView reloadData];
     }
 }
@@ -119,26 +119,26 @@
         }
         case 1: {
             cell.textLabel.text = @"State";
-            cell.detailTextLabel.text = [self peripheralStateStringForValue:self.detailItem.state];
+            cell.detailTextLabel.text = [self peripheralStateStringForValue:self.detailItem.peripheral.state];
             break;
         }
         case 2: {
             cell.textLabel.text = @"UUID";
             cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
-            cell.detailTextLabel.text = [self.detailItem.identifier UUIDString];
+            cell.detailTextLabel.text = [self.detailItem.peripheral.identifier UUIDString];
             break;
         }
         case 3: {
-            NSLog(@"description %@", [self.detailItem description]);
+            NSLog(@"description %@", [self.detailItem.peripheral description]);
             cell.textLabel.text = @"Desc";
             // Use custom cell and autolayout instead?
             cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
-            cell.detailTextLabel.text = [self.detailItem description];
+            cell.detailTextLabel.text = [self.detailItem.peripheral description];
             break;
         }
         case 4: {
             self.connectCell = cell;
-            cell.textLabel.text = [self connectLabelTextForState:self.detailItem.state];
+            cell.textLabel.text = [self connectLabelTextForState:self.detailItem.peripheral.state];
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.textLabel.font = [UIFont systemFontOfSize:16];
             cell.detailTextLabel.text = @"";
@@ -197,11 +197,12 @@
 -(void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.tableView cellForRowAtIndexPath:indexPath] == self.connectCell) {
-
-        if (CBPeripheralStateDisconnected == self.detailItem.state) {
-            [self connect:self.leDiscovery peripheral:self.detailItem];
-        } else if (CBPeripheralStateConnected == self.detailItem.state) {
-            [self disconnect:self.leDiscovery peripheral:self.detailItem];
+        
+        if (CBPeripheralStateDisconnected == self.detailItem.peripheral.state) {
+            [self connect:self.leDiscovery
+               peripheral:self.detailItem.peripheral];
+        } else if (CBPeripheralStateConnected == self.detailItem.peripheral.state) {
+            [self disconnect:self.leDiscovery peripheral:self.detailItem.peripheral];
         }
         // reloadData will get the current detailItem.state and update UI
         [self.tableView reloadData];
@@ -256,7 +257,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)discoveryDidConnectPeripheralWithNotification:(NSNotification *)notification {
     NSLog(@"discoveryDidConnectPeripheralWithNotification");
     NSDictionary *userInfo = [notification userInfo];
-    if (userInfo[@"peripheral"] == self.detailItem) {
+    if (userInfo[@"peripheral"] == self.detailItem.peripheral) {
         // Notification is about self's peripheral, not some other peripheral
         // Notification may be from a background queue.
         [self updateUIOnMainQueue];
@@ -266,7 +267,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)discoveryDidDisconnectPeripheralWithNotification:(NSNotification *)notification {
     NSLog(@"discoveryDidDisconnectPeripheralWithNotification");
     NSDictionary *userInfo = [notification userInfo];
-    if (userInfo[@"peripheral"] == self.detailItem) {
+    if (userInfo[@"peripheral"] == self.detailItem.peripheral) {
         // Notification is about self's peripheral, not some other peripheral
         // Notification may be from a background queue.
         [self updateUIOnMainQueue];
@@ -275,7 +276,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void)discoveryDidReadRSSINotification:(NSNotification *)notification {
     NSDictionary *userInfo = [notification userInfo];
-    if (userInfo[@"peripheral"] == self.detailItem) {
+    if (userInfo[@"peripheral"] == self.detailItem.peripheral) {
         // Notification is about self's peripheral, not some other peripheral
         if (userInfo[@"RSSI"]) {
             self.RSSI = userInfo[@"RSSI"];

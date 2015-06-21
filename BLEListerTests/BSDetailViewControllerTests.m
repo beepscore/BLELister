@@ -66,10 +66,14 @@
     // $ p (CBPeripheralState)[mockPeripheral state]
     // (CBPeripheralState) $1 = CBPeripheralStateConnected
     [[[mockPeripheral stub] andReturnValue:OCMOCK_VALUE(CBPeripheralStateConnected)] state];
-    vc.detailItem = mockPeripheral;
+
+    id mockBsBlePeripheral = [OCMockObject niceMockForClass:[BSBlePeripheral class]];
+    //[[[mockBsBlePeripheral stub] andReturnValue:OCMOCK_VALUE(mockPeripheral)] peripheral];
+    [[[mockBsBlePeripheral stub] andReturn:mockPeripheral] peripheral];
+    vc.detailItem = mockBsBlePeripheral;
 
     // discoveryDidConnectPeripheralWithNotification: checks
-    // notification userInfo peripheral equals self.detailItem
+    // notification userInfo peripheral equals self.detailItem.peripheral
     NSDictionary *userInfo = @{@"peripheral" : mockPeripheral};
     NSNotification *notification = [NSNotification notificationWithName:@"boo"
                                                                  object:self
@@ -90,7 +94,7 @@
     BSBLENotificationBlock notificationBlock = ^(id aMock, NSNotification *aNotification) {
         [aMock discoveryDidConnectPeripheralWithNotification:aNotification];
     };
-    
+
     [self checkDiscoveryNotificationCallsUpdateUIOnMainQueue:notificationBlock];
 }
 

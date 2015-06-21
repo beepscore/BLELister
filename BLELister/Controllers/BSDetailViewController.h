@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "BSLeDiscovery.h"
+#import "BSBlePeripheral.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
 @interface BSDetailViewController : UITableViewController <UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) BSLeDiscovery *leDiscovery;
-@property (strong, nonatomic) CBPeripheral *detailItem;
+@property (strong, nonatomic) BSBlePeripheral *detailItem;
 
 @end

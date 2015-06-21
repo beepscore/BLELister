@@ -10,6 +10,7 @@
 //#import "SHTestCaseAdditions.h"
 #import "BSLeDiscovery.h"
 #import "BSLeDiscovery_Private.h"
+#import "BSBlePeripheral.h"
 #import "BSJSONParser.h"
 #import "OCMock/OCMock.h"
 #import "BSBleConstants.h"
@@ -257,14 +258,14 @@
         }
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
     }
-    // cast id to CBPeripheral*
-    CBPeripheral *peripheral = (CBPeripheral *)[bsLeDiscovery.foundPeripherals firstObject];
+    // cast id to BSBlePeripheral*
+    BSBlePeripheral *bsBlePeripheral = (BSBlePeripheral *)[bsLeDiscovery.foundPeripherals firstObject];
     NSLog(@"foundPeripherals %@", bsLeDiscovery.foundPeripherals);
 
     // Assume iOS device will find at least one peripheral
-    XCTAssertNotNil(peripheral);
-    NSString *UUIDString = [peripheral.identifier UUIDString];
-    NSString *peripheralName = peripheral.name;
+    XCTAssertNotNil(bsBlePeripheral);
+    NSString *UUIDString = [bsBlePeripheral.peripheral.identifier UUIDString];
+    NSString *peripheralName = bsBlePeripheral.peripheral.name;
 
     // Assume the first peripheral is in this predefined list
     bool foundFlex = ([bleDevices[@"flex"][@"identifier"] isEqualToString:UUIDString]
@@ -272,7 +273,7 @@
 
     bool foundOne = ([bleDevices[@"one"][@"identifier"] isEqualToString:UUIDString]
                      && [bleDevices[@"one"][@"name"]
-                      isEqualToString:peripheral.name]);
+                      isEqualToString:peripheralName]);
     
     bool foundRaspberryPi = ([bleDevices[@"raspberry_pi"][@"identifier"] isEqualToString:UUIDString]
                              && [[NSNull null] isEqual:peripheralName]);
@@ -305,11 +306,11 @@
     
     BSLeDiscovery *bsLeDiscovery = [[BSLeDiscovery alloc]
                                     initWithCentralManager:centralManager
-                                    foundPeripherals:[NSMutableArray arrayWithArray:@[]]
+                                    foundPeripherals:@[]
                                     connectedServices:nil
                                     notificationCenter:fakeNotificationCenter];
     
-    CBPeripheral *peripheral = nil;
+    BSBlePeripheral *bsBlePeripheral = nil;
     
     BOOL didStartScanning = NO;
     BOOL didCallConnect = NO;
@@ -339,27 +340,27 @@
             }
             
             if( !bsLeDiscovery.foundPeripherals
-               || ([[NSMutableArray arrayWithArray:@[]]
-                    isEqual:bsLeDiscovery.foundPeripherals]) ) {
+               || ([@[] isEqual:bsLeDiscovery.foundPeripherals]) ) {
                 NSLog(@"foundPeripherals nil or empty");
             } else {
                 // foundPeripherals has at least one peripheral
                 NSLog(@"foundPeripherals has at least one peripheral");
-                peripheral = [bsLeDiscovery.foundPeripherals firstObject];
+                bsBlePeripheral = [bsLeDiscovery.foundPeripherals firstObject];
                 
                 if (!didCallConnect) {
                     NSLog(@"calling connectPeripheral");
-                    [bsLeDiscovery connectPeripheral:peripheral];
+                    [bsLeDiscovery connectPeripheral:bsBlePeripheral.peripheral];
                     didCallConnect = YES;
                 }
                 
-                if (CBPeripheralStateConnected == peripheral.state) {
+                if (CBPeripheralStateConnected == bsBlePeripheral.peripheral.state) {
                     isConnected = YES;
                 }
             }
         }
     }
-    XCTAssert((CBPeripheralStateConnected == peripheral.state), @"Connect failed.");
+    XCTAssert((CBPeripheralStateConnected == bsBlePeripheral.peripheral.state),
+              @"Connect failed.");
     
     // test disconnect
     timeoutDate = [NSDate dateWithTimeIntervalSinceNow:15];
@@ -370,15 +371,16 @@
         
         if (!didCallDisconnect) {
             NSLog(@"calling disconnectPeripheral");
-            [bsLeDiscovery disconnectPeripheral:peripheral];
+            [bsLeDiscovery disconnectPeripheral:bsBlePeripheral.peripheral];
             didCallDisconnect = YES;
         }
         
-        if (CBPeripheralStateDisconnected == peripheral.state) {
+        if (CBPeripheralStateDisconnected == bsBlePeripheral.peripheral.state) {
             isConnected = NO;
         }
     }
-    XCTAssert((CBPeripheralStateDisconnected == peripheral.state), @"Disconnect failed.");
+    XCTAssert((CBPeripheralStateDisconnected == bsBlePeripheral.peripheral.state),
+              @"Disconnect failed.");
 }
 
 # pragma mark - test post notifications

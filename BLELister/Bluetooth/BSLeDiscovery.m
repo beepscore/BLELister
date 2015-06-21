@@ -11,6 +11,7 @@
 #import "BSLeDiscovery.h"
 #import "BSLeDiscovery_Private.h"
 #import "BSBleConstants.h"
+#import "BSBlePeripheral.h"
 #import "CBCentralManager_BSSafe.h"
 
 @implementation BSLeDiscovery
@@ -262,9 +263,8 @@ didFailToRetrievePeripheralForUUID:(CBUUID *)uuid
 - (void) centralManager:(CBCentralManager *)central
    didConnectPeripheral:(CBPeripheral *)peripheral {
 
-    if (![self.foundPeripherals containsObject:peripheral]) {
-        self.foundPeripherals = [self.foundPeripherals arrayByAddingObject:peripheral];
-    }
+    [self updatePeripherals:self.foundPeripherals
+                 peripheral:peripheral];
     
     NSDictionary *userInfo = @{ @"peripheral" : peripheral };
     [self.notificationCenter postNotificationName:kBleDiscoveryDidConnectPeripheralNotification
@@ -309,25 +309,24 @@ didDisconnectPeripheral:(CBPeripheral *)peripheral
  didDiscoverPeripheral:(CBPeripheral *)peripheral
      advertisementData:(NSDictionary *)advertisementData
                   RSSI:(NSNumber *)RSSI {
-
-    if (![self.foundPeripherals containsObject:peripheral]) {
-        self.foundPeripherals = [self.foundPeripherals arrayByAddingObject:peripheral];
-        
-        // Argument RSSI may be non-nil even when peripheral.RSSI is nil
-        NSDictionary *userInfo = @{@"central" : central,
-                                   @"peripheral" : peripheral,
-                                   @"advertisementData" : advertisementData,
-                                   @"RSSI" : RSSI };
-
-        // centralManager may be calling back from the main queue or a background queue.
-        // Post notification on current thread, whether it's main or a background thread.
-        // Observers will be notified on current thread.
-        // Let each observer decide if it will respond on current thread or not.
-        // For example a view controller might want to get the main queue and then update UI.
-        [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
-                                               object:self
-                                             userInfo:userInfo];
-    }
+    
+    [self updatePeripherals:self.foundPeripherals
+                 peripheral:peripheral];
+    
+    // Argument RSSI may be non-nil even when peripheral.RSSI is nil
+    NSDictionary *userInfo = @{@"central" : central,
+                               @"peripheral" : peripheral,
+                               @"advertisementData" : advertisementData,
+                               @"RSSI" : RSSI };
+    
+    // centralManager may be calling back from the main queue or a background queue.
+    // Post notification on current thread, whether it's main or a background thread.
+    // Observers will be notified on current thread.
+    // Let each observer decide if it will respond on current thread or not.
+    // For example a view controller might want to get the main queue and then update UI.
+    [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
+                                           object:self
+                                         userInfo:userInfo];
 }
 
 #pragma mark -
@@ -398,6 +397,7 @@ didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic
 
     NSLog(@"peripheral %@", peripheral);
     NSLog(@"chacteristic %@", characteristic);
+
     if (error) {
         // Some characteristics aren't readable, give error
         // Error Domain=CBATTErrorDomain Code=2 "Reading is not permitted."
@@ -410,6 +410,12 @@ didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic
 - (void)peripheral:(CBPeripheral *)peripheral
        didReadRSSI:(NSNumber *)RSSI
              error:(NSError *)error {
+
+    if (RSSI && !error) {
+        [self updatePeripherals:self.foundPeripherals
+                     peripheral:peripheral
+                           RSSI:RSSI];
+    }
 
     NSMutableDictionary *mutableUserInfo = [NSMutableDictionary
                                             dictionaryWithDictionary: @{@"peripheral" : peripheral}];
@@ -429,6 +435,40 @@ didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic
     [self.notificationCenter postNotificationName:kBleDiscoveryDidReadRSSINotification
                                            object:self
                                          userInfo:userInfo];
+}
+
+#pragma mark -
+- (void)updatePeripherals:(NSArray *)peripherals
+               peripheral:(CBPeripheral *)peripheral {
+
+    BOOL didFindPeripheral = NO;
+
+    for (BSBlePeripheral *bsBlePeripheral in peripherals) {
+        if (bsBlePeripheral.peripheral.identifier == peripheral.identifier) {
+            bsBlePeripheral.peripheral = peripheral;
+            didFindPeripheral = YES;
+            // exit loop
+            break;
+        }
+    }
+
+    if (!didFindPeripheral) {
+        BSBlePeripheral *bsBlePeripheral = [[BSBlePeripheral alloc] init];
+        bsBlePeripheral.peripheral = peripheral;
+        self.foundPeripherals = [self.foundPeripherals arrayByAddingObject:bsBlePeripheral];
+    }
+}
+
+- (void)updatePeripherals:(NSArray *)peripherals
+               peripheral:(CBPeripheral *)peripheral
+                     RSSI:(NSNumber *)RSSI {
+    for (BSBlePeripheral *bsBlePeripheral in peripherals) {
+        if (bsBlePeripheral.peripheral.identifier == peripheral.identifier) {
+            bsBlePeripheral.RSSI = RSSI;
+            // exit loop
+            break;
+        }
+    }
 }
 
 @end
