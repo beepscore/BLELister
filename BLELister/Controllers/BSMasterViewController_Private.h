@@ -8,9 +8,7 @@
 
 #import "BSMasterViewController.h"
 
-@interface BSMasterViewController () {
-    NSArray *_objects;
-}
+@interface BSMasterViewController ()
 
 // viewDidLoad sets self.notificationCenter. Unit test can set it to a mock notificationCenter.
 @property (nonatomic, strong) NSNotificationCenter *notificationCenter;

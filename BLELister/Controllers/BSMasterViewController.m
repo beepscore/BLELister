@@ -76,9 +76,6 @@
  */
 
 - (void)scanForPeripherals {
-    if (!_objects) {
-        _objects = @[];
-    }
     [self.leDiscovery scanForPeripheralsWithServices:nil options:nil];
 }
 
@@ -90,14 +87,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
-    return _objects.count;
+    return self.leDiscovery.foundPeripherals.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    CBPeripheral *peripheral = _objects[indexPath.row];
+    CBPeripheral *peripheral = self.leDiscovery.foundPeripherals[indexPath.row];
     cell.textLabel.text = [peripheral name];
 
     // TODO: Consider add MVC Model object PeripheralWithRSSI, and collection of them
@@ -117,9 +114,9 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 forRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSMutableArray *mutableObjects = [NSMutableArray arrayWithArray:_objects];
-        [mutableObjects removeObjectAtIndex:indexPath.row];
-        _objects = [NSArray arrayWithArray:mutableObjects];
+        NSMutableArray *mutableFoundPeripherals = [NSMutableArray arrayWithArray:self.leDiscovery.foundPeripherals];
+        [mutableFoundPeripherals removeObjectAtIndex:indexPath.row];
+        self.leDiscovery.foundPeripherals = [NSArray arrayWithArray:mutableFoundPeripherals];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -145,7 +142,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        CBPeripheral *object = _objects[indexPath.row];
+        CBPeripheral *object = self.leDiscovery.foundPeripherals[indexPath.row];
         self.detailViewController.detailItem = object;
     }
 }
@@ -154,7 +151,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                  sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        CBPeripheral *object = _objects[indexPath.row];
+        CBPeripheral *object = self.leDiscovery.foundPeripherals[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
@@ -190,7 +187,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (notification.userInfo) {
         NSLog(@"notification.userInfo %@", notification.userInfo);
     }
-    _objects = self.leDiscovery.foundPeripherals;
     // Notification may be from a background queue.
     [self updateUIOnMainQueue];
 }
