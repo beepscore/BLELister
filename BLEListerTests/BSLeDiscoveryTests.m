@@ -454,32 +454,32 @@
     [mockNotificationCenter verify];
 }
 
-- (void)testCentralManagerDidConnectPeripheralPostsBleDiscoveryDidConnectPeripheralNotification
-{
-    id mockNotificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
-
-    BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
-    stubCentralManager.state = CBCentralManagerStatePoweredOn;
-
-    self.bsLeDiscovery = [[BSLeDiscovery alloc]
-                          initWithCentralManager:(CBCentralManager *)stubCentralManager
-                          foundPeripherals:nil
-                          connectedServices:nil
-                          notificationCenter:mockNotificationCenter];
-
-    CBPeripheral *peripheral = [[CBPeripheral alloc] init];
-    NSDictionary *fakeUserInfo = @{ @"peripheral" : peripheral};
-    [[mockNotificationCenter expect]
-     postNotificationName:kBleDiscoveryDidConnectPeripheralNotification
-     object:self.bsLeDiscovery
-     userInfo:fakeUserInfo];
-
-    [self.bsLeDiscovery centralManager:(CBCentralManager *)stubCentralManager
-                  didConnectPeripheral:peripheral];
-
-    // Verify all stubbed or expected methods were called.
-    [mockNotificationCenter verify];
-}
+//- (void)testCentralManagerDidConnectPeripheralPostsBleDiscoveryDidConnectPeripheralNotification
+//{
+//    id mockNotificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
+//
+//    BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
+//    stubCentralManager.state = CBCentralManagerStatePoweredOn;
+//
+//    self.bsLeDiscovery = [[BSLeDiscovery alloc]
+//                          initWithCentralManager:(CBCentralManager *)stubCentralManager
+//                          foundPeripherals:nil
+//                          connectedServices:nil
+//                          notificationCenter:mockNotificationCenter];
+//
+//    CBPeripheral *peripheral = [[CBPeripheral alloc] init];
+//    NSDictionary *fakeUserInfo = @{ @"peripheral" : peripheral};
+//    [[mockNotificationCenter expect]
+//     postNotificationName:kBleDiscoveryDidConnectPeripheralNotification
+//     object:self.bsLeDiscovery
+//     userInfo:fakeUserInfo];
+//
+//    [self.bsLeDiscovery centralManager:(CBCentralManager *)stubCentralManager
+//                  didConnectPeripheral:peripheral];
+//
+//    // Verify all stubbed or expected methods were called.
+//    [mockNotificationCenter verify];
+//}
 
 - (void)testCentralManagerDidDisconnectPeripheralPostsBleDiscoveryDidDisconnectPeripheralNotification
 {
