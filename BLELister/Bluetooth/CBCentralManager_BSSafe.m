@@ -12,7 +12,7 @@
 
 - (void)safeScanForPeripheralsWithServices:(NSArray *)serviceUUIDs
                                    options:(NSDictionary *)options {
-    if(CBCentralManagerStatePoweredOn == self.state) {
+    if(CBManagerStatePoweredOn == self.state) {
         NSLog(@"CBCentralManager powered on, calling scanForPeripheralsWithServices.");
         [self scanForPeripheralsWithServices:serviceUUIDs options:options];
     } else {

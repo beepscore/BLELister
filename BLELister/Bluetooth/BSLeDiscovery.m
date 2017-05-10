@@ -181,19 +181,19 @@
 
 // CBCentralManagerDelegate required method
 - (void) centralManagerDidUpdateState:(CBCentralManager *)central {
-    static CBCentralManagerState previousState = -1;
+    static CBManagerState previousState = -1;
 
     // TODO: Do we need to get main queue, in case centralManager is using non-main queue?
     NSLog(@"%@ CBCentralManagerState %ld", central, central.state);
 
     switch ([central state]) {
 
-        case CBCentralManagerStateUnknown:
+        case CBManagerStateUnknown:
         {
             /* Bad news, let's wait for another event. */
             break;
         }
-        case CBCentralManagerStateResetting:
+        case CBManagerStateResetting:
         {
             [self clearDevices];
             [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
@@ -203,20 +203,20 @@
             break;
         }
             
-        case CBCentralManagerStateUnsupported:
+        case CBManagerStateUnsupported:
         {
             // original code didn't list this case and xcode warned
             // so list case to silence warning, but don't do anything
             break;
         }
             
-        case CBCentralManagerStateUnauthorized:
+        case CBManagerStateUnauthorized:
         {
             /* Tell user the app is not allowed. */
             break;
         }
             
-        case CBCentralManagerStatePoweredOff:
+        case CBManagerStatePoweredOff:
         {
             [self clearDevices];
             [self.notificationCenter postNotificationName:kBleDiscoveryDidRefreshNotification
@@ -224,7 +224,7 @@
                                                  userInfo:nil];
             /* Tell user to power ON BT for functionality, but not on first run - the Framework will alert in that instance. */
             // cast -1 to CBCentralManagerState to eliminate warning
-            if (previousState != (CBCentralManagerState)-1) {
+            if (previousState != (CBManagerState)-1) {
                 [self.notificationCenter postNotificationName:kBleDiscoveryStatePoweredOffNotification
                                                        object:self
                                                      userInfo:nil];
@@ -232,7 +232,7 @@
             break;
         }
             
-        case CBCentralManagerStatePoweredOn:
+        case CBManagerStatePoweredOn:
         {
             [self loadSavedDevices];
             
