@@ -35,6 +35,7 @@
 		DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
 		DEE990F417F543F70041CAB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE990F217F543F70041CAB6 /* InfoPlist.strings */; };
 		DEE990F617F543F70041CAB6 /* BSLeDiscoveryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */; };
+		DEEDFA751EC2D63500D878E0 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEEDFA741EC2D63500D878E0 /* Launch Screen.storyboard */; };
 		DEF56FDA17F9386600A99FF2 /* BSJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF56FD917F9386600A99FF2 /* BSJSONParser.m */; };
 		DEF56FDB17F9386600A99FF2 /* BSJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF56FD917F9386600A99FF2 /* BSJSONParser.m */; };
 		DEF56FDD17F93CC500A99FF2 /* BSJSONParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */; };
@@ -95,6 +96,7 @@
 		DEE990F117F543F70041CAB6 /* BLEListerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BLEListerTests-Info.plist"; sourceTree = "<group>"; };
 		DEE990F317F543F70041CAB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSLeDiscoveryTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DEEDFA741EC2D63500D878E0 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DEF56FD817F9386600A99FF2 /* BSJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSJSONParser.h; sourceTree = "<group>"; };
 		DEF56FD917F9386600A99FF2 /* BSJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSJSONParser.m; sourceTree = "<group>"; };
 		DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSJSONParserTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -216,6 +218,7 @@
 				DEF56FD817F9386600A99FF2 /* BSJSONParser.h */,
 				DEF56FD917F9386600A99FF2 /* BSJSONParser.m */,
 				DEE990E217F543F70041CAB6 /* Images.xcassets */,
+				DEEDFA741EC2D63500D878E0 /* Launch Screen.storyboard */,
 				DEE990CB17F543F70041CAB6 /* Supporting Files */,
 			);
 			path = BLELister;
@@ -353,6 +356,7 @@
 				DEBC532317F547A800F2ACFF /* README.md in Resources */,
 				DEE990D817F543F70041CAB6 /* Main_iPhone.storyboard in Resources */,
 				DEE990CF17F543F70041CAB6 /* InfoPlist.strings in Resources */,
+				DEEDFA751EC2D63500D878E0 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
