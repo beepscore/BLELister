@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		DE40892B182CCCC700643E77 /* CBCentralManager_BSSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = DE40892A182CCCC700643E77 /* CBCentralManager_BSSafe.m */; };
 		DE42DEFA1EC42D4600FA151F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE42DEF81EC42D4600FA151F /* Main.storyboard */; };
+		DE42DEFD1EC42E9400FA151F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE42DEFC1EC42E9400FA151F /* AppDelegate.m */; };
+		DE42DF001EC42F0000FA151F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE42DEFF1EC42F0000FA151F /* DetailViewController.m */; };
+		DE42DF031EC42F1F00FA151F /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE42DF021EC42F1F00FA151F /* MasterViewController.m */; };
 		DE580DEE17F5995000292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DE6B73C01808F663007EC396 /* BSBleConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B73BF1808F663007EC396 /* BSBleConstants.m */; };
@@ -61,6 +64,12 @@
 		DE408929182CCCC700643E77 /* CBCentralManager_BSSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBCentralManager_BSSafe.h; path = Bluetooth/CBCentralManager_BSSafe.h; sourceTree = "<group>"; };
 		DE40892A182CCCC700643E77 /* CBCentralManager_BSSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBCentralManager_BSSafe.m; path = Bluetooth/CBCentralManager_BSSafe.m; sourceTree = "<group>"; };
 		DE42DEF91EC42D4600FA151F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DE42DEFB1EC42E4F00FA151F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DE42DEFC1EC42E9400FA151F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DE42DEFE1EC42EEA00FA151F /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = Controllers/DetailViewController.h; sourceTree = "<group>"; };
+		DE42DEFF1EC42F0000FA151F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = Controllers/DetailViewController.m; sourceTree = "<group>"; };
+		DE42DF011EC42F0F00FA151F /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MasterViewController.h; path = Controllers/MasterViewController.h; sourceTree = "<group>"; };
+		DE42DF021EC42F1F00FA151F /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterViewController.m; path = Controllers/MasterViewController.m; sourceTree = "<group>"; };
 		DE580DED17F5995000292810 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		DE6B73BE1808F663007EC396 /* BSBleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSBleConstants.h; path = Bluetooth/BSBleConstants.h; sourceTree = "<group>"; };
 		DE6B73BF1808F663007EC396 /* BSBleConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSBleConstants.m; path = Bluetooth/BSBleConstants.m; sourceTree = "<group>"; };
@@ -145,6 +154,10 @@
 				DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */,
 				DEF676D018090DB900864ECC /* BSMasterViewController_Private.h */,
 				DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */,
+				DE42DEFE1EC42EEA00FA151F /* DetailViewController.h */,
+				DE42DEFF1EC42F0000FA151F /* DetailViewController.m */,
+				DE42DF011EC42F0F00FA151F /* MasterViewController.h */,
+				DE42DF021EC42F1F00FA151F /* MasterViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -213,6 +226,8 @@
 				DEA8D2BC1B35EB1A000E5EF1 /* Model */,
 				DE63F24E180873D900E4ACD8 /* Bluetooth */,
 				DE4E2A74180870A7005DA864 /* Controllers */,
+				DE42DEFB1EC42E4F00FA151F /* AppDelegate.h */,
+				DE42DEFC1EC42E9400FA151F /* AppDelegate.m */,
 				DEE990D317F543F70041CAB6 /* BSAppDelegate.h */,
 				DEE990D417F543F70041CAB6 /* BSAppDelegate.m */,
 				DE42DEF81EC42D4600FA151F /* Main.storyboard */,
@@ -385,8 +400,11 @@
 				DEFDC94F17F553700073F990 /* BSLeDiscovery.m in Sources */,
 				DEE990D117F543F70041CAB6 /* main.m in Sources */,
 				DEA8D2BF1B35EB92000E5EF1 /* BSBlePeripheral.m in Sources */,
+				DE42DF031EC42F1F00FA151F /* MasterViewController.m in Sources */,
+				DE42DEFD1EC42E9400FA151F /* AppDelegate.m in Sources */,
 				DEF56FDA17F9386600A99FF2 /* BSJSONParser.m in Sources */,
 				DE40892B182CCCC700643E77 /* CBCentralManager_BSSafe.m in Sources */,
+				DE42DF001EC42F0000FA151F /* DetailViewController.m in Sources */,
 				DE6B73C01808F663007EC396 /* BSBleConstants.m in Sources */,
 				DEE990E117F543F70041CAB6 /* BSDetailViewController.m in Sources */,
 				DEE990D517F543F70041CAB6 /* BSAppDelegate.m in Sources */,
