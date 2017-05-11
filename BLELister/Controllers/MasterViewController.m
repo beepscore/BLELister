@@ -79,11 +79,12 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 
+        // segue destinationViewController is UINavigationController
+        // UINavigation topViewController is DetailViewController
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
 
         BSBlePeripheral *bsBlePeripheral = self.leDiscovery.foundPeripherals[indexPath.row];
 
-        //[[segue destinationViewController] setDetailItem:bsBlePeripheral];
         [controller setDetailItem:bsBlePeripheral];
 
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
