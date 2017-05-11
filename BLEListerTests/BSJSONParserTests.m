@@ -98,22 +98,30 @@
 
 - (void)testDictFromJSONFile {
     NSDictionary *expectedDict = @{
+                                   @"feit0":@{@"identifier":@"63275DA1-4090-6557-9706-9837A9D43970", @"name":@"Feit Bulb"},
+                                   @"feit1":@{@"identifier":@"08706668-4CA7-E4C5-5361-ED41EA0A8F9A", @"name":@"Feit Bulb"},
+                                   @"feit2":@{@"identifier":@"BF77A150-7F23-E800-4BF1-09C41FF270A9", @"name":@"Feit Bulb"},
+                                   @"feit3":@{@"identifier":@"3661D5E4-1A88-DBF8-B14A-0208DFC10912", @"name":@"Feit Bulb"},
                                    @"flex":@{@"identifier":@"74451A09-E51B-5596-546C-C91A721EBC3D", @"name":@"Flex"},
                                    @"one":@{@"identifier":@"5FEA635E-4E9D-D84C-5713-4D004AABEFA3", @"name":@"One"},
                                    @"raspberry_pi":@{@"identifier":@"D2BD8809-5D04-9C44-650D-86E3A5CC3D82", @"name":[NSNull null]},
                                    @"redbearshield":@{@"identifier":@"DDAB0207-5E10-2902-5B03-CA3F0F466B40", @"name":@"BLE Shield"},
                                    @"sensortag":@{@"identifier":@"E8810024-0942-7800-E216-67FFE4E226AC",@"name":@"TI BLE Sensor Tag"}
                                    };
-    
+
     NSDictionary *actualDict = [BSJSONParser dictFromJSONFile:@"bleDevices"];
 
     XCTAssertEqualObjects(expectedDict, actualDict, @"");
 }
 
 - (void)testJSONStringFromFile {
-    NSString *expectedString = @"{\"flex\":{\"identifier\":\"74451A09-E51B-5596-546C-C91A721EBC3D\",\"name\":\"Flex\"},\"one\":{\"identifier\":\"5FEA635E-4E9D-D84C-5713-4D004AABEFA3\",\"name\":\"One\"},\"raspberry_pi\":{\"identifier\":\"D2BD8809-5D04-9C44-650D-86E3A5CC3D82\",\"name\":null},\"redbearshield\":{\"identifier\":\"DDAB0207-5E10-2902-5B03-CA3F0F466B40\",\"name\":\"BLE Shield\"},\"sensortag\":{\"identifier\":\"E8810024-0942-7800-E216-67FFE4E226AC\",\"name\":\"TI BLE Sensor Tag\"}}";
+    // Test reading a very simple file.
+    // Previously tested reading bleDevices.json, but that was hard to maintain.
+    // Use testDictFromJSONFile to test bleDevices.json
+    // Note spaces after commas
+    NSString *expectedString = @"[\"Larry\", \"Moe\", 57, \"Curly\"]";
 
-    NSString *actualString = [BSJSONParser JSONStringFromFile:@"bleDevices"];
+    NSString *actualString = [BSJSONParser JSONStringFromFile:@"stubArray"];
     NSLog(@"expectedString %@, length, %ld",
                  expectedString, [expectedString length]);
     NSLog(@"actualString %@, length %ld",

@@ -268,6 +268,16 @@
     NSString *peripheralName = bsBlePeripheral.peripheral.name;
 
     // Assume the first peripheral is in this predefined list
+    //
+    bool foundFeit0 = ([bleDevices[@"feit0"][@"identifier"] isEqualToString:UUIDString]
+                      && [bleDevices[@"feit0"][@"name"] isEqualToString:peripheralName]);
+    bool foundFeit1 = ([bleDevices[@"feit1"][@"identifier"] isEqualToString:UUIDString]
+                      && [bleDevices[@"feit1"][@"name"] isEqualToString:peripheralName]);
+    bool foundFeit2 = ([bleDevices[@"feit2"][@"identifier"] isEqualToString:UUIDString]
+                      && [bleDevices[@"feit2"][@"name"] isEqualToString:peripheralName]);
+    bool foundFeit3 = ([bleDevices[@"feit3"][@"identifier"] isEqualToString:UUIDString]
+                      && [bleDevices[@"feit3"][@"name"] isEqualToString:peripheralName]);
+
     bool foundFlex = ([bleDevices[@"flex"][@"identifier"] isEqualToString:UUIDString]
                       && [bleDevices[@"flex"][@"name"] isEqualToString:peripheralName]);
 
@@ -288,7 +298,12 @@
                            && [bleDevices[@"sensortag"][@"name"]
                             isEqualToString:peripheralName]);
     
-    XCTAssertTrue(foundFlex || foundOne || foundRaspberryPi || foundRedBear || foundSensorTag);
+    XCTAssertTrue(foundFeit0 || foundFeit1 || foundFeit2 || foundFeit3
+                  || foundFlex
+                  || foundOne
+                  || foundRaspberryPi
+                  || foundRedBear
+                  || foundSensorTag);
 }
 
 #pragma mark - test Connect/Disconnect
