@@ -29,7 +29,6 @@
 		DEE990C917F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
 		DEE990CF17F543F70041CAB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE990CD17F543F70041CAB6 /* InfoPlist.strings */; };
 		DEE990D117F543F70041CAB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990D017F543F70041CAB6 /* main.m */; };
-		DEE990D517F543F70041CAB6 /* BSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990D417F543F70041CAB6 /* BSAppDelegate.m */; };
 		DEE990D817F543F70041CAB6 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */; };
 		DEE990DB17F543F70041CAB6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */; };
 		DEE990DE17F543F70041CAB6 /* BSMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */; };
@@ -94,8 +93,6 @@
 		DEE990CE17F543F70041CAB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEE990D017F543F70041CAB6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DEE990D217F543F70041CAB6 /* BLELister-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BLELister-Prefix.pch"; sourceTree = "<group>"; };
-		DEE990D317F543F70041CAB6 /* BSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSAppDelegate.h; sourceTree = "<group>"; };
-		DEE990D417F543F70041CAB6 /* BSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAppDelegate.m; sourceTree = "<group>"; };
 		DEE990D717F543F70041CAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		DEE990DA17F543F70041CAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BSMasterViewController.h; path = Controllers/BSMasterViewController.h; sourceTree = "<group>"; };
@@ -228,8 +225,6 @@
 				DE4E2A74180870A7005DA864 /* Controllers */,
 				DE42DEFB1EC42E4F00FA151F /* AppDelegate.h */,
 				DE42DEFC1EC42E9400FA151F /* AppDelegate.m */,
-				DEE990D317F543F70041CAB6 /* BSAppDelegate.h */,
-				DEE990D417F543F70041CAB6 /* BSAppDelegate.m */,
 				DE42DEF81EC42D4600FA151F /* Main.storyboard */,
 				DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */,
 				DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */,
@@ -407,7 +402,6 @@
 				DE42DF001EC42F0000FA151F /* DetailViewController.m in Sources */,
 				DE6B73C01808F663007EC396 /* BSBleConstants.m in Sources */,
 				DEE990E117F543F70041CAB6 /* BSDetailViewController.m in Sources */,
-				DEE990D517F543F70041CAB6 /* BSAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
