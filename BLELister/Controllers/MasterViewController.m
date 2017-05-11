@@ -83,8 +83,7 @@
 
         BSBlePeripheral *bsBlePeripheral = self.leDiscovery.foundPeripherals[indexPath.row];
 
-        // TODO: change DetailViewController detailItem, then uncomment this
-        //[[segue destinationViewController] setDetailItem:bsBlePeripheral];
+        [[segue destinationViewController] setDetailItem:bsBlePeripheral];
 
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
