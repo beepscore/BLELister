@@ -19,22 +19,16 @@
 		DE6B73C11808F663007EC396 /* BSBleConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B73BF1808F663007EC396 /* BSBleConstants.m */; };
 		DE7671DD182C77DE00E4CD1C /* CBCentralManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7671DC182C77DE00E4CD1C /* CBCentralManagerTests.m */; };
 		DE90FA9E180950920000DBDA /* BSStubCBCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */; };
-		DE956C2918388E5B0054DE1B /* BSDetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */; };
 		DEA8D2BF1B35EB92000E5EF1 /* BSBlePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA8D2BE1B35EB92000E5EF1 /* BSBlePeripheral.m */; };
 		DEBC532317F547A800F2ACFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532217F547A800F2ACFF /* README.md */; };
 		DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532417F547BB00F2ACFF /* LICENSE.txt */; };
 		DEC2C94F1EC4E11B0004FA86 /* DetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC2C94E1EC4E11B0004FA86 /* DetailViewControllerTests.m */; };
-		DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */; };
 		DEDACD7618093633003CC569 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDACD7518093633003CC569 /* libOCMock.a */; };
 		DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
 		DEE990C717F543F70041CAB6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C617F543F70041CAB6 /* CoreGraphics.framework */; };
 		DEE990C917F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
 		DEE990CF17F543F70041CAB6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE990CD17F543F70041CAB6 /* InfoPlist.strings */; };
 		DEE990D117F543F70041CAB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990D017F543F70041CAB6 /* main.m */; };
-		DEE990D817F543F70041CAB6 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */; };
-		DEE990DB17F543F70041CAB6 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */; };
-		DEE990DE17F543F70041CAB6 /* BSMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */; };
-		DEE990E117F543F70041CAB6 /* BSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE990E017F543F70041CAB6 /* BSDetailViewController.m */; };
 		DEE990E317F543F70041CAB6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEE990E217F543F70041CAB6 /* Images.xcassets */; };
 		DEE990EB17F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
 		DEE990EC17F543F70041CAB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C817F543F70041CAB6 /* UIKit.framework */; };
@@ -63,7 +57,6 @@
 /* Begin PBXFileReference section */
 		C77D51C1FA1A477C99FA184A /* libPods-BLELister.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BLELister.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1EE2341EC4FB7700EA5086 /* MasterViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewControllerTests.m; sourceTree = "<group>"; };
-		DE22EC141EC434F400A9B568 /* BSMasterViewController_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BSMasterViewController_Private.h; path = Controllers/BSMasterViewController_Private.h; sourceTree = "<group>"; };
 		DE22EC151EC4350600A9B568 /* MasterViewController_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MasterViewController_Private.h; path = Controllers/MasterViewController_Private.h; sourceTree = "<group>"; };
 		DE408929182CCCC700643E77 /* CBCentralManager_BSSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBCentralManager_BSSafe.h; path = Bluetooth/CBCentralManager_BSSafe.h; sourceTree = "<group>"; };
 		DE40892A182CCCC700643E77 /* CBCentralManager_BSSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBCentralManager_BSSafe.m; path = Bluetooth/CBCentralManager_BSSafe.m; sourceTree = "<group>"; };
@@ -81,7 +74,6 @@
 		DE8DE95A17F66E390097427E /* BSLeDiscovery_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSLeDiscovery_Private.h; path = Bluetooth/BSLeDiscovery_Private.h; sourceTree = "<group>"; };
 		DE90FA9C180950920000DBDA /* BSStubCBCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStubCBCentralManager.h; sourceTree = "<group>"; };
 		DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStubCBCentralManager.m; sourceTree = "<group>"; };
-		DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDetailViewControllerTests.m; sourceTree = "<group>"; };
 		DE99F8011EC4BD4A00584452 /* DetailViewController_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DetailViewController_Private.h; path = Controllers/DetailViewController_Private.h; sourceTree = "<group>"; };
 		DEA8D2BD1B35EB92000E5EF1 /* BSBlePeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBlePeripheral.h; sourceTree = "<group>"; };
 		DEA8D2BE1B35EB92000E5EF1 /* BSBlePeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBlePeripheral.m; sourceTree = "<group>"; };
@@ -89,8 +81,6 @@
 		DEBC532417F547BB00F2ACFF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DEC2C94E1EC4E11B0004FA86 /* DetailViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewControllerTests.m; sourceTree = "<group>"; };
 		DEC38EFC18394ECD000DB30F /* BSBleTestConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBleTestConstants.h; sourceTree = "<group>"; };
-		DEC48973182B08EC006E72B7 /* BSDetailViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDetailViewController_Private.h; path = Controllers/BSDetailViewController_Private.h; sourceTree = "<group>"; };
-		DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BSMasterViewControllerTests.m; path = BLEListerTests/BSMasterViewControllerTests.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DEDACD7518093633003CC569 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE990C117F543F70041CAB6 /* BLELister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLELister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE990C417F543F70041CAB6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -100,12 +90,6 @@
 		DEE990CE17F543F70041CAB6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DEE990D017F543F70041CAB6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DEE990D217F543F70041CAB6 /* BLELister-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BLELister-Prefix.pch"; sourceTree = "<group>"; };
-		DEE990D717F543F70041CAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		DEE990DA17F543F70041CAB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BSMasterViewController.h; path = Controllers/BSMasterViewController.h; sourceTree = "<group>"; };
-		DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BSMasterViewController.m; path = Controllers/BSMasterViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		DEE990DF17F543F70041CAB6 /* BSDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BSDetailViewController.h; path = Controllers/BSDetailViewController.h; sourceTree = "<group>"; };
-		DEE990E017F543F70041CAB6 /* BSDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BSDetailViewController.m; path = Controllers/BSDetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DEE990E217F543F70041CAB6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DEE990E817F543F70041CAB6 /* BLEListerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLEListerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE990F117F543F70041CAB6 /* BLEListerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BLEListerTests-Info.plist"; sourceTree = "<group>"; };
@@ -151,12 +135,6 @@
 		DE4E2A74180870A7005DA864 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DEE990DF17F543F70041CAB6 /* BSDetailViewController.h */,
-				DEC48973182B08EC006E72B7 /* BSDetailViewController_Private.h */,
-				DEE990E017F543F70041CAB6 /* BSDetailViewController.m */,
-				DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */,
-				DE22EC141EC434F400A9B568 /* BSMasterViewController_Private.h */,
-				DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */,
 				DE42DEFE1EC42EEA00FA151F /* DetailViewController.h */,
 				DE99F8011EC4BD4A00584452 /* DetailViewController_Private.h */,
 				DE42DEFF1EC42F0000FA151F /* DetailViewController.m */,
@@ -234,8 +212,6 @@
 				DE42DEFB1EC42E4F00FA151F /* AppDelegate.h */,
 				DE42DEFC1EC42E9400FA151F /* AppDelegate.m */,
 				DE42DEF81EC42D4600FA151F /* Main.storyboard */,
-				DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */,
-				DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */,
 				DEF56FD817F9386600A99FF2 /* BSJSONParser.h */,
 				DEF56FD917F9386600A99FF2 /* BSJSONParser.m */,
 				DEE990E217F543F70041CAB6 /* Images.xcassets */,
@@ -262,11 +238,9 @@
 				DEE990F017F543F70041CAB6 /* Supporting Files */,
 				DEF7469417F92D3F00502764 /* TestResources */,
 				DEC38EFC18394ECD000DB30F /* BSBleTestConstants.h */,
-				DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */,
 				DEC2C94E1EC4E11B0004FA86 /* DetailViewControllerTests.m */,
 				DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */,
 				DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */,
-				DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */,
 				DE1EE2341EC4FB7700EA5086 /* MasterViewControllerTests.m */,
 				DE90FA9C180950920000DBDA /* BSStubCBCentralManager.h */,
 				DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */,
@@ -374,11 +348,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */,
-				DEE990DB17F543F70041CAB6 /* Main_iPad.storyboard in Resources */,
 				DEE990E317F543F70041CAB6 /* Images.xcassets in Resources */,
 				DE42DEFA1EC42D4600FA151F /* Main.storyboard in Resources */,
 				DEBC532317F547A800F2ACFF /* README.md in Resources */,
-				DEE990D817F543F70041CAB6 /* Main_iPhone.storyboard in Resources */,
 				DEE990CF17F543F70041CAB6 /* InfoPlist.strings in Resources */,
 				DEEDFA751EC2D63500D878E0 /* Launch Screen.storyboard in Resources */,
 			);
@@ -401,7 +373,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEE990DE17F543F70041CAB6 /* BSMasterViewController.m in Sources */,
 				DEFDC94F17F553700073F990 /* BSLeDiscovery.m in Sources */,
 				DEE990D117F543F70041CAB6 /* main.m in Sources */,
 				DEA8D2BF1B35EB92000E5EF1 /* BSBlePeripheral.m in Sources */,
@@ -411,7 +382,6 @@
 				DE40892B182CCCC700643E77 /* CBCentralManager_BSSafe.m in Sources */,
 				DE42DF001EC42F0000FA151F /* DetailViewController.m in Sources */,
 				DE6B73C01808F663007EC396 /* BSBleConstants.m in Sources */,
-				DEE990E117F543F70041CAB6 /* BSDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,10 +392,8 @@
 				DEF56FDB17F9386600A99FF2 /* BSJSONParser.m in Sources */,
 				DE90FA9E180950920000DBDA /* BSStubCBCentralManager.m in Sources */,
 				DEF56FDD17F93CC500A99FF2 /* BSJSONParserTests.m in Sources */,
-				DE956C2918388E5B0054DE1B /* BSDetailViewControllerTests.m in Sources */,
 				DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */,
 				DE1EE2351EC4FB7700EA5086 /* MasterViewControllerTests.m in Sources */,
-				DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */,
 				DE6B73C11808F663007EC396 /* BSBleConstants.m in Sources */,
 				DEC2C94F1EC4E11B0004FA86 /* DetailViewControllerTests.m in Sources */,
 				DE7671DD182C77DE00E4CD1C /* CBCentralManagerTests.m in Sources */,
@@ -458,22 +426,6 @@
 				DEE990CE17F543F70041CAB6 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DEE990D717F543F70041CAB6 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DEE990DA17F543F70041CAB6 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		DEE990F217F543F70041CAB6 /* InfoPlist.strings */ = {
