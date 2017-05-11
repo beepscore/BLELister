@@ -12,11 +12,6 @@
 #import "BSBleConstants.h"
 #import "BSBlePeripheral.h"
 
-@interface MasterViewController ()
-
-@property NSMutableArray *objects;
-@end
-
 @implementation MasterViewController
 
 - (void)viewDidLoad {
@@ -81,11 +76,17 @@
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.objects[indexPath.row];
+
         DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:object];
+
+        BSBlePeripheral *bsBlePeripheral = self.leDiscovery.foundPeripherals[indexPath.row];
+
+        // TODO: change DetailViewController detailItem, then uncomment this
+        //[[segue destinationViewController] setDetailItem:bsBlePeripheral];
+
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
     }
@@ -100,15 +101,23 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objects.count;
+    return self.leDiscovery.foundPeripherals.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"
+                                                            forIndexPath:indexPath];
 
-    NSDate *object = self.objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    BSBlePeripheral *bsBlePeripheral = self.leDiscovery.foundPeripherals[indexPath.row];
+    cell.textLabel.text = [bsBlePeripheral.peripheral name];
+
+    if (!bsBlePeripheral.RSSI) {
+        cell.detailTextLabel.text = @"unknown";
+    } else {
+        cell.detailTextLabel.text = [bsBlePeripheral.RSSI description];
+    }
+
     return cell;
 }
 
@@ -121,7 +130,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.objects removeObjectAtIndex:indexPath.row];
+        NSMutableArray *mutableFoundPeripherals = [NSMutableArray arrayWithArray:self.leDiscovery.foundPeripherals];
+        [mutableFoundPeripherals removeObjectAtIndex:indexPath.row];
+        self.leDiscovery.foundPeripherals = [NSArray arrayWithArray:mutableFoundPeripherals];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
