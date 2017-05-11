@@ -60,6 +60,8 @@
 
 /* Begin PBXFileReference section */
 		C77D51C1FA1A477C99FA184A /* libPods-BLELister.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BLELister.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE22EC141EC434F400A9B568 /* BSMasterViewController_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BSMasterViewController_Private.h; path = Controllers/BSMasterViewController_Private.h; sourceTree = "<group>"; };
+		DE22EC151EC4350600A9B568 /* MasterViewController_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MasterViewController_Private.h; path = Controllers/MasterViewController_Private.h; sourceTree = "<group>"; };
 		DE408929182CCCC700643E77 /* CBCentralManager_BSSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBCentralManager_BSSafe.h; path = Bluetooth/CBCentralManager_BSSafe.h; sourceTree = "<group>"; };
 		DE40892A182CCCC700643E77 /* CBCentralManager_BSSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBCentralManager_BSSafe.m; path = Bluetooth/CBCentralManager_BSSafe.m; sourceTree = "<group>"; };
 		DE42DEF91EC42D4600FA151F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -109,7 +111,6 @@
 		DEF56FD917F9386600A99FF2 /* BSJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSJSONParser.m; sourceTree = "<group>"; };
 		DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BSJSONParserTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DEF56FDE17F952A800A99FF2 /* stubArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stubArray.json; sourceTree = "<group>"; };
-		DEF676D018090DB900864ECC /* BSMasterViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSMasterViewController_Private.h; path = Controllers/BSMasterViewController_Private.h; sourceTree = "<group>"; };
 		DEF7469517F92D3F00502764 /* bleDevices.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bleDevices.json; sourceTree = "<group>"; };
 		DEFDC94D17F5535D0073F990 /* BSLeDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = BSLeDiscovery.h; path = Bluetooth/BSLeDiscovery.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DEFDC94E17F553700073F990 /* BSLeDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BSLeDiscovery.m; path = Bluetooth/BSLeDiscovery.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -149,11 +150,12 @@
 				DEC48973182B08EC006E72B7 /* BSDetailViewController_Private.h */,
 				DEE990E017F543F70041CAB6 /* BSDetailViewController.m */,
 				DEE990DC17F543F70041CAB6 /* BSMasterViewController.h */,
-				DEF676D018090DB900864ECC /* BSMasterViewController_Private.h */,
+				DE22EC141EC434F400A9B568 /* BSMasterViewController_Private.h */,
 				DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */,
 				DE42DEFE1EC42EEA00FA151F /* DetailViewController.h */,
 				DE42DEFF1EC42F0000FA151F /* DetailViewController.m */,
 				DE42DF011EC42F0F00FA151F /* MasterViewController.h */,
+				DE22EC151EC4350600A9B568 /* MasterViewController_Private.h */,
 				DE42DF021EC42F1F00FA151F /* MasterViewController.m */,
 			);
 			name = Controllers;
