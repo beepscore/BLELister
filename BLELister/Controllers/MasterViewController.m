@@ -37,6 +37,8 @@
 }
 
 
+#pragma mark - Memory management
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
