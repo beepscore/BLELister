@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BSLeDiscovery.h"
+#import "BSBlePeripheral.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+
 
 @interface DetailViewController : UIViewController
 
-@property (strong, nonatomic) NSDate *detailItem;
+@property (strong, nonatomic) BSLeDiscovery *leDiscovery;
+@property (strong, nonatomic) BSBlePeripheral *detailItem;
+
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
 @end
-

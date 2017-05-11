@@ -79,6 +79,7 @@
 		DE90FA9C180950920000DBDA /* BSStubCBCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSStubCBCentralManager.h; sourceTree = "<group>"; };
 		DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSStubCBCentralManager.m; sourceTree = "<group>"; };
 		DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSDetailViewControllerTests.m; sourceTree = "<group>"; };
+		DE99F8011EC4BD4A00584452 /* DetailViewController_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DetailViewController_Private.h; path = Controllers/DetailViewController_Private.h; sourceTree = "<group>"; };
 		DEA8D2BD1B35EB92000E5EF1 /* BSBlePeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBlePeripheral.h; sourceTree = "<group>"; };
 		DEA8D2BE1B35EB92000E5EF1 /* BSBlePeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBlePeripheral.m; sourceTree = "<group>"; };
 		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 				DE22EC141EC434F400A9B568 /* BSMasterViewController_Private.h */,
 				DEE990DD17F543F70041CAB6 /* BSMasterViewController.m */,
 				DE42DEFE1EC42EEA00FA151F /* DetailViewController.h */,
+				DE99F8011EC4BD4A00584452 /* DetailViewController_Private.h */,
 				DE42DEFF1EC42F0000FA151F /* DetailViewController.m */,
 				DE42DF011EC42F0F00FA151F /* MasterViewController.h */,
 				DE22EC151EC4350600A9B568 /* MasterViewController_Private.h */,
