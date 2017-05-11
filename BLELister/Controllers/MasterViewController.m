@@ -46,6 +46,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
+    // TODO: explicit removeObserver may not be necessary in iOS >= 9
+
+    [self.notificationCenter removeObserver:self
+                                       name:kBleDiscoveryDidRefreshNotification
+                                     object:nil];
+    [self.notificationCenter removeObserver:self
+                                       name:kBleDiscoveryStatePoweredOffNotification
+                                     object:nil];
+    [self.notificationCenter removeObserver:self
+                                       name:kBleDiscoveryDidReadRSSINotification
+                                     object:nil];
+}
+
+
+#pragma mark -
+
+- (void)scanForPeripherals {
+    [self.leDiscovery scanForPeripheralsWithServices:nil options:nil];
+}
 
 #pragma mark - Segues
 
