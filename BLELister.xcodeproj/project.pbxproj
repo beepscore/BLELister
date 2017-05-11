@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DE40892B182CCCC700643E77 /* CBCentralManager_BSSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = DE40892A182CCCC700643E77 /* CBCentralManager_BSSafe.m */; };
+		DE42DEFA1EC42D4600FA151F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE42DEF81EC42D4600FA151F /* Main.storyboard */; };
 		DE580DEE17F5995000292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DE580DEF17F5997200292810 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE580DED17F5995000292810 /* CoreBluetooth.framework */; };
 		DE6B73C01808F663007EC396 /* BSBleConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B73BF1808F663007EC396 /* BSBleConstants.m */; };
@@ -59,6 +60,7 @@
 		C77D51C1FA1A477C99FA184A /* libPods-BLELister.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BLELister.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE408929182CCCC700643E77 /* CBCentralManager_BSSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBCentralManager_BSSafe.h; path = Bluetooth/CBCentralManager_BSSafe.h; sourceTree = "<group>"; };
 		DE40892A182CCCC700643E77 /* CBCentralManager_BSSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBCentralManager_BSSafe.m; path = Bluetooth/CBCentralManager_BSSafe.m; sourceTree = "<group>"; };
+		DE42DEF91EC42D4600FA151F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE580DED17F5995000292810 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		DE6B73BE1808F663007EC396 /* BSBleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSBleConstants.h; path = Bluetooth/BSBleConstants.h; sourceTree = "<group>"; };
 		DE6B73BF1808F663007EC396 /* BSBleConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSBleConstants.m; path = Bluetooth/BSBleConstants.m; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				DE4E2A74180870A7005DA864 /* Controllers */,
 				DEE990D317F543F70041CAB6 /* BSAppDelegate.h */,
 				DEE990D417F543F70041CAB6 /* BSAppDelegate.m */,
+				DE42DEF81EC42D4600FA151F /* Main.storyboard */,
 				DEE990D617F543F70041CAB6 /* Main_iPhone.storyboard */,
 				DEE990D917F543F70041CAB6 /* Main_iPad.storyboard */,
 				DEF56FD817F9386600A99FF2 /* BSJSONParser.h */,
@@ -353,6 +356,7 @@
 				DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */,
 				DEE990DB17F543F70041CAB6 /* Main_iPad.storyboard in Resources */,
 				DEE990E317F543F70041CAB6 /* Images.xcassets in Resources */,
+				DE42DEFA1EC42D4600FA151F /* Main.storyboard in Resources */,
 				DEBC532317F547A800F2ACFF /* README.md in Resources */,
 				DEE990D817F543F70041CAB6 /* Main_iPhone.storyboard in Resources */,
 				DEE990CF17F543F70041CAB6 /* InfoPlist.strings in Resources */,
@@ -416,6 +420,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		DE42DEF81EC42D4600FA151F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE42DEF91EC42D4600FA151F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		DEE990CD17F543F70041CAB6 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
