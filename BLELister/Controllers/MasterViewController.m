@@ -137,10 +137,8 @@
 // TODO: I think this isn't needed with new master-detail. Double check.
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        BSBlePeripheral *bsBlePeripheral = self.leDiscovery.foundPeripherals[indexPath.row];
-        self.detailViewController.detailItem = bsBlePeripheral;
-    //}
+    BSBlePeripheral *bsBlePeripheral = self.leDiscovery.foundPeripherals[indexPath.row];
+    self.detailViewController.detailItem = bsBlePeripheral;
 }
 
 #pragma mark - Register for notifications
