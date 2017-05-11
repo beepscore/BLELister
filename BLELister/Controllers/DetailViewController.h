@@ -17,6 +17,10 @@
 @property (strong, nonatomic) BSLeDiscovery *leDiscovery;
 @property (strong, nonatomic) BSBlePeripheral *detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *connectButton;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *peripheralStateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rssiLabel;
+@property (weak, nonatomic) IBOutlet UILabel *uuidLabel;
 
 @end
