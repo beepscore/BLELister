@@ -9,6 +9,8 @@
 #import "MasterViewController.h"
 #import "MasterViewController_Private.h"
 #import "DetailViewController.h"
+#import "BSBleConstants.h"
+#import "BSBlePeripheral.h"
 
 @interface MasterViewController ()
 
@@ -95,5 +97,58 @@
     }
 }
 
+
+#pragma mark - Register for notifications
+
+- (void)registerForBleDiscoveryDidRefreshNotification {
+    [self.notificationCenter addObserver:self
+                                selector:@selector(discoveryDidRefreshWithNotification:)
+                                    name:kBleDiscoveryDidRefreshNotification
+                                  object:nil];
+}
+
+- (void)registerFoBleDiscoveryStatePoweredOffNotification {
+    [self.notificationCenter addObserver:self
+                                selector:@selector(discoveryStatePoweredOff)
+                                    name:kBleDiscoveryStatePoweredOffNotification
+                                  object:nil];
+}
+
+- (void)registerForBleDiscoveryDidReadRSSINotification {
+    [self.notificationCenter addObserver:self
+                                selector:@selector(discoveryDidReadRSSINotification:)
+                                    name:kBleDiscoveryDidReadRSSINotification
+                                  object:nil];
+}
+
+
+#pragma mark - Notification response methods
+
+- (void)updateUIOnMainQueue {
+    // Get main queue before updating UI.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // reloadData will get the current detailItem.state
+        [self.tableView reloadData];
+    });
+}
+
+- (void)discoveryDidRefreshWithNotification:(NSNotification *)notification {
+    NSLog(@"in BSMasterViewController discoveryDidRefreshWithNotification:");
+    NSLog(@"notification.object: %@", notification.object);
+
+    if (notification.userInfo) {
+        NSLog(@"notification.userInfo %@", notification.userInfo);
+    }
+    // Notification may be from a background queue.
+    [self updateUIOnMainQueue];
+}
+
+- (void)discoveryStatePoweredOff {
+    NSLog(@"discoveryStatePoweredOff");
+}
+
+- (void)discoveryDidReadRSSINotification:(NSNotification *)notification {
+    [self updateUIOnMainQueue];
+}
 
 @end
