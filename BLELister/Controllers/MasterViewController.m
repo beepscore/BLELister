@@ -24,12 +24,22 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    // TODO: copy code from BSMasterViewController into MasterViewController
+    UIBarButtonItem *scanButton = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                   target:self
+                                   action:@selector(scanForPeripherals)];
+    self.navigationItem.rightBarButtonItem = scanButton;
 
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
-    
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+
+    self.leDiscovery = [BSLeDiscovery sharedInstance];
+
+    self.notificationCenter = [NSNotificationCenter defaultCenter];
+    [self registerForBleDiscoveryDidRefreshNotification];
+    [self registerFoBleDiscoveryStatePoweredOffNotification];
+    [self registerForBleDiscoveryDidReadRSSINotification];
+
+    [self scanForPeripherals];
 }
 
 
