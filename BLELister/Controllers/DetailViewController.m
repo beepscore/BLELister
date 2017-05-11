@@ -15,18 +15,20 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        
-        self.title = [self.detailItem.peripheral name];
+
+        if (self.detailItem.peripheral) {
+            self.title = [self.detailItem.peripheral name];
+            self.peripheralStateLabel.text = [self peripheralStateStringForValue:self.detailItem.peripheral.state];
+            self.uuidLabel.text = [self.detailItem.peripheral.identifier UUIDString];
+            NSString *buttonTitle = [self connectLabelTextForState:self.detailItem.peripheral.state];
+            [self.connectButton setTitle: buttonTitle forState: UIControlStateNormal];
+        }
 
         self.RSSI = self.detailItem.RSSI;
         self.rssiLabel.text = [self.RSSI description];
 
-        self.peripheralStateLabel.text = [self peripheralStateStringForValue:self.detailItem.peripheral.state];
-        self.uuidLabel.text = [self.detailItem.peripheral.identifier UUIDString];
         self.descriptionLabel.text = [self.detailItem description];
 
-        NSString *buttonTitle = [self connectLabelTextForState:self.detailItem.peripheral.state];
-        [self.connectButton setTitle: buttonTitle forState: UIControlStateNormal];
     }
 }
 
@@ -121,6 +123,21 @@
 }
 
 #pragma mark -
+
+- (IBAction)connectTapped:(id)sender {
+    if (self.detailItem.peripheral) {
+        if (CBPeripheralStateDisconnected == self.detailItem.peripheral.state) {
+            [self connect:self.leDiscovery
+               peripheral:self.detailItem.peripheral];
+        } else if (CBPeripheralStateConnected == self.detailItem.peripheral.state) {
+            [self disconnect:self.leDiscovery peripheral:self.detailItem.peripheral];
+        }
+        // update UI based on detailItem state
+        [self configureView];
+    }
+}
+
+#pragma mark -
 - (void)connect:(BSLeDiscovery *)aLeDiscovery
      peripheral:(CBPeripheral *)aPeripheral {
     [aLeDiscovery connectPeripheral:aPeripheral];
@@ -160,10 +177,7 @@
 - (void)updateUIOnMainQueue {
     // Get main queue before updating UI.
     dispatch_async(dispatch_get_main_queue(), ^{
-        // reloadData will get the current detailItem.state
-//FIXME: need to reload?
-        // TODO: need to reload?
-        //[self.tableView reloadData];
+        [self configureView];
     });
 }
 
