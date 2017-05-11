@@ -46,12 +46,12 @@
     
     NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:10];
     
-    while ( (CBCentralManagerStatePoweredOn != centralManager.state)
+    while ( (CBManagerStatePoweredOn != centralManager.state)
            && [[timeoutDate laterDate:[NSDate date]] isEqualToDate:timeoutDate]) {
-        NSLog(@"%@ CBCentralManagerState: %ld", centralManager, centralManager.state);
+        NSLog(@"%@ centralManager.state: %ld", centralManager, centralManager.state);
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
     }
-    XCTAssertEqual(CBCentralManagerStatePoweredOn, centralManager.state,
+    XCTAssertEqual(CBManagerStatePoweredOn, centralManager.state,
                    @"expected centralManager state on");
 }
 
@@ -71,9 +71,9 @@
         NSLog(@"In testBlock.");
         NSLog(@"centralManager %@ state %d", centralManager, centralManager.state);
 
-        if (CBCentralManagerStatePoweredOn == centralManager.state) {
+        if (CBManagerStatePoweredOn == centralManager.state) {
 
-            XCTAssertEqual(CBCentralManagerStatePoweredOn, centralManager.state,
+            XCTAssertEqual(CBManagerStatePoweredOn, centralManager.state,
                     @"expected centralManager state on");
             // dereference the pointer to set the BOOL value
             *didFinish = YES;
@@ -185,8 +185,8 @@
     CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:nil];
     id mockCentralManager = [OCMockObject partialMockForObject:centralManager];
     // override readonly property state
-    [[[mockCentralManager stub] andReturnValue:OCMOCK_VALUE(CBCentralManagerStatePoweredOff)] state];
-    XCTAssertEqual(CBCentralManagerStatePoweredOff,
+    [[[mockCentralManager stub] andReturnValue:OCMOCK_VALUE(CBManagerStatePoweredOff)] state];
+    XCTAssertEqual(CBManagerStatePoweredOff,
                    [mockCentralManager state], @"expect test set up mock powered off");
 
     // http://ocmock.org/features/
@@ -202,8 +202,8 @@
     CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:nil queue:nil];
     id mockCentralManager = [OCMockObject partialMockForObject:centralManager];
     // override readonly property state
-    [[[mockCentralManager stub] andReturnValue:OCMOCK_VALUE(CBCentralManagerStatePoweredOn)] state];
-    XCTAssertEqual(CBCentralManagerStatePoweredOn,
+    [[[mockCentralManager stub] andReturnValue:OCMOCK_VALUE(CBManagerStatePoweredOn)] state];
+    XCTAssertEqual(CBManagerStatePoweredOn,
                    [mockCentralManager state], @"expect test set up mock powered on");
 
     [[mockCentralManager expect] scanForPeripheralsWithServices:OCMOCK_ANY

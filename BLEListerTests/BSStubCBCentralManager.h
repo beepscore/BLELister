@@ -18,7 +18,7 @@
 
 // BSStubCBCentralManager state is readwrite so we can set it for unit tests
 // CBCentralManager state is readonly.
-@property(readwrite) enum CBCentralManagerState state;
+@property(readwrite) enum CBManagerState state;
 
 // add delegate property so unit tests can set it
 @property(weak, nonatomic) id<CBCentralManagerDelegate> delegate;

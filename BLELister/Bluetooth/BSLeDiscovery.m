@@ -184,7 +184,7 @@
     static CBManagerState previousState = -1;
 
     // TODO: Do we need to get main queue, in case centralManager is using non-main queue?
-    NSLog(@"%@ CBCentralManagerState %ld", central, central.state);
+    NSLog(@"%@ central.state %ld", central, central.state);
 
     switch ([central state]) {
 
@@ -223,7 +223,7 @@
                                                    object:self
                                                  userInfo:nil];
             /* Tell user to power ON BT for functionality, but not on first run - the Framework will alert in that instance. */
-            // cast -1 to CBCentralManagerState to eliminate warning
+            // cast -1 to CBManagerState to eliminate warning
             if (previousState != (CBManagerState)-1) {
                 [self.notificationCenter postNotificationName:kBleDiscoveryStatePoweredOffNotification
                                                        object:self

@@ -165,10 +165,10 @@
 
         NSLog(@"In testBlock. foundPeripherals: %@", bsLeDiscovery.foundPeripherals);
 
-        if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
+        if(CBManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
             NSLog(@"still not powered on");
         } else {
-            NSLog(@"CBCentralManagerStatePoweredOn");
+            NSLog(@"CBManagerStatePoweredOn");
             // centralManager is powered on, ok to scan and retrieve
             // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
             
@@ -239,13 +239,13 @@
         
         NSLog(@"In while loop.");
         NSLog(@"foundPeripherals %@", bsLeDiscovery.foundPeripherals);
-        NSLog(@"%@ CBCentralManagerState %ld", bsLeDiscovery.centralManager,
+        NSLog(@"%@ centralManager.state %ld", bsLeDiscovery.centralManager,
               bsLeDiscovery.centralManager.state);
 
-        if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
+        if(CBManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
             NSLog(@"still not powered on");
         } else {
-            NSLog(@"CBCentralManagerStatePoweredOn");
+            NSLog(@"CBManagerStatePoweredOn");
             // centralManager is powered on, ok to scan and retrieve
             // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
             
@@ -325,14 +325,14 @@
         NSLog(@"connect not timed out");
         sleep(1);
         
-        if(CBCentralManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
+        if(CBManagerStatePoweredOn != bsLeDiscovery.centralManager.state) {
             NSLog(@"not powered on");
-            NSLog(@"%@ CBCentralManagerState %ld", bsLeDiscovery.centralManager,
+            NSLog(@"%@ centralManager.state %ld", bsLeDiscovery.centralManager,
                          bsLeDiscovery.centralManager.state);
         } else {
             // centralManager is powered on, ok to scan and retrieve
             // http://stackoverflow.com/questions/17118534/when-would-cbcentralmanagers-state-ever-be-powered-on-but-still-give-me-a-not?rq=1
-            NSLog(@"CBCentralManagerStatePoweredOn");
+            NSLog(@"CBManagerStatePoweredOn");
             
             if(!didStartScanning) {
                 [bsLeDiscovery startScanningForUUIDString:nil];
@@ -389,7 +389,7 @@
     id mockNotificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
 
     BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
-    stubCentralManager.state = CBCentralManagerStatePoweredOff;
+    stubCentralManager.state = CBManagerStatePoweredOff;
 
     self.bsLeDiscovery = [[BSLeDiscovery alloc]
                           initWithCentralManager:(CBCentralManager *)stubCentralManager
@@ -413,7 +413,7 @@
     id mockNotificationCenter = [OCMockObject niceMockForClass:[NSNotificationCenter class]];
 
     BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
-    stubCentralManager.state = CBCentralManagerStatePoweredOff;
+    stubCentralManager.state = CBManagerStatePoweredOff;
 
     self.bsLeDiscovery = [[BSLeDiscovery alloc]
                           initWithCentralManager:(CBCentralManager *)stubCentralManager
@@ -436,7 +436,7 @@
     id mockNotificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
 
     BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
-    stubCentralManager.state = CBCentralManagerStatePoweredOn;
+    stubCentralManager.state = CBManagerStatePoweredOn;
 
     self.bsLeDiscovery = [[BSLeDiscovery alloc]
                           initWithCentralManager:(CBCentralManager *)stubCentralManager
@@ -459,7 +459,7 @@
 //    id mockNotificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
 //
 //    BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
-//    stubCentralManager.state = CBCentralManagerStatePoweredOn;
+//    stubCentralManager.state = CBManagerStatePoweredOn;
 //
 //    self.bsLeDiscovery = [[BSLeDiscovery alloc]
 //                          initWithCentralManager:(CBCentralManager *)stubCentralManager
@@ -486,7 +486,7 @@
     id mockNotificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
     
     BSStubCBCentralManager *stubCentralManager = [[BSStubCBCentralManager alloc] init];
-    stubCentralManager.state = CBCentralManagerStatePoweredOn;
+    stubCentralManager.state = CBManagerStatePoweredOn;
     
     self.bsLeDiscovery = [[BSLeDiscovery alloc]
                           initWithCentralManager:(CBCentralManager *)stubCentralManager
