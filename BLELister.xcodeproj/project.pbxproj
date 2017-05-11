@@ -22,6 +22,7 @@
 		DEA8D2BF1B35EB92000E5EF1 /* BSBlePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA8D2BE1B35EB92000E5EF1 /* BSBlePeripheral.m */; };
 		DEBC532317F547A800F2ACFF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532217F547A800F2ACFF /* README.md */; };
 		DEBC532517F547BC00F2ACFF /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = DEBC532417F547BB00F2ACFF /* LICENSE.txt */; };
+		DEC2C94F1EC4E11B0004FA86 /* DetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC2C94E1EC4E11B0004FA86 /* DetailViewControllerTests.m */; };
 		DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */; };
 		DEDACD7618093633003CC569 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDACD7518093633003CC569 /* libOCMock.a */; };
 		DEE990C517F543F70041CAB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEE990C417F543F70041CAB6 /* Foundation.framework */; };
@@ -84,6 +85,7 @@
 		DEA8D2BE1B35EB92000E5EF1 /* BSBlePeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSBlePeripheral.m; sourceTree = "<group>"; };
 		DEBC532217F547A800F2ACFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DEBC532417F547BB00F2ACFF /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		DEC2C94E1EC4E11B0004FA86 /* DetailViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewControllerTests.m; sourceTree = "<group>"; };
 		DEC38EFC18394ECD000DB30F /* BSBleTestConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSBleTestConstants.h; sourceTree = "<group>"; };
 		DEC48973182B08EC006E72B7 /* BSDetailViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSDetailViewController_Private.h; path = Controllers/BSDetailViewController_Private.h; sourceTree = "<group>"; };
 		DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = BSMasterViewControllerTests.m; path = BLEListerTests/BSMasterViewControllerTests.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -259,6 +261,7 @@
 				DEF7469417F92D3F00502764 /* TestResources */,
 				DEC38EFC18394ECD000DB30F /* BSBleTestConstants.h */,
 				DE956C2818388E5B0054DE1B /* BSDetailViewControllerTests.m */,
+				DEC2C94E1EC4E11B0004FA86 /* DetailViewControllerTests.m */,
 				DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */,
 				DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */,
 				DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */,
@@ -420,6 +423,7 @@
 				DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */,
 				DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */,
 				DE6B73C11808F663007EC396 /* BSBleConstants.m in Sources */,
+				DEC2C94F1EC4E11B0004FA86 /* DetailViewControllerTests.m in Sources */,
 				DE7671DD182C77DE00E4CD1C /* CBCentralManagerTests.m in Sources */,
 				DEE990F617F543F70041CAB6 /* BSLeDiscoveryTests.m in Sources */,
 			);
