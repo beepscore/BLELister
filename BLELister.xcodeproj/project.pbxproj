@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE1EE2351EC4FB7700EA5086 /* MasterViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1EE2341EC4FB7700EA5086 /* MasterViewControllerTests.m */; };
 		DE40892B182CCCC700643E77 /* CBCentralManager_BSSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = DE40892A182CCCC700643E77 /* CBCentralManager_BSSafe.m */; };
 		DE42DEFA1EC42D4600FA151F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE42DEF81EC42D4600FA151F /* Main.storyboard */; };
 		DE42DEFD1EC42E9400FA151F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE42DEFC1EC42E9400FA151F /* AppDelegate.m */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		C77D51C1FA1A477C99FA184A /* libPods-BLELister.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BLELister.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE1EE2341EC4FB7700EA5086 /* MasterViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewControllerTests.m; sourceTree = "<group>"; };
 		DE22EC141EC434F400A9B568 /* BSMasterViewController_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BSMasterViewController_Private.h; path = Controllers/BSMasterViewController_Private.h; sourceTree = "<group>"; };
 		DE22EC151EC4350600A9B568 /* MasterViewController_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MasterViewController_Private.h; path = Controllers/MasterViewController_Private.h; sourceTree = "<group>"; };
 		DE408929182CCCC700643E77 /* CBCentralManager_BSSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBCentralManager_BSSafe.h; path = Bluetooth/CBCentralManager_BSSafe.h; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				DEF56FDC17F93CC500A99FF2 /* BSJSONParserTests.m */,
 				DEE990F517F543F70041CAB6 /* BSLeDiscoveryTests.m */,
 				DEC9EE541805C1F7006CF6C5 /* BSMasterViewControllerTests.m */,
+				DE1EE2341EC4FB7700EA5086 /* MasterViewControllerTests.m */,
 				DE90FA9C180950920000DBDA /* BSStubCBCentralManager.h */,
 				DE90FA9D180950920000DBDA /* BSStubCBCentralManager.m */,
 				DE7671DC182C77DE00E4CD1C /* CBCentralManagerTests.m */,
@@ -421,6 +424,7 @@
 				DEF56FDD17F93CC500A99FF2 /* BSJSONParserTests.m in Sources */,
 				DE956C2918388E5B0054DE1B /* BSDetailViewControllerTests.m in Sources */,
 				DEFDC95017F553700073F990 /* BSLeDiscovery.m in Sources */,
+				DE1EE2351EC4FB7700EA5086 /* MasterViewControllerTests.m in Sources */,
 				DEC9EE551805C1F7006CF6C5 /* BSMasterViewControllerTests.m in Sources */,
 				DE6B73C11808F663007EC396 /* BSBleConstants.m in Sources */,
 				DEC2C94F1EC4E11B0004FA86 /* DetailViewControllerTests.m in Sources */,
