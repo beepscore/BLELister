@@ -15,11 +15,18 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.descriptionLabel.text = [self.detailItem description];
         
         self.title = [self.detailItem.peripheral name];
+
         self.RSSI = self.detailItem.RSSI;
-        //[self.tableView reloadData];
+        self.rssiLabel.text = [self.RSSI description];
+
+        self.peripheralStateLabel.text = [self peripheralStateStringForValue:self.detailItem.peripheral.state];
+        self.uuidLabel.text = [self.detailItem.peripheral.identifier UUIDString];
+        self.descriptionLabel.text = [self.detailItem description];
+
+        NSString *buttonTitle = [self connectLabelTextForState:self.detailItem.peripheral.state];
+        [self.connectButton setTitle: buttonTitle forState: UIControlStateNormal];
     }
 }
 
